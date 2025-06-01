@@ -1,3 +1,8 @@
+name: zmk-keyboards-azel
 build:
+  # Folder containing a "CMakeLists.txt" (. = root)
+  cmake: .
+  # Kconfig filepath
+  kconfig: Kconfig
   settings:
     board_root: .
