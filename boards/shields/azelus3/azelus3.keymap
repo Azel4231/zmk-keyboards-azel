@@ -7,34 +7,17 @@
  */
 
  /*
-  * Build for ZMK Studio (local/native):
-  * first activate west venv, where python lib protobuf is installed. Then build.
+  * ;; Build for ZMK Studio
+  * ;; first activate west venv, where python lib protobuf is installed. Then build.
   *
   *  source /home/.../.local/share/pipx/venvs/west/bin/activate
   *  west build -p -d build/cl_studio -b nice_nano_v2 -S studio-rpc-usb-uart -- -DSHIELD=azelus3 -DCONFIG_ZMK_STUDIO=y
   *  cp build/cl_studio/zephyr/zmk.uf2 /media/.../NICENANO/
-  *
-  * Installing/Updating Python dependencies (e.g. protobuf) inside the west venv managed by pipx:
-  * ~/.local/share/pipx/venvs/west/bin/python3.12 -m pip install protobuf grpcio-tools
   */
 
- /* Build with container:
-  * - IJ: Docker -> Dev Containers
-  * - funny_nash (oÄ) -> connect
-  * - west build -p -d build/cl_studio -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config -Dshield=azelus3 -DCONFIG_ZMK_STUDIO=y
-  * 
-  *
-  *
-  * Init/Update dev-container:
-  * (init required after initial setup and after changing config/module paths which requires recreating docker volumes)
-  * - IJ:   righclick .devcontainer/devcontainer.json
-  *         Dev Conainers -> Create Dev Container and Clone Soures
-  * - IJ:   Docker -> Dev Containers
-  *         funny_nash (oÄ) -> connect
-  * - inside container IJ:
-  *     -> Terminal
-  *     for init:   west init -l app/
-  *     for update: west update
+ /*
+  * Installing/Uptating Python dependencies (e.g. protobuf) inside the west venv managed by pipx:
+  * ~/.local/share/pipx/venvs/west/bin/python3.12 -m pip install protobuf grpcio-tools
   */
 
 #include <behaviors.dtsi>

@@ -6,5 +6,4 @@ url: https://github.com/Azel4231/zmk-config
 requires: [pro_micro]
 features:
   - keys
-  - studio
 siblings:

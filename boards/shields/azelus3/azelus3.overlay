@@ -6,11 +6,9 @@
     chosen {
         zmk,battery = &vbatt;
         zmk,kscan = &kscan0;
-        zmk,physical-layout = &physical_layout0;
     };
     
-    // "&gpio1 6" means pin P1.06 on the pinout diagram for the nice!nano_v2: https://nicekeyboards.com/docs/nice-nano/pinout-schematic/. 
-    // See also  https://zmk.dev/docs/development/new-shield#shield-overlays
+    // "&gpio1 6" means pin P1.06 on the pinout diagram for the nice!nano_v2: https://nicekeyboards.com/docs/nice-nano/pinout-schematic/. See also  https://zmk.dev/docs/development/new-shield#shield-overlays
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
@@ -42,7 +40,8 @@
             ;
     };
     
-    matrix_transform0: keymap_transform_0  {
+    layout_grid_transform:
+    keymap_transform_0  {
         compatible = "zmk,matrix-transform";
         columns = <12>;
         rows = <5>;
@@ -55,11 +54,11 @@
             >;
     };
 
-    physical_layout0: default_layout {
+    physical_layout1: default_layout {
         compatible = "zmk,physical-layout";
         display-name = "Standard Layout";
-        transform = <&matrix_transform0>;
-        zmk,kscan = &kscan0;
+        transform = <&layout_grid_transform>;
+        kscan = <&kscan0>;
         keys =  <&key_physical_attrs 100 100    0    0       0     0     0>
                ,<&key_physical_attrs 100 100  400    0       0     0     0> 
                ,<&key_physical_attrs 100 100  900    0       0     0     0>
@@ -119,7 +118,7 @@
         compatible = "zmk,physical-layout-position-map";
         complete;
         layout1: layout1 {
-            physical-layout = <&physical_layout0>;
+            physical-layout = <&physical_layout1>;
             positions = < 0           1              2           3>
                        ,< 4  5  6  7  8  9       10 11 12 13 14 15>
                        ,<16 17 18 19 20 21       22 23 24 25 26 27>

@@ -347,7 +347,7 @@
 /* @  */
 #define DE_AT_M (LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_L)))
 
-/* ~    Modifier for following letter, e.g. El Ni~no -> El Niño. Is there a char-only variant? */
+/* ~    Modifier for following letter, e.g. El Ni~no. Maybe find char-only variant? */
 #define DE_TILD_M (LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_N)))
 
 /* |  */
@@ -381,4 +381,5 @@
 #define DE_DEG_M (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)))
 
 /* <Apple Logo>  */
-#define DE_APPLE_M (LS(LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE))))
+#define DE_APPLE_M (LS(RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE))))
+
