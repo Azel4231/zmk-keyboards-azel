@@ -186,7 +186,7 @@
 &kp DE_AMPS  &kp DE_AT      &kp DE_DQT   &kp DE_DLLR   &kp DE_LBRC  &kp DE_RBRC          &kp DE_TILDE  &kp N7  &kp N8  &kp N9  &kp DE_MINUS  &kp DE_APOS     
 &kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL &kp DE_COLON  &kp DE_LPAR  &kp DE_RPAR          &kp DE_ASTRK  &kp N4  &kp N5  &kp N6  &kp DE_PLUS   &trans     
 &kp DE_EURO  &kp DE_QMARK   &kp DE_LT    &kp DE_GT     &kp DE_LBKT  &kp DE_RBKT          &kp DE_BSLH   &kp N1  &kp N2  &kp N3  &kp DOT       &kp DE_GRAVE     
-                            &kp DE_CIRC  &trans        &trans       &trans               &trans        &kp N0  &trans  &trans 
+                            &kp DE_CARET  &trans        &trans       &trans               &trans        &kp N0  &trans  &trans
             >;
             display-name = "Sym";
         };
@@ -194,10 +194,10 @@
         sym_mac {
             bindings = <
 &trans                                              &kp DE_PIPE_M                                      &trans                           &trans
-&trans  &kp DE_AT_M     &trans          &trans      &kp DE_LBRC_M   &kp DE_RBRC_M       &kp DE_TILD_M  &trans  &trans  &trans  &trans   &trans     
+&trans  &kp DE_AT_M     &trans          &trans      &kp DE_LBRC_M   &kp DE_RBRC_M       &kp DE_TILDE_M  &trans  &trans  &trans  &trans   &trans
 &trans  &trans          &trans          &trans      &trans          &trans              &trans         &trans  &trans  &trans  &trans   &trans     
 &trans  &trans          &kp DE_LT_M     &kp DE_GT_M &kp DE_LBKT_M   &kp DE_RBKT_M       &kp DE_BSLH_M  &trans  &trans  &trans  &trans   &trans
-                        &kp DE_CIRC_M   &trans      &trans          &trans              &trans         &trans  &trans  &trans 
+                        &kp DE_CARET_M   &trans      &trans          &trans              &trans         &trans  &trans  &trans
             >;
             display-name = "Sym Mac";
         };
