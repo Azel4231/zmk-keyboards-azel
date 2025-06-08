@@ -18,25 +18,28 @@
   * ~/.local/share/pipx/venvs/west/bin/python3.12 -m pip install protobuf grpcio-tools
   */
 
- /* Build with container:
-  * - IJ: Docker -> Dev Containers
-  * - funny_nash (oÄ) -> connect
-  * - west build -p -d build/cl_studio -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config -Dshield=azelus3 -DCONFIG_ZMK_STUDIO=y
-  * 
-  *
-  * Create Volumes:
-  * - docker volume create --driver local -o o=bind -o type=none -o device="/Users/.../github/zmk-keyboards-azel" zmk-modules
-  *
-  * Init/Update dev-container:
-  * (init required after initial setup and after changing config/module paths which requires recreating docker volumes)
-  * - IJ:   righclick .devcontainer/devcontainer.json
-  *         Dev Conainers -> Create Dev Container and Clone Soures
-  * - IJ:   Docker -> Dev Containers
-  *         funny_nash (oÄ) -> connect
-  * - inside container IJ:
-  *     -> Terminal
-  *     for init:   west init -l app/
-  *     for update: west update
+ /*
+ Build with container:
+   - IJ: Docker -> Dev Containers
+   - funny_nash (oÄ) -> connect
+   - Build Command from GHA:
+        west build -s zmk/app -d /tmp/tmp.vO9kEJNJl0 -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=azelus3 -DZMK_EXTRA_MODULES=/__w/zmk-keyboards-azel/zmk-keyboards-azel -DCONFIG_ZMK_STUDIO=y
+   - (alt: west build -p -d build/cl_studio -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config -Dshield=azelus3 -DCONFIG_ZMK_STUDIO=y)
+
+
+   Create Volumes:
+   - docker volume create --driver local -o o=bind -o type=none -o device="/Users/.../github/zmk-keyboards-azel" zmk-modules
+
+   Init/Update dev-container:
+   (init required after initial setup and after changing config/module paths which requires recreating docker volumes)
+   - IJ:   righclick .devcontainer/devcontainer.json
+           Dev Conainers -> Create Dev Container and Clone Soures
+   - IJ:   Docker -> Dev Containers
+           funny_nash (oÄ) -> connect
+   - inside container IJ:
+       -> Terminal
+       for init:   west init -l app/
+       for update: west update
   */
 
 #include <behaviors.dtsi>
