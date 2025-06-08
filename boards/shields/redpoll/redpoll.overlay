@@ -6,6 +6,7 @@
     chosen {
         zmk,battery = &vbatt;
         zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout0;
     };
     
     // &gpio1 6 means pin P1.06 on the pinout diagram for the nice!nano_v2: https://zmk.dev/docs/development/new-shield#shield-overlays
@@ -37,17 +38,16 @@
             ;
     };
     
-    layout_grid_transform:
-    keymap_transform_0  {
+    matrix_transform0: keymap_transform_0  {
         compatible = "zmk,matrix-transform";
-	columns = <6>;
-	rows = <8>;
-	map = <                                             
+        columns = <6>;
+        rows = <8>;
+        map = <
                                                         
                                                         
                 /* 
                    RC(7,2) and RC(3,5) are dummy keys not present in the matrix. 
-                   They are there so the redpoll and azelus keymaps are 100% kompatible.
+                   They are there so the redpoll and azelus keymaps are 100% compatible.
                 */                                        
                                                         
         RC(7,2)                         RC(7,1)                         RC(3,4)                         RC(3,5)
@@ -61,7 +61,7 @@
     physical_layout1: default_layout {
         compatible = "zmk,physical-layout";
         display-name = "Standard Layout";
-        transform = <&layout_grid_transform>;
+        transform = <&matrix_transform0>;
         kscan = <&kscan0>;
         keys =  <&key_physical_attrs 100 100    0    0       0     0     0>  // dummy key
                ,<&key_physical_attrs 100 100  400    0       0     0     0> 

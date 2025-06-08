@@ -2,7 +2,7 @@ file_format: "1"
 id: azelus3
 name: Azelus3
 type: shield
-url: https://github.com/Azel4231/zmk-config
+url: https://github.com/Azel4231/zmk-keyboards-azel
 requires: [pro_micro]
 features:
   - keys
