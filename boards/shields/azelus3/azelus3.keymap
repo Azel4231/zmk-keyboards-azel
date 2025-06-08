@@ -24,6 +24,8 @@
   * - west build -p -d build/cl_studio -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config -Dshield=azelus3 -DCONFIG_ZMK_STUDIO=y
   * 
   *
+  * Create Volumes:
+  * - docker volume create --driver local -o o=bind -o type=none -o device="/Users/.../github/zmk-keyboards-azel" zmk-modules
   *
   * Init/Update dev-container:
   * (init required after initial setup and after changing config/module paths which requires recreating docker volumes)
