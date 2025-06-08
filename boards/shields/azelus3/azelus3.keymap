@@ -23,9 +23,14 @@
    - IJ: Docker -> Dev Containers
    - <dev-container> -> Run
    - <dev-container> -> Terminal
-   - cd /IdeaProjects/zmk
-   - west build -s app -p -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=azelus3 -DZMK_EXTRA_MODULES=/workspaces/zmk-modules -DCONFIG_ZMK_STUDIO=y
-   - cp build/zephyr/zmk.uf2 /workspaces/zmk-modules/   (copy to volume, outside container)
+
+   Variant 1:
+        cd /IdeaProjects/zmk
+        west build -s app -p -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=azelus3 -DZMK_EXTRA_MODULES=/workspaces/zmk-modules -DCONFIG_ZMK_STUDIO=y
+        cp build/zephyr/zmk.uf2 /workspaces/zmk-modules/
+   Variant 2:
+        bash build.sh
+
 
 
 
@@ -34,12 +39,11 @@
 
    Init/Update dev-container:
    (init required after initial setup and after changing config/module paths which requires recreating docker volumes)
-   - IJ:   righclick .devcontainer/devcontainer.json
-           Dev Conainers -> Create Dev Container and Clone Soures
+   - IJ:   rightclick .devcontainer/devcontainer.json
+           Dev Containers -> Create Dev Container and Clone Sources
    - IJ:   Docker -> Dev Containers
-           funny_nash (oÄ) -> connect
+           <dec-container> -> Terminal
    - inside container IJ:
-       -> Terminal
        for init:   west init -l app/
        for update: west update
   */
