@@ -348,8 +348,10 @@
 #define DE_AT_SIGN_M (LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_L)))
 #define DE_AT_M (DE_AT_SIGN_M)
 
-/* ~    Also: Modifier for following letter, e.g. El Ni~no -> El Niño. Is there a char-only variant? */
-#define DE_TILDE_M (LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_N)))
+/* ~ */
+#define DE_TILDE_M (LC(LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_N))))
+/* ~ (as modifier for following letter, e.g. El Ni~no -> El Niño) */
+#define DE_TILDE_M_TRANSFORM (LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_N)))
 
 /* | */
 #define DE_PIPE_M (LA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
