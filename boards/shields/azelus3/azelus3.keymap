@@ -53,7 +53,7 @@
 
         sym {
             bindings = <
-&kp DE_PRCNT                                              &kp DE_PIPE_M                                      &trans                                &kp DE_DEG_M
+&kp DE_DEG_M                                              &kp DE_PIPE_M                                      &trans                                &kp DE_ACUTE
 &kp DE_AMPS  &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR   &kp DE_LBRC_M  &kp DE_RBRC_M        &kp DE_TILDE_M &kp N7  &kp N8  &kp N9  &kp DE_MINUS  &kp DE_APOS
 &kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON  &kp DE_LPAR    &kp DE_RPAR          &kp DE_ASTRK   &kp N4  &kp N5  &kp N6  &kp DE_PLUS   &trans
 &kp DE_EURO  &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M   &kp DE_LBKT_M  &kp DE_RBKT_M        &kp DE_BSLH_M  &kp N1  &kp N2  &kp N3  &kp DOT       &kp DE_GRAVE
@@ -64,15 +64,15 @@
 
         nav {
             bindings = <
-&trans                                 &trans                              &kp LG(LS(M))                                                  &trans
+&trans                                  &trans                              &kp LG(LS(M))                                                  &trans
                                                                            //Mute Mic
-&trans  &kp LC(1)  &kp F7      &kp F8  &kp F9  &kp F10        &kp PG_UP    &kp LG(LEFT)    &kp UP        &kp LG(RIGHT)    &kp LC(LA(R))   &kp C_VOLUME_UP
+&trans  &kp LG(N0)  &kp F7      &kp F8  &kp F9  &kp F10        &kp PG_UP    &kp LG(LEFT)    &kp UP        &kp LG(RIGHT)    &kp LC(LA(R))   &kp C_VOLUME_UP
         //Project                                                          //StartOfLine                 //EndOfLine      //Run
-&trans  &kp LC(2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT        &kp LC(F2)      &kp C_VOLUME_DOWN
+&trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT        &kp LC(F2)      &kp C_VOLUME_DOWN
         //Commit                                                                                                          //NextError
-&trans  &kp LC(3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(1)    &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &trans          &kp C_MUTE
+&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(1)    &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &trans          &kp C_MUTE
         //Terminal                                            //QuickFix   //ExpandSelec  //ShrinkSelec
-                   &trans      &trans  &trans  &trans         &trans       &trans          &trans        &trans
+                    &trans      &trans  &trans  &trans         &trans       &trans          &trans        &trans
             >;
             display-name = "Nav (Mac)";
         };

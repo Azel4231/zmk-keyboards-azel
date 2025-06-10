@@ -1,6 +1,6 @@
 # ZMK Config for my Keyboards
 
-Unibody split keyboards with simple layer-based keymaps. No mod-tab or other behaviors. The most advanced features are combos and tri-layers (both of which I hardly use). 
+Unibody split keyboards with simple layer-based keymaps. No home-row mods or other advanced behaviors. The keymap uses a few combos and has deactivated tri-layers for playing with OS dependent keymaps. That's all.
 
 ## Core aspects
 
@@ -35,8 +35,8 @@ In IntelliJ:
 
 Then (also in IntelliJ with connected Docker daemon):
 * Docker (View) -> Dev Containers
-* "<dev-container-name>" -> Run
-* "<dev-container-name>" -> Terminal
+* (dev-container-name) -> Run
+* (dev-container-name) -> Terminal
 
 Inside container:
 * init zmk toolchain:
@@ -50,25 +50,28 @@ west update
 
 ### Build in container
 
-Commands for building for ZMK Studio. Keep in mind that studio currently only supports eight layers total. Don't put &bootloader and &studio_unlock on layer nine like me ;-)
+Commands for building the firmeware with ZMK-Studio support. Keep in mind that studio only supports eight layers total. Don't put &bootloader and &studio_unlock on layer nine like me ;-)
 
 In IntelliJ:
 
 * Docker (View) -> Dev Containers
-* "<dev-container-name>" -> Run
-* "<dev-container-name>" -> Terminal
+* (dev-container-name) -> Run
+* (dev-container-name) -> Terminal
 
-#### Variant 1:
+#### Inside container
+
+Variant 1:
 ```
 cd /IdeaProjects/zmk
 west build -s app -p -b nice_nano_v2 -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=azelus3 -DZMK_EXTRA_MODULES=/workspaces/zmk-modules -DCONFIG_ZMK_STUDIO=y
 cp build/zephyr/zmk.uf2 /workspaces/zmk-modules/output
 ```
-See also build.sh.
+-p = "pristine" build. Useful when building different shields consecutively. Prevents ZMK from caching and using the wrong overlay files (from other shields).
 
--p = "pristine" build. Useful when building different shields consecutively. Prevents ZMK from caching and using the wrong keymap files (from other shields).
+/workspaces/zmk-modules is (one of) the mounted docker volumes that lets us copy outside the container.
 
-#### Variant 2:
+Variant 2:
+
 First copy build.sh to container root directory (required only once):
 ```
 cp /workspaces/zmk-modules/build.sh .
@@ -78,17 +81,18 @@ Then run it:
 bash build.sh
 ```
 
+#### Outside container
 
-Then:
-* Put you controller into booloader mode, either via double-click on reset or configured &bootloader key
-* then (outside container):
+* Put your controller into bootloader mode, either via double-click on reset or by pressing the &bootloader key (configured previously)
+* It should connect as a thumb-drive automatically
+* Copy the firmware to the mounted nice nano:
 ```
 cp output/zmk.uf2 /Volumes/NICENANO
 ```
 * MacOS: /Volumes/NICENANO
 * Linux: /media/"User"/NICENANO
 
-### Old notes
+### Old notes (obsolete)
 
 When installing the toolchain locally you can build without a module. Assumes keyboard files in boards/shields/azelus3.
 
@@ -101,7 +105,7 @@ west build -p -b nice_nano_v2 -- -DSHIELD=azelus3
 cp build/zephyr/zmk.uf2 /<path-to-mount-dir>/NICENANO/
 ```
 
--p = "pristine" build. Useful when building different shields consecutively. Prevents ZMK from caching and using the wrong keymap files (from other shields).
+-p = "pristine" build. Useful when building different shields consecutively. Prevents ZMK from caching and using the wrong overlay/keymap files (from other shields).
 
 #### Build for ZMK Studio
 
@@ -118,3 +122,4 @@ Installing/Updating Python dependencies (e.g. protobuf) inside the west venv man
 ```
 ~/.local/share/pipx/venvs/west/bin/python3.12 -m pip install protobuf grpcio-tools
 ```
+(not wanting to struggle with python dependencies on top of everything else is a good reason for following the container route above)
