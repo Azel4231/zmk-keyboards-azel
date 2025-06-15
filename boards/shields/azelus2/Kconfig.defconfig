@@ -1,0 +1,8 @@
+
+if SHIELD_AZELUS2
+
+config ZMK_KEYBOARD_NAME
+	default "Azelus2"
+	
+endif
+
