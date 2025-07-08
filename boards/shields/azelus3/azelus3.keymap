@@ -20,7 +20,7 @@
 
         base {
             bindings = <
-&none                                                &kp ESCAPE                         &kp KP_SLASH                                       &kp DE_O_UMLAUT
+&kp DE_GRAVE   /* ` for MacOS shortcut */            &kp ESCAPE                         &kp KP_SLASH                                       &kp DE_O_UMLAUT
 &kp TAB      &kp Q       &kp W         &kp F         &kp P      &kp B          &kp J    &kp L        &kp U      &kp DE_Z   &kp DE_U_UMLAUT &kp DE_A_UMLAUT
 &kp LEFT_GUI &kp A       &kp R         &kp S         &kp T      &kp G          &kp M    &kp N        &kp E      &kp I      &kp O           &kp BSPC
 &kp LCTRL    &kp DE_Y    &kp X         &kp C         &kp D      &kp V          &kp K    &kp H        &kp COMMA  &kp DOT    &kp DE_MINUS    &kp DE_SZ
@@ -70,7 +70,7 @@
         //Project                                                          //StartOfLine                 //EndOfLine      //Run
 &trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT        &kp LC(F2)      &kp C_VOLUME_DOWN
         //Commit                                                                                                          //NextError
-&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(1)    &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &trans          &kp C_MUTE
+&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(N1)   &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &trans          &kp C_MUTE
         //Terminal                                            //QuickFix   //ExpandSelec  //ShrinkSelec
                     &trans      &trans  &trans  &trans         &trans       &trans          &trans        &trans
             >;
