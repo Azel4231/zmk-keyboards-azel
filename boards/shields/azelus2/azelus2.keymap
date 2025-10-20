@@ -40,12 +40,17 @@
             display-name = "Qwertz";
         };
 
+            /* Changes to vanilla NOTED:
+            - move K to keep - on lower pinkey (muscle memory). To Be Decided.
+            - J on Combo (R + H)
+            */
+
         noted {
             bindings = <                                    
-&none                                                      &kp ESCAPE                                       &kp KP_SLASH                              &trans
-&kp TAB         &kp DE_Z    &kp DE_Y      &kp U            &kp A            &kp Q                  &kp P    &kp B        &kp M      &kp L      &kp F  &kp J 
-&kp LEFT_GUI    &kp C       &kp S         &kp I            &kp E            &kp O                  &kp D    &kp T        &kp N      &kp R      &kp H  &kp BSPC
-&kp LCTRL       &kp V       &kp X         &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp DE_O_UMLAUT        &kp W    &kp G        &kp COMMA  &kp DOT    &kp K  &kp DE_SZ
+&none                                                      &kp ESCAPE                                       &kp KP_SLASH                                     &trans
+&kp TAB         &kp DE_Z    &kp DE_Y      &kp U            &kp A            &kp Q                  &kp P    &kp B        &kp M      &kp L      &kp F         &kp K
+&kp LEFT_GUI    &kp C       &kp S         &kp I            &kp E            &kp O                  &kp D    &kp T        &kp N      &kp R      &kp H         &kp BSPC
+&kp LCTRL       &kp V       &kp X         &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp DE_O_UMLAUT        &kp W    &kp G        &kp COMMA  &kp DOT    &kp DE_MINUS  &kp DE_SZ
                             &kp DEL       &kp LEFT_ALT     &kp LSHFT        &mo SYM                &kp RET  &mo NAV      &kp SPACE  &mo CONTROL    
             >;
             display-name = "Noted";
@@ -54,9 +59,9 @@
         sym {
             bindings = <
 &kp DE_DEG_M                                              &kp DE_PIPE_M                                      &trans                                &kp DE_ACUTE
-&kp DE_AMPS  &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR   &kp DE_LBRC_M  &kp DE_RBRC_M        &kp DE_TILDE_M &kp N7  &kp N8  &kp N9  &kp DE_MINUS  &kp DE_APOS
-&kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON  &kp DE_LPAR    &kp DE_RPAR          &kp DE_ASTRK   &kp N4  &kp N5  &kp N6  &kp DE_PLUS   &trans
-&kp DE_EURO  &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M   &kp DE_LBKT_M  &kp DE_RBKT_M        &kp DE_BSLH_M  &kp N1  &kp N2  &kp N3  &kp DOT       &kp DE_GRAVE
+&kp DE_AMPS  &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR   &kp DE_LBRC_M  &kp DE_RBRC_M        &kp DE_TILDE_M &kp N7  &kp N8  &kp N9  &kp DE_PLUS   &kp DE_APOS
+&kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON  &kp DE_LPAR    &kp DE_RPAR          &kp DE_ASTRK   &kp N4  &kp N5  &kp N6  &kp DOT       &trans
+&kp DE_EURO  &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M   &kp DE_LBKT_M  &kp DE_RBKT_M        &kp DE_BSLH_M  &kp N1  &kp N2  &kp N3  &kp DE_MINUS  &kp DE_GRAVE
                             &kp DE_CARET_M  &trans        &trans         &trans               &trans         &kp N0  &trans  &trans
             >;
             display-name = "Sym (Mac)";
@@ -68,10 +73,10 @@
                                                                            //Mute Mic
 &trans  &kp LG(N0)  &kp F7      &kp F8  &kp F9  &kp F10        &kp PG_UP    &kp LG(LEFT)    &kp UP        &kp LG(RIGHT)    &kp LC(LA(R))   &kp C_VOLUME_UP
         //Project                                                          //StartOfLine                 //EndOfLine      //Run
-&trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT        &kp LC(F2)      &kp C_VOLUME_DOWN
-        //Commit                                                                                                          //NextError
-&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(N1)   &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &trans          &kp C_MUTE
-        //Terminal                                            //QuickFix   //ExpandSelec  //ShrinkSelec
+&trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT        &kp LG(RET)     &kp C_VOLUME_DOWN
+        //Commit                                                                                                          // NewLine(below)
+&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(N1)   &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &kp LC(F2)     &kp C_MUTE
+        //Terminal                                            //QuickFix   //ExpandSelec  //ShrinkSelec                   //NextError
                     &trans      &trans  &trans  &trans         &trans       &trans          &trans        &trans
             >;
             display-name = "Nav (Mac)";
@@ -116,6 +121,13 @@
             timeout-ms = <COMBO_TIMEOUT>;
         };
 
+        NOTED_J {
+            bindings = <&kp DE_J>;
+            key-positions = <25 26>;
+            layers = <NOTED>;
+            timeout-ms = <COMBO_TIMEOUT>;
+        };
+
         AE {
             bindings = <&kp DE_O_UMLAUT>;
             key-positions = <25 26>;
@@ -136,7 +148,7 @@
             layers = <SYM>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
-/* Annoying when typing "git st" quickly. Deactivated.
+        /* Annoying when typing "git st" quickly. Deactivated.
         E_EDIT {
             bindings = <&kp E>;
             key-positions = <19 20>;

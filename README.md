@@ -16,13 +16,21 @@ Unibody split keyboards with simple layer-based keymaps. No home-row mods or oth
 
 ## Notes on building
 
+Why a dev-container?
+* A container-based build allows building firmware on a local machine without installing the whole ZMK/Zephyr toolchain (incl. python etc). It's very similar to what the Github actions do.
+* A Dev-Container allows accessing folders of the host system from inside the container (outside folders are mounted into folders inside the container). This makes it easy to edit the keymap in the host system, have it compile inside the container, and copy the resulting firmware file back out.  
+* Local execution brings faster build times and a faster feedback loop when adjusting keymaps (no Github upload and wait for every change)
+
 ### Create Dev-Container
 
 #### Create Volumes (instructions from documentation):
  ``` 
  docker volume create --driver local -o o=bind -o type=none -o device="/<path-to-home-dir>/github/zmk-keyboards-azel" zmk-modules
  ```
-(or whatever your zmk-module is called)
+
+Notes:
+* Adjust the path to match your github repo
+* _zmk-modules_ is the name of the folder INSIDE the container that (outside-) path gets mounted into.
 
 #### Init/Update dev-container:
 
@@ -50,7 +58,7 @@ west update
 
 ### Build in container
 
-Commands for building the firmeware with ZMK-Studio support. Keep in mind that studio only supports eight layers total. Don't put &bootloader and &studio_unlock on layer nine like me ;-)
+Commands for building the firmware with ZMK-Studio support. Keep in mind that studio only supports eight layers total. Don't put &bootloader and &studio_unlock on layer nine like me ;-)
 
 In IntelliJ:
 
@@ -72,14 +80,16 @@ cp build/zephyr/zmk.uf2 /workspaces/zmk-modules/output
 
 Variant 2:
 
-First copy build.sh to container root directory (required only once):
+Run build.sh (with a shield name):
+```
+bash build.sh azelus2
+```
+
+Requires copying build.sh to container root directory beforehand:
 ```
 cp /workspaces/zmk-modules/build.sh .
 ```
-Then run it:
-```
-bash build.sh
-```
+ 
 
 #### Outside container
 
