@@ -41,7 +41,7 @@
         };
 
             /* Changes to vanilla NOTED:
-            - move K to keep - on lower pinkey (muscle memory). To Be Decided.
+            - move K to keep "-" on lower pinkey (muscle memory). To Be Decided.
             - J on Combo (R + H)
             */
 
@@ -69,32 +69,39 @@
 
         nav {
             bindings = <
-&trans                                  &trans                              &kp LG(LS(M))                                                  &trans
+&trans                                  &trans                              &kp LG(LS(M))                                                         &trans
                                                                            //Mute Mic
-&trans  &kp LG(N0)  &kp F7      &kp F8  &kp F9  &kp F10        &kp PG_UP    &kp LG(LEFT)    &kp UP        &kp LG(RIGHT)    &kp LC(LA(R))   &kp C_VOLUME_UP
+&trans  &kp LG(N0)  &kp F7      &kp F8  &kp F9  &kp F10        &kp PG_UP    &kp LG(LEFT)    &kp UP        &kp LG(RIGHT)   &kp LC(LA(R))           &kp C_VOLUME_UP
         //Project                                                          //StartOfLine                 //EndOfLine      //Run
-&trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT        &kp LG(RET)     &kp C_VOLUME_DOWN
-        //Commit                                                                                                          // NewLine(below)
-&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(N1)   &kp LA(UP)      &kp LA(DOWN)  &kp DEL          &kp LC(F2)     &kp C_MUTE
-        //Terminal                                            //QuickFix   //ExpandSelec  //ShrinkSelec                   //NextError
+&trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT       &kp LG(LS(LC(RIGHT)))   &kp C_VOLUME_DOWN
+        //Commit                                                                                                          // Next Error
+&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(LA(LEFT))   &kp LA(UP)      &kp LA(DOWN)  &kp DEL   &kp LC(F2)              &kp C_MUTE
+        //Terminal                                            //Navig. backward  //ExpandSelec  //ShrinkSelec             // Menu
                     &trans      &trans  &trans  &trans         &trans       &trans          &trans        &trans
             >;
             display-name = "Nav (Mac)";
+
         };
 
         control {
             bindings = <                                    
- &to BASE                                   &bootloader                           &studio_unlock                  &trans
- &to QWERTZ   &trans  &trans  &bt BT_SEL 0  &trans  &trans                &trans  &trans  &trans  &trans  &trans  &trans
- &trans       &trans  &trans  &bt BT_SEL 1  &trans  &trans                &trans  &trans  &trans  &trans  &trans  &trans
- &to NOTED    &trans  &trans  &bt BT_SEL 2  &trans  &trans                &trans  &trans  &trans  &trans  &trans  &trans
-                      &bt BT_CLR    &trans  &trans  &trans                &trans  &trans  &trans  &trans
+ &to BASE                                   &bootloader                           &studio_unlock                  &none
+ &to QWERTZ   &none   &none   &bt BT_SEL 0  &none   &none                 &none   &none   &none   &none   &none   &none
+ &none        &none   &none   &bt BT_SEL 1  &none   &none                 &none   &none   &none   &none   &none   &none
+ &to NOTED    &none   &none   &bt BT_SEL 2  &none   &none                 &none   &none   &none   &none   &none   &none
+                      &bt BT_CLR    &none   &none   &none                 &none   &none   &none   &none
             >;
             display-name = "Control";
         };
 
         misc {
-            status = "reserved";
+            bindings = <
+ &none                        &none                                    &none                       &none
+ &none   &none  &none  &none  &none  &none                      &none  &none  &none  &none  &none  &none
+ &none   &none  &none  &none  &none  &none                      &none  &none  &none  &none  &none  &none
+ &none   &none  &none  &none  &none  &none                      &none  &none  &none  &none  &none  &none
+                       &none  &none  &none  &none        &none  &none  &none  &none
+            >;
             display-name = "Misc";
         };
 
@@ -114,48 +121,49 @@
     combos {
         compatible = "zmk,combos";
 
-        OE {
+
+        BASE_OE {
             bindings = <&kp DE_O_UMLAUT>;
             key-positions = <25 26>;
             layers = <BASE>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
+        BASE_UNDERSCORE {
+            bindings = <&kp LS(DE_MINUS)>;
+            key-positions = <36 37>;
+            layers = <BASE>;
+            timeout-ms = <COMBO_TIMEOUT>;
+        };
+
 
         NOTED_J {
             bindings = <&kp DE_J>;
-            key-positions = <25 26>;
+            key-positions = <12 13>;
+            layers = <NOTED>;
+            timeout-ms = <COMBO_TIMEOUT>;
+        };
+        NOTED_UNDERSCORE {
+            bindings = <&kp LS(DE_MINUS)>;
+            key-positions = <36 37>;
             layers = <NOTED>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
 
-        AE {
+
+        QWERTZ_OE {
             bindings = <&kp DE_O_UMLAUT>;
             key-positions = <25 26>;
             layers = <QWERTZ>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
 
-        MINUS_M {
-            bindings = <&kp DE_MINUS>;
-            key-positions = <25 26>;
-            layers = <NOTED>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
 
-        PROZENT {
+        SYM_PROZENT {
             bindings = <&kp DE_PRCNT>;
             key-positions = <6 7>;
             layers = <SYM>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
-        /* Annoying when typing "git st" quickly. Deactivated.
-        E_EDIT {
-            bindings = <&kp E>;
-            key-positions = <19 20>;
-            layers = <BASE>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
-        */
     };
 
 /*
