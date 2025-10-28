@@ -1,0 +1,8 @@
+
+if SHIELD_AZELUS5
+
+config ZMK_KEYBOARD_NAME
+	default "Azelus MK5"
+	
+endif
+
