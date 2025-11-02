@@ -21,10 +21,10 @@
         base {
             bindings = <              /* Mod-tap: ESC wenn tapped, Siri when held */
 &none                                    &mt C_VOICE_COMMAND ESC                                        &kp KP_SLASH                                          &none
-&kp TAB    &kp Q      &kp W    &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI   &kp A      &kp R    &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
-&kp LCTRL  &kp DE_Y   &kp X    &kp C     &lt CONTROL D   &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                      &none    &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo CONTROL  &none
+&kp TAB    &kp Q      &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
+&kp LGUI   &kp A      &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
+&kp LCTRL  &kp DE_Y   &kp X               &kp C     &lt CONTROL D   &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
+                      &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo CONTROL  &none
             >;
             display-name = "Base (Mac)";
         };
@@ -35,7 +35,7 @@
 &kp TAB    &kp Q    &kp W   &kp E     &kp R      &kp T                                       &kp DE_Z  &kp U        &kp I        &kp O        &kp P            &kp DE_U_UMLAUT
 &kp LCTRL  &kp A    &kp S   &kp D     &kp F      &kp G                                       &kp H     &kp J        &kp K        &kp L        &kp DE_O_UMLAUT  &kp BSPC
 &kp LGUI   &kp DE_Y &kp X   &kp C     &kp V      &kp B                                       &kp N     &kp M        &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_A_UMLAUT
-                    &none   &kp DEL   &kp LALT   &kp LSHFT  &mo SYM                &kp RET   &mo NAV   &kp SPACE    &mo CONTROL  &none
+                    &trans  &kp DEL   &kp LALT   &kp LSHFT  &mo SYM                &kp RET   &mo NAV   &kp SPACE    &mo CONTROL  &none
             >;
             display-name = "Qwertz";
         };
@@ -47,13 +47,13 @@
             */
 
         noted {
-            bindings = <                                    
+            bindings = <
 &none                                                  &trans                                                                               &kp KP_SLASH                                          &none
 &kp TAB     &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                                            &kp P      &kp B         &kp M        &kp L        &kp F         &kp K
 &kp LGUI    &kp C       &kp S         &kp I            &kp  E                   &kp O                                            &kp D      &kp T         &kp N        &kp R        &kp H         &kp BSPC
 &kp LCTRL   &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT                                  &kp W      &kp G         &kp COMMA    &kp DOT      &kp DE_MINUS  &kp DE_SZ
                                           /* Layer-tap: hold for CONTROL layer */
-                        &none         &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &mo CONTROL  &none
+                        &trans        &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &mo CONTROL  &none
             >;
             display-name = "Noted";
         };
