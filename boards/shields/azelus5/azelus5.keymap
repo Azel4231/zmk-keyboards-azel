@@ -19,39 +19,40 @@
 
 
         base {
-            bindings = <
-&none                                                &kp ESCAPE                         &kp KP_SLASH                                       &none
-&kp TAB      &kp Q       &kp W         &kp F         &kp P      &kp B          &kp J    &kp L        &kp U      &kp DE_Z   &kp DE_U_UMLAUT &kp DE_A_UMLAUT
-&kp LEFT_GUI &kp A       &kp R         &kp S         &kp T      &kp G          &kp M    &kp N        &kp E      &kp I      &kp O           &kp BSPC
-&kp LCTRL    &kp DE_Y    &kp X         &kp C         &kp D      &kp V          &kp K    &kp H        &kp COMMA  &kp DOT    &kp DE_MINUS    &kp DE_SZ
-             &none       &kp DEL       &kp LEFT_ALT  &kp LSHFT  &mo SYM        &kp RET  &mo NAV      &kp SPACE  &mo CONTROL &none
+            bindings = <                      /* ESC wenn tapped, Siri when held */
+&none                                    &mt C_VOICE_COMMAND ESC               &kp KP_SLASH                                      &none
+&kp TAB    &kp Q      &kp W    &kp F     &kp P           &kp B             &kp J    &kp L    &kp U       &kp DE_Z     &kp DE_U_UMLAUT &kp DE_A_UMLAUT
+&kp LGUI   &kp A      &kp R    &kp S     &kp T           &kp G             &kp M    &kp N    &kp E       &kp I        &kp O           &kp BSPC
+&kp LCTRL  &kp DE_Y   &kp X    &kp C     &lt CONTROL D   &kp V             &kp K    &kp H    &kp COMMA   &kp DOT      &kp DE_MINUS    &kp DE_SZ
+           &none      &kp DEL  &kp LALT  &kp LSHFT       &mo SYM           &kp RET  &mo NAV  &kp SPACE   &mo CONTROL  &none
             >;
             display-name = "Base (Mac)";
         };
 
         qwertz {
             bindings = <
-&none                                          &kp ESCAPE                                 &kp KP_SLASH                                        &none
-&kp TAB         &kp Q    &kp W   &kp E         &kp R      &kp T                  &kp DE_Z &kp U        &kp I      &kp O      &kp P            &kp DE_U_UMLAUT
-&kp LCTRL       &kp A    &kp S   &kp D         &kp F      &kp G                  &kp H    &kp J        &kp K      &kp L      &kp DE_O_UMLAUT  &kp BSPC
-&kp LEFT_GUI    &kp DE_Y &kp X   &kp C         &kp V      &kp B                  &kp N    &kp M        &kp COMMA  &kp DOT    &kp DE_MINUS     &kp DE_A_UMLAUT
-                &none    &kp DEL &kp LEFT_ALT  &kp LSHFT  &mo SYM                &kp RET  &mo NAV      &kp SPACE  &mo CONTROL &none
+&none                                 &trans                                      &kp KP_SLASH                                        &none
+&kp TAB    &kp Q    &kp W   &kp E     &kp R      &kp T                  &kp DE_Z  &kp U     &kp I       &kp O        &kp P            &kp DE_U_UMLAUT
+&kp LCTRL  &kp A    &kp S   &kp D     &kp F      &kp G                  &kp H     &kp J     &kp K       &kp L        &kp DE_O_UMLAUT  &kp BSPC
+&kp LGUI   &kp DE_Y &kp X   &kp C     &kp V      &kp B                  &kp N     &kp M     &kp COMMA   &kp DOT      &kp DE_MINUS     &kp DE_A_UMLAUT
+           &none    &kp DEL &kp LALT  &kp LSHFT  &mo SYM                &kp RET   &mo NAV   &kp SPACE   &mo CONTROL  &none
             >;
             display-name = "Qwertz";
         };
 
             /* Changes to vanilla NOTED:
-            - move K to keep "-" on lower pinkey (muscle memory). To Be Decided.
-            - J on Combo (R + H)
+            - move K to keep "-" on lower pinkey (muscle memory). To Be Decided. Could also move - to where K is now (on alpha + Num layer).
+            - J: Combo (R + H)
+            - _: Combo (. + ,)
             */
 
         noted {
             bindings = <                                    
-&none                                                      &kp ESCAPE                                       &kp KP_SLASH                                     &none
-&kp TAB         &kp DE_Z    &kp DE_Y      &kp U            &kp A            &kp Q                  &kp P    &kp B        &kp M      &kp L      &kp F         &kp K
-&kp LEFT_GUI    &kp C       &kp S         &kp I            &kp E            &kp O                  &kp D    &kp T        &kp N      &kp R      &kp H         &kp BSPC
-&kp LCTRL       &kp V       &kp X         &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp DE_O_UMLAUT        &kp W    &kp G        &kp COMMA  &kp DOT    &kp DE_MINUS  &kp DE_SZ
-                &none       &kp DEL       &kp LEFT_ALT     &kp LSHFT        &mo SYM                &kp RET  &mo NAV      &kp SPACE  &mo CONTROL &none
+&none                                                  &trans                                                   &kp KP_SLASH                                     &none
+&kp TAB     &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                  &kp P    &kp B      &kp M      &kp L        &kp F         &kp K
+&kp LGUI    &kp C       &kp S         &kp I            &kp  E                   &kp O                  &kp D    &kp T      &kp N      &kp R        &kp H         &kp BSPC
+&kp LCTRL   &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT        &kp W    &kp G      &kp COMMA  &kp DOT      &kp DE_MINUS  &kp DE_SZ
+            &none       &kp DEL       &kp LALT         &kp LSHFT                &mo SYM                &kp RET  &mo NAV    &kp SPACE  &mo CONTROL  &none
             >;
             display-name = "Noted";
         };
@@ -69,27 +70,27 @@
 
         nav {
             bindings = <
-&none                                   &trans                              &kp LG(LS(M))                                                         &none
-                                                                           //Mute Mic
-&trans  &kp LG(N0)  &kp F7      &kp F8  &kp F9  &kp F10        &kp PG_UP    &kp LG(LEFT)    &kp UP        &kp LG(RIGHT)   &kp LC(LA(R))           &kp C_VOLUME_UP
-        //Project                                                          //StartOfLine                 //EndOfLine      //Run
-&trans  &kp LG(N2)  &kp F4      &kp F5  &kp F6  &kp F11        &kp PG_DN    &kp LEFT        &kp DOWN      &kp RIGHT       &kp LG(LS(LC(RIGHT)))   &kp C_VOLUME_DOWN
-        //Commit                                                                                                          // Next Error
-&trans  &kp LG(N3)  &kp F1      &kp F2  &kp F3  &kp F12        &kp LG(LA(LEFT))   &kp LA(UP)      &kp LA(DOWN)  &kp DEL   &kp LC(F2)              &kp C_MUTE
-        //Terminal                                            //Navig. backward  //ExpandSelec  //ShrinkSelec             // Menu
-        &none       &trans      &trans  &trans  &trans         &trans       &trans          &trans        &trans          &none
+&none                                &trans                                           &kp LG(N9)                                                               &none
+                                                                                      //IJ: Editor
+&trans   &none   &kp F7    &kp F8    &kp F9    &kp F10             &kp PG_UP          &kp LG(LEFT)    &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
+                                                                                      //StartOfLine                    //EndOfLine     //IJ: Run               //IJ: Project
+&trans   &none   &kp F4    &kp F5    &kp F6    &kp F11             &kp PG_DN          &kp LEFT        &kp DOWN         &kp RIGHT       &kp LG(LS(LC(RIGHT)))   &kp LG(N3)
+                                                                                                                                       //IJ: Next Error        //IJ: Terminal
+&trans   &none   &kp F1    &kp F2    &kp F3    &kp F12             &kp LG(LA(LEFT))   &kp LA(UP)      &kp LA(DOWN)     &kp DEL         &kp LC(F2)              &kp LG(N2)
+                                                                   //IJ: Nav back     //IJ: ExpandSel //IJ: ShrinkSel                  // Menu                 //IJ: Commit
+         &none   &trans    &trans    &trans    &trans              &trans             &trans          &trans           &trans          &none
             >;
             display-name = "Nav (Mac)";
 
         };
 
         control {
-            bindings = <                                    
- &none                                      &bootloader                           &studio_unlock                  &none
- &to BASE     &none   &none   &bt BT_SEL 0  &none   &none                 &none   &none   &none   &none   &none   &none
- &to QWERTZ   &none   &none   &bt BT_SEL 1  &none   &none                 &none   &none   &none   &none   &none   &none
- &to NOTED    &none   &none   &bt BT_SEL 2  &none   &none                 &none   &none   &none   &none   &none   &none
-              &none   &bt BT_CLR    &none   &none   &none                 &none   &none   &none   &none   &none
+            bindings = <                                                                                         //Mute Mic
+ &none                                           &bootloader                                                     &kp LG(LS(M))                               &none
+ &to BASE     &none   &none        &bt BT_SEL 0  &none        &none                                  &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
+ &to QWERTZ   &none   &none        &bt BT_SEL 1  &none        &none                                  &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
+ &to NOTED    &none   &none        &bt BT_SEL 2  &none        &none                                  &none       &kp K_MUTE    &none         &none   &none   &none
+                      &none        &bt BT_CLR    &none        &none   &none         &studio_unlock   &none       &none         &none         &none
             >;
             display-name = "Control";
         };
