@@ -1,6 +1,6 @@
 # ZMK Config for my Keyboards
 
-Unibody split keyboards with simple layer-based keymaps. No home-row mods or other advanced behaviors. The keymap uses a few combos and has deactivated tri-layers for playing with OS dependent keymaps. That's all.
+Unibody split keyboards with simple layer-based keymaps.
 
 ## Core aspects
 
@@ -12,12 +12,12 @@ Unibody split keyboards with simple layer-based keymaps. No home-row mods or oth
 ## Todos
 
 * build all keyboards/shields in one go
-* build all keyboards/shields with the same keymap file
+* share keymap files between keyboards with similar physical layout
 
 ## Notes on building
 
 Why a dev-container?
-* A container-based build allows building firmware on a local machine without installing the whole ZMK/Zephyr toolchain (incl. python etc). It's very similar to what the Github actions do.
+* A container-based build allows building firmware on a local machine without installing the whole ZMK/Zephyr toolchain (incl. python etc). The toolchain is instead installed inside the container. It's very similar to what the Github actions do.
 * A Dev-Container allows accessing folders of the host system from inside the container (outside folders are mounted into folders inside the container). This makes it easy to edit the keymap in the host system, have it compile inside the container, and copy the resulting firmware file back out.  
 * Local execution brings faster build times and a faster feedback loop when adjusting keymaps (no Github upload and wait for every change)
 
@@ -30,11 +30,13 @@ Why a dev-container?
 
 Notes:
 * Adjust the path to match your github repo
-* _zmk-modules_ is the name of the folder INSIDE the container that (outside-) path gets mounted into.
+* _zmk-modules_ is the name of the folder INSIDE the container that the (outside-) path gets mounted into.
 
 #### Init/Update dev-container:
 
-This is required after initial setup and after changing the module path, which in turn requires recreating docker volumes as well as the dev-container.
+This is required:
+* after initial setup
+* after changing the module path, which in turn requires recreating docker volumes as well as the dev-container
 
 In IntelliJ:
 * Clone https://github.com/zmkfirmware/zmk
@@ -51,10 +53,11 @@ Inside container:
 ```
 west init -l app/
 ```
-* update toolchain
+* update toolchain incl. zmk
 ``` 
 west update
 ```
+* the config/west.yml defines which zmk version is being pulled. manifest.project.revision: master pulls master.  
 
 ### Build in container
 
