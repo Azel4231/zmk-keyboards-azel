@@ -104,35 +104,3 @@ cp output/zmk.uf2 /Volumes/NICENANO
 ```
 * MacOS: /Volumes/NICENANO
 * Linux: /media/"User"/NICENANO
-
-### Old notes (obsolete)
-
-When installing the toolchain locally you can build without a module. Assumes keyboard files in boards/shields/azelus3.
-
-#### Build
-
-```
-cd github/zmk/app
-west build -p -b nice_nano_v2 -- -DSHIELD=azelus3         
-# reset controller
-cp build/zephyr/zmk.uf2 /<path-to-mount-dir>/NICENANO/
-```
-
--p = "pristine" build. Useful when building different shields consecutively. Prevents ZMK from caching and using the wrong overlay/keymap files (from other shields).
-
-#### Build for ZMK Studio
-
-First activate west venv, where python lib protobuf is installed. Then build.
-```
-source /<path-to-home-dir>/.local/share/pipx/venvs/west/bin/activate
-west build -p -d build/cl_studio -b nice_nano_v2 -S studio-rpc-usb-uart -- -DSHIELD=azelus3 -DCONFIG_ZMK_STUDIO=y
-# reset controller
-cp build/cl_studio/zephyr/zmk.uf2 /<path-to-mount-dir>/NICENANO/
-```
-
-#### Notes
-Installing/Updating Python dependencies (e.g. protobuf) inside the west venv managed by pipx (e.g. Ubuntu):
-```
-~/.local/share/pipx/venvs/west/bin/python3.12 -m pip install protobuf grpcio-tools
-```
-(not wanting to struggle with python dependencies on top of everything else is a good reason for following the container route above)
