@@ -3,8 +3,8 @@
 #include <dt-bindings/zmk/keys.h>
 #include "keys_de.h"
 
-#define BASE    0
-#define QWERTZ  1
+#define COLEMAK 0
+#define ANYMAK  1
 #define NOTED   2
 #define SYM     3
 #define NAV     4
@@ -13,13 +13,22 @@
 #define MISC2   7
 
 #define COMBO_TIMEOUT 30  // default=50
+
+    &mt {
+        flavor = "balanced";
+    };
+    &lt {
+        flavor = "balanced";
+    };
+
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
 
-        base {
-            bindings = <              /* Mod-tap: ESC wenn tapped, Siri when held */
+        base1 {
+            bindings = <
                                                             &mt C_VOICE_COMMAND ESC                                        &kp KP_SLASH
 &mt DE_GRAVE TAB   &kp Q      &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
 &kp LGUI           &kp A      &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
@@ -27,34 +36,32 @@
                               &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo CONTROL  &kp LG(LS(M))
                            /* Toggle desk light */                                                                                                 //Mute Mic
             >;
-            display-name = "Base (Mac)";
+            display-name = "Colemak-DH";
         };
 
-        qwertz {
+        base2 {
             bindings = <
-                                      &trans                                                           &kp KP_SLASH
-&trans     &kp Q    &kp W   &kp E     &kp R      &kp T                                       &kp DE_Z  &kp U        &kp I        &kp O        &kp P            &kp DE_U_UMLAUT
-&kp LCTRL  &kp A    &kp S   &kp D     &kp F      &kp G                                       &kp H     &kp J        &kp K        &kp L        &kp DE_O_UMLAUT  &kp BSPC
-&kp LGUI   &kp DE_Y &kp X   &kp C     &kp V      &kp B                                       &kp N     &kp M        &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_A_UMLAUT
-                    &trans  &kp DEL   &kp LALT   &kp LSHFT  &mo SYM                &kp RET   &mo NAV   &kp SPACE    &mo CONTROL  &trans
+                                                &trans                                                                 &trans
+&trans    &kp Q      &kp K     &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D        &kp C        &kp L     &kp F                     &kp J
+&trans    &kp H      &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp R        &kp N     &kp S                     &kp BSPC
+&trans    &kp COMMA  &kp DE_Z  &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &mt DE_MINUS DE_O_UMLAUT  &kp DE_SZ
+                     &trans    &kp DEL          &kp LALT         &kp LSHFT   &mo SYM               &kp RET   &mo NAV   &kp SPACE    &mo CONTROL  &trans
             >;
-            display-name = "Qwertz";
+            display-name = "Anymak:END";
         };
 
             /* Changes to vanilla NOTED:
-            - move K to keep "-" on lower pinkey (muscle memory). To Be Decided. Could also move - to where K is now (on alpha + Num layer).
-            - J: Combo (R + H)
-            - _: Combo (. + ,)
+            - mod-tab on K to keep "-" on lower pinkey (muscle memory)
             */
 
-        noted {
+        base3 {
             bindings = <
-                                                       &trans                                                                               &kp KP_SLASH
-&trans      &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                                            &kp P      &kp B         &kp M        &kp L        &kp F           &none
-&kp LGUI    &kp C       &kp S         &kp I            &kp E                    &kp O                                            &kp D      &kp T         &kp N        &kp R        &kp H           &kp BSPC
-&kp LCTRL   &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT                                  &kp W      &kp G         &kp COMMA    &kp DOT      &mt DE_MINUS K  &kp DE_SZ
+                                                     &trans                                                                               &trans
+&trans    &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                                            &kp P      &kp B         &kp M        &kp L        &kp F           &kp J
+&trans    &kp C       &kp S         &kp I            &kp E                    &kp O                                            &kp D      &kp T         &kp N        &kp R        &kp H           &kp BSPC
+&trans    &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT                                  &kp W      &kp G         &kp COMMA    &kp DOT      &mt DE_MINUS K  &kp DE_SZ
                                                       /* Layer-tap: hold for CONTROL layer */
-                        &trans        &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &mo CONTROL  &trans
+                      &trans        &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &mo CONTROL  &trans
             >;
             display-name = "Noted";
         };
@@ -89,8 +96,8 @@
         control {
             bindings = <                                                                                         //Mute Mic
                                                  &bootloader                                                     &kp LG(LS(M))
- &to BASE     &none   &none        &bt BT_SEL 0  &none        &none                                  &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
- &to QWERTZ   &none   &none        &bt BT_SEL 1  &none        &none                                  &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
+ &to COLEMAK  &none   &none        &bt BT_SEL 0  &none        &none                                  &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
+ &to ANYMAK   &none   &none        &bt BT_SEL 1  &none        &none                                  &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
  &to NOTED    &none   &none        &bt BT_SEL 2  &none        &none                                  &none       &kp K_MUTE    &none         &none   &none   &none
                       &none        &bt BT_CLR    &none        &none   &none         &studio_unlock   &none       &none         &none         &none
             >;
@@ -124,42 +131,19 @@
     combos {
         compatible = "zmk,combos";
 
-
-        BASE_OE {
-            bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <23 24>;
-            layers = <BASE>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
         BASE_UNDERSCORE {
             bindings = <&kp LS(DE_MINUS)>;
             key-positions = <34 35>;
-            layers = <BASE>;
+            layers = <COLEMAK ANYMAK NOTED>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
 
-
-        NOTED_J {
-            bindings = <&kp DE_J>;
-            key-positions = <10 11>;
-            layers = <NOTED>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
-        NOTED_UNDERSCORE {
-            bindings = <&kp LS(DE_MINUS)>;
-            key-positions = <34 35>;
-            layers = <NOTED>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
-
-
-        QWERTZ_OE {
+        COLEMAK_OE {
             bindings = <&kp DE_O_UMLAUT>;
             key-positions = <23 24>;
-            layers = <QWERTZ>;
+            layers = <COLEMAK>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
-
 
         SYM_PROZENT {
             bindings = <&kp DE_PRCNT>;
