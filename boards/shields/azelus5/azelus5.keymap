@@ -9,8 +9,8 @@
 #define SYM     3
 #define NAV     4
 #define CONTROL 5
-#define MISC    6
-#define MISC2   7
+#define ROOT    6
+#define MISC    7
 
 #define COMBO_TIMEOUT 30  // default=50
 
@@ -33,19 +33,30 @@
 &mt DE_GRAVE TAB   &kp Q      &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
 &kp LGUI           &kp A      &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
 &kp LCTRL          &kp DE_Y   &kp X               &kp C     &lt CONTROL D   &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                              &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo CONTROL  &kp LG(LS(M))
+                              &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo ROOT     &kp LG(LS(M))
                            /* Toggle desk light */                                                                                                 //Mute Mic
             >;
             display-name = "Colemak-DH";
         };
 
+        /*
+        Changes to vanilla Anymak:END
+        -
+        - NR instead of RN (no other reason than personal preference)
+        - add äüöß to base layer
+
+        Trial:
+        - move . and ,
+        - F on bottom row
+        */
+
         base2 {
             bindings = <
-                                                &trans                                                                 &trans
-&trans    &kp Q      &kp K     &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D        &kp C        &kp L     &kp F                     &kp J
-&trans    &kp H      &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp R        &kp N     &kp S                     &kp BSPC
-&trans    &kp COMMA  &kp DE_Z  &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &mt DE_MINUS DE_O_UMLAUT  &kp DE_SZ
-                     &trans    &kp DEL          &kp LALT         &kp LSHFT   &mo SYM               &kp RET   &mo NAV   &kp SPACE    &mo CONTROL  &trans
+                                                        &trans                                                                 &trans
+&trans    &kp Q              &kp K     &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D        &kp C        &kp L     &kp DE_O_UMLAUT   &kp J
+&trans    &kp H              &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp N        &kp R     &kp S             &kp BSPC
+&trans    &lt CONTROL COMMA  &kp DE_Z  &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &kp F             &kp DE_SZ
+                             &trans    &kp DEL          &kp LALT         &kp LSHFT   &mo SYM               &kp RET   &mo NAV   &kp SPACE    &trans       &trans
             >;
             display-name = "Anymak:END";
         };
@@ -60,8 +71,7 @@
 &trans    &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                                            &kp P      &kp B         &kp M        &kp L        &kp F           &kp J
 &trans    &kp C       &kp S         &kp I            &kp E                    &kp O                                            &kp D      &kp T         &kp N        &kp R        &kp H           &kp BSPC
 &trans    &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT                                  &kp W      &kp G         &kp COMMA    &kp DOT      &mt DE_MINUS K  &kp DE_SZ
-                                                      /* Layer-tap: hold for CONTROL layer */
-                      &trans        &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &mo CONTROL  &trans
+                      &trans        &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &trans       &trans
             >;
             display-name = "Noted";
         };
@@ -72,7 +82,7 @@
 &kp DE_AMPS  &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7   &kp N8   &kp N9   &kp DE_PLUS   &kp DE_APOS
 &kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4   &kp N5   &kp N6   &kp DOT       &trans
 &kp DE_EURO  &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp DE_BSLH_M   &kp N1   &kp N2   &kp N3   &kp DE_MINUS  &kp DE_GRAVE
-                            &none           &kp DE_CARET_M  &trans         &trans         &trans               &trans    &kp N0          &trans   &trans   &none
+                            &kp DE_DEG_M    &kp DE_CARET_M  &trans         &trans         &trans               &trans    &kp N0          &trans   &trans   &none
             >;
             display-name = "Sym (Mac)";
         };
@@ -94,14 +104,25 @@
         };
 
         control {
-            bindings = <                                                                                         //Mute Mic
-                                                 &bootloader                                                     &kp LG(LS(M))
- &to COLEMAK  &none   &none        &bt BT_SEL 0  &none        &none                                  &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
- &to ANYMAK   &none   &none        &bt BT_SEL 1  &none        &none                                  &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
- &to NOTED    &none   &none        &bt BT_SEL 2  &none        &none                                  &none       &kp K_MUTE    &none         &none   &none   &none
-                      &none        &bt BT_CLR    &none        &none   &none         &studio_unlock   &none       &none         &none         &none
+            bindings = <                                                                                                     //Mute Mic
+                                            &none                                                                            &kp LG(LS(M))
+ &none   &none  &kp LG(W)  &kp LC(LS(TAB))  &kp LG(T)     &kp LC(TAB)                                            &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
+ &none   &none  &none      &kp LG(S)        &kp LG(DE_Z)  &kp LG(LS(DE_Z))                                       &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
+ &none   &none  &kp LG(X)  &kp LG(C)        &kp LG(V)     &none                                                  &none       &kp K_MUTE    &none         &none   &none   &none
+                &none      &none            &none         &none             &none                &studio_unlock  &none       &none         &none         &none
             >;
             display-name = "Control";
+        };
+
+        root {
+            bindings = <
+                                                 &bootloader                                                &studio_unlock
+ &to COLEMAK  &none   &none        &bt BT_SEL 0  &none        &none                                  &none  &none  &none  &none  &none  &none
+ &to ANYMAK   &none   &none        &bt BT_SEL 1  &none        &none                                  &none  &none  &none  &none  &none  &none
+ &to NOTED    &none   &none        &bt BT_SEL 2  &none        &none                                  &none  &none  &none  &none  &none  &none
+                      &none        &bt BT_CLR    &none        &none   &none         &studio_unlock   &none  &none  &none  &none
+            >;
+            display-name = "Root";
         };
 
         misc {
@@ -113,11 +134,6 @@
                 &none  &none  &none  &none  &none        &none  &none  &none  &none  &none
             >;
             display-name = "Misc";
-        };
-
-        misc2 {
-            status = "reserved";
-            display-name = "Misc2";
         };
     };
 
