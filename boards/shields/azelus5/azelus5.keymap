@@ -30,20 +30,20 @@
         base1 {
             bindings = <
                                                             &mt C_VOICE_COMMAND ESC                                        &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q      &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI           &kp A      &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
-&kp LCTRL          &kp DE_Y   &kp X               &kp C     &lt CONTROL D   &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                              &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo ROOT     &kp LG(LS(M))
-                           /* Toggle desk light */                                                                                                 //Mute Mic
+&mt DE_GRAVE TAB   &kp Q           &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
+&kp LGUI           &lt CONTROL A   &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
+&kp LCTRL          &kp DE_Y        &kp X               &kp C     &kp D           &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
+                                   &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo ROOT     &kp LG(LS(M))
+                                  /* Toggle desk light */                                                                                                 //Mute Mic
             >;
             display-name = "Colemak-DH";
         };
 
         /*
         Changes to vanilla Anymak:END
-        -
-        - NR instead of RN (no other reason than personal preference)
-        - add äüöß to base layer
+        - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
+        - place äü in their original KOY positions
+        - move öß to base layer
 
         Trial:
         - move . and ,
@@ -54,8 +54,8 @@
             bindings = <
                                                         &trans                                                                 &trans
 &trans    &kp Q              &kp K     &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D        &kp C        &kp L     &kp DE_O_UMLAUT   &kp J
-&trans    &kp H              &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp N        &kp R     &kp S             &kp BSPC
-&trans    &lt CONTROL COMMA  &kp DE_Z  &kp DE_U_UMLAUT  &kp DE_A_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &kp F             &kp DE_SZ
+&trans    &lt CONTROL H      &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp N        &kp R     &kp S             &kp BSPC
+&trans    &kp COMMA          &kp DE_Z  &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &kp F             &kp DE_SZ
                              &trans    &kp DEL          &kp LALT         &kp LSHFT   &mo SYM               &kp RET   &mo NAV   &kp SPACE    &trans       &trans
             >;
             display-name = "Anymak:END";
@@ -93,10 +93,10 @@
                                                                                                          //IJ: Editor
 &trans   &none   &kp F7    &kp F8    &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
                                                                                                          //StartOfLine                     //EndOfLine     //IJ: Run               //IJ: Project
-&trans   &none   &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp LG(LS(LC(RIGHT)))   &kp LG(N3)
-                                                                                                                                                           //IJ: Next Error        //IJ: Terminal
+&trans   &none   &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp LG(N3)              &kp LG(LS(LC(RIGHT)))
+                                                                                                                                                           //IJ: Terminal          //IJ: Next Error
 &trans   &none   &kp F1    &kp F2    &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LC(F2)              &kp LG(N2)
-                                                                                      //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  // Menu                 //IJ: Commit
+                                                                                      //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  // App Menu             //IJ: Commit
                  &none     &trans    &trans    &trans    &trans              &trans   &trans             &trans           &trans           &none
             >;
             display-name = "Nav (Mac)";
@@ -104,12 +104,12 @@
         };
 
         control {
-            bindings = <                                                                                                     //Mute Mic
-                                            &none                                                                            &kp LG(LS(M))
- &none   &none  &kp LG(W)  &kp LC(LS(TAB))  &kp LG(T)     &kp LC(TAB)                                            &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
- &none   &none  &none      &kp LG(S)        &kp LG(DE_Z)  &kp LG(LS(DE_Z))                                       &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
- &none   &none  &kp LG(X)  &kp LG(C)        &kp LG(V)     &none                                                  &none       &kp K_MUTE    &none         &none   &none   &none
-                &none      &none            &none         &none             &none                &studio_unlock  &none       &none         &none         &none
+            bindings = <                                                                                                        //Mute Mic
+                                               &none                                                                            &kp LG(LS(M))
+ &none   &none  &kp LC(LS(TAB))  &kp LC(TAB)   &kp LG(T)     &kp LG(W)                                              &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
+ &none   &none  &kp LG(R)        &kp LG(S)     &kp LG(DE_Z)  &kp LG(LS(DE_Z))                                       &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
+ &none   &none  &kp LG(X)        &kp LG(C)     &kp LG(V)     &kp LG(A)                                              &none       &kp K_MUTE    &none         &none   &none   &none
+                &none            &none         &none         &none             &none                &studio_unlock  &none       &none         &none         &none
             >;
             display-name = "Control";
         };
