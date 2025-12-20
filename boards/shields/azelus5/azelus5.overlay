@@ -1,6 +1,7 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
+#include <common/nordic/nrf52840_uf2_boot_mode.dtsi>
 
 / {
     chosen {
@@ -13,8 +14,7 @@
     // See also  https://zmk.dev/docs/development/new-shield#shield-overlays
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
-                diode-direction = "col2row";
+        diode-direction = "col2row";
         wakeup-source;
         row-gpios
             // right

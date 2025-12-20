@@ -30,7 +30,7 @@
 
 /{
     behaviors {
-         hmr: name {
+         hmr: hmr {
              label = "hmr";
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
@@ -43,7 +43,7 @@
         };
     };
     behaviors {
-         hml: name {
+         hml: hml {
              label = "hml";
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
@@ -102,11 +102,11 @@
             bindings = <
                                                         &trans                                                                 &trans
 &trans    &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp DE_O_UMLAUT   &kp J
-&trans    &lt CONTROL H      &hml LALT A   &hml LCTRL E     &hml LGUI I      &kp DOT                                     &kp G     &hml LGUI T   &hml LCTRL N   &hml LALT R   &kp S             &kp BSPC
+&trans    &lt CONTROL H      &hml LCTRL A  &hml LALT E      &hml LGUI I      &kp DOT                                     &kp G     &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S             &kp BSPC
 &trans    &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F             &kp DE_SZ
                              &trans        &trans           &trans           &trans     &trans               &trans      &trans    &trans        &trans         &trans
               >;
-            display-name = "HRM Playground";
+            display-name = "Playground";
         };
 
         sym {
@@ -269,16 +269,16 @@
                ,<&key_physical_attrs 100 100 1200    360   (-1000)    700   450>
                ,<&key_physical_attrs 100 100 1300    370   (-1000)    700   450>
 
-               ,<&key_physical_attrs 100 100  200    420     1000     700   450>
-               ,<&key_physical_attrs 100 100  300    400     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    430     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    410     1000     700   450>
                ,<&key_physical_attrs 100 100  400    480     1000     700   450>
                ,<&key_physical_attrs 100 100  500    480     1000     700   450>
                ,<&key_physical_attrs 100 100  600    480     1000     700   450>
                ,<&key_physical_attrs 100 100  700    480   (-1000)    700   450>
                ,<&key_physical_attrs 100 100  800    480   (-1000)    700   450>
                ,<&key_physical_attrs 100 100  900    480   (-1000)    700   450>
-               ,<&key_physical_attrs 100 100 1000    400   (-1000)    700   450>
-               ,<&key_physical_attrs 100 100 1100    420   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    410   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    430   (-1000)    700   450>
             ;
         };
 
