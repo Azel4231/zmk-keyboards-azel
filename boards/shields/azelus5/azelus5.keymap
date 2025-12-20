@@ -29,12 +29,12 @@
 
         base1 {
             bindings = <
-                                                            &mt C_VOICE_COMMAND ESC                                        &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q           &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI           &lt CONTROL A   &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
-&kp LCTRL          &kp DE_Y        &kp X               &kp C     &kp D           &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo ROOT     &kp LG(LS(M))
-                                  /* Toggle desk light */                                                                                                 //Mute Mic
+                                                       &mt C_VOICE_COMMAND ESC                                         &kp KP_SLASH
+&mt DE_GRAVE TAB   &kp Q           &kp W               &kp F     &kp P           &kp B                                 &kp J          &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
+&kp LGUI           &lt CONTROL A   &kp R               &kp S     &kp T           &kp G                                 &kp M          &kp N      &kp E        &kp I        &kp O            &kp BSPC
+&kp LCTRL          &kp DE_Y        &kp X               &kp C     &kp D           &kp V                                 &kp K          &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
+                                   &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &sk LSHFT   &mo SYM         &kp RET   &lt NAV SPACE  &kp SPACE  &mo ROOT     &kp LG(LS(M))
+                                  /* Toggle desk light */                                                                                                    //Mute Mic
             >;
             display-name = "Colemak-DH";
         };
@@ -56,7 +56,7 @@
 &trans    &kp Q              &kp K     &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D        &kp C        &kp L     &kp DE_O_UMLAUT   &kp J
 &trans    &lt CONTROL H      &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp N        &kp R     &kp S             &kp BSPC
 &trans    &kp COMMA          &kp DE_Z  &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &kp F             &kp DE_SZ
-                             &trans    &kp DEL          &kp LALT         &kp LSHFT   &mo SYM               &kp RET   &mo NAV   &kp SPACE    &trans       &trans
+                             &trans    &trans           &trans           &trans     &trans               &trans      &trans    &trans       &trans       &trans
             >;
             display-name = "Anymak:END";
         };
@@ -71,7 +71,7 @@
 &trans    &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                                            &kp P      &kp B         &kp M        &kp L        &kp F           &kp J
 &trans    &kp C       &kp S         &kp I            &kp E                    &kp O                                            &kp D      &kp T         &kp N        &kp R        &kp H           &kp BSPC
 &trans    &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT                                  &kp W      &kp G         &kp COMMA    &kp DOT      &mt DE_MINUS K  &kp DE_SZ
-                      &trans        &kp DEL          &kp LALT                 &kp LSHFT        &mo SYM                &kp RET  &mo NAV    &kp SPACE     &trans       &trans
+                      &trans        &trans           &trans                   &trans           &trans                &trans    &trans     &trans        &trans       &trans
             >;
             display-name = "Noted";
         };
