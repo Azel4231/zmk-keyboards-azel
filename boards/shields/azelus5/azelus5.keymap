@@ -2,24 +2,61 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include "keys_de.h"
+#include "key-labels.h"
 
 #define COLEMAK 0
 #define ANYMAK  1
-#define NOTED   2
+#define TESTS   2
 #define SYM     3
 #define NAV     4
 #define CONTROL 5
 #define ROOT    6
 #define MISC    7
 
+#define KEYS_L LN2 LT1 LT2 LT3 LT4 LT5 LT6 LM1 LM2 LM3 LM4 LM5 LM6 LB1 LB2 LB3 LB4 LB5 LB6  // left hand
+#define KEYS_R RN2 RT1 RT2 RT3 RT4 RT5 RT6 RM1 RM2 RM3 RM4 RM5 RM6 RB1 RB2 RB3 RB4 RB5 RB6  // right hand
+#define THUMBS LH0 LH1 LH2 LH3 LH4 RH0 RH1 RH2 RH3 RH4                                      // thumbs
+
 #define COMBO_TIMEOUT 30  // default=50
 
-    &mt {
-        flavor = "balanced";
+
+&mt {
+    flavor = "balanced";
+};
+&lt {
+    flavor = "balanced";
+};
+
+
+/{
+    behaviors {
+         hmr: name {
+             label = "hmr";
+             compatible = "zmk,behavior-hold-tap";
+             flavor = "balanced";
+             tapping-term-ms = <280>;
+             require-prior-idle-ms = <150>;
+             hold-trigger-key-positions = <KEYS_R THUMBS>;
+             hold-trigger-on-release;
+             #binding-cells = <2>;
+             bindings = <&kp>, <&kp>;
+        };
     };
-    &lt {
-        flavor = "balanced";
-    };
+    behaviors {
+         hml: name {
+             label = "hml";
+             compatible = "zmk,behavior-hold-tap";
+             flavor = "balanced";
+             tapping-term-ms = <280>;
+             require-prior-idle-ms = <150>;
+             hold-trigger-key-positions = <KEYS_L THUMBS>;
+             hold-trigger-on-release;
+             #binding-cells = <2>;
+             bindings = <&kp>, <&kp>;
+         };
+     };
+};
+
 
 
 / {
@@ -61,19 +98,15 @@
             display-name = "Anymak:END";
         };
 
-            /* Changes to vanilla NOTED:
-            - mod-tab on K to keep "-" on lower pinkey (muscle memory)
-            */
-
         base3 {
             bindings = <
-                                                     &trans                                                                               &trans
-&trans    &kp DE_Z    &kp DE_Y      &kp U            &kp A                    &kp Q                                            &kp P      &kp B         &kp M        &kp L        &kp F           &kp J
-&trans    &kp C       &kp S         &kp I            &kp E                    &kp O                                            &kp D      &kp T         &kp N        &kp R        &kp H           &kp BSPC
-&trans    &kp V       &kp X         &kp DE_U_UMLAUT  &lt CONTROL DE_A_UMLAUT  &kp DE_O_UMLAUT                                  &kp W      &kp G         &kp COMMA    &kp DOT      &mt DE_MINUS K  &kp DE_SZ
-                      &trans        &trans           &trans                   &trans           &trans                &trans    &trans     &trans        &trans       &trans
-            >;
-            display-name = "Noted";
+                                                        &trans                                                                 &trans
+&trans    &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp DE_O_UMLAUT   &kp J
+&trans    &lt CONTROL H      &hml LALT A   &hml LCTRL E     &hml LGUI I      &kp DOT                                     &kp G     &hml LGUI T   &hml LCTRL N   &hml LALT R   &kp S             &kp BSPC
+&trans    &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F             &kp DE_SZ
+                             &trans        &trans           &trans           &trans     &trans               &trans      &trans    &trans        &trans         &trans
+              >;
+            display-name = "HRM Playground";
         };
 
         sym {
@@ -119,7 +152,7 @@
                                                  &bootloader                                                &studio_unlock
  &to COLEMAK  &none   &none        &bt BT_SEL 0  &none        &none                                  &none  &none  &none  &none  &none  &none
  &to ANYMAK   &none   &none        &bt BT_SEL 1  &none        &none                                  &none  &none  &none  &none  &none  &none
- &to NOTED    &none   &none        &bt BT_SEL 2  &none        &none                                  &none  &none  &none  &none  &none  &none
+ &to TESTS    &none   &none        &bt BT_SEL 2  &none        &none                                  &none  &none  &none  &none  &none  &none
                       &none        &bt BT_CLR    &none        &none   &none         &studio_unlock   &none  &none  &none  &none
             >;
             display-name = "Root";
@@ -137,33 +170,43 @@
         };
     };
 
-    /* Helper for combos
-                             0                       1
-             2   3   4   5   6   7               8   9  10  11  12  13
-            14  15  16  17  18  19              20  21  22  23  24  25
-            26  27  28  29  30  31              32  33  34  35  36  37
-                    38  39  40  41  42      43  44  45  46  47
-    */
+
+
+    position_map {
+        compatible = "zmk,physical-layout-position-map";
+        complete;
+        layout1: layout1 {
+            physical-layout = <&physical_layout0>;
+            positions = <                LN2                   RN2                >
+                       ,<LT6 LT5 LT4 LT3 LT2 LT1           RT1 RT2 RT3 RT4 RT5 RT6>
+                       ,<LM6 LM5 LM4 LM3 LM2 LM1           RM1 RM2 RM3 RM4 RM5 RM6>
+                       ,<LB6 LB5 LB4 LB3 LB2 LB1           RB1 RB2 RB3 RB4 RB5 RB6>
+                       ,<        LH4 LH3 LH2 LH1 LH0   RH0 RH1 RH2 RH3 RH4        >
+            ;
+        };
+    };
+
+
     combos {
         compatible = "zmk,combos";
 
         BASE_UNDERSCORE {
             bindings = <&kp LS(DE_MINUS)>;
-            key-positions = <34 35>;
-            layers = <COLEMAK ANYMAK NOTED>;
+            key-positions = <RB3 RB4>;
+            layers = <COLEMAK ANYMAK TESTS>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
 
         COLEMAK_OE {
             bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <23 24>;
+            key-positions = <RM4 RM5>;
             layers = <COLEMAK>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
 
         SYM_PROZENT {
             bindings = <&kp DE_PRCNT>;
-            key-positions = <4 5>;
+            key-positions = <LT4 LT3>;
             layers = <SYM>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
@@ -184,74 +227,60 @@
         display-name = "Physical Layout";
         transform = <&matrix_transform0>;
         kscan = <&kscan0>;
-        keys =  <&key_physical_attrs 100 100  400    40      1200     700   450>
-               ,<&key_physical_attrs 100 100  900    40    (-1200)    700   450>
+        keys =  <&key_physical_attrs 100 100  400    40      1000     700   450>
+               ,<&key_physical_attrs 100 100  900    40    (-1000)    700   450>
 
-               ,<&key_physical_attrs 100 100    0    170     1200     700   450>
-               ,<&key_physical_attrs 100 100  100    160     1200     700   450>
-               ,<&key_physical_attrs 100 100  200    120     1200     700   450>
-               ,<&key_physical_attrs 100 100  300    100     1200     700   450>
-               ,<&key_physical_attrs 100 100  400    140     1200     700   450>
-               ,<&key_physical_attrs 100 100  500    150     1200     700   450>
-               ,<&key_physical_attrs 100 100  800    150   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100  900    140   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1000    100   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1100    120   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1200    160   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1300    170   (-1200)    700   450>
+               ,<&key_physical_attrs 100 100    0    170     1000     700   450>
+               ,<&key_physical_attrs 100 100  100    160     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    120     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    100     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    140     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    150     1000     700   450>
+               ,<&key_physical_attrs 100 100  800    150   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    140   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    100   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    120   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1200    160   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    170   (-1000)    700   450>
 
-               ,<&key_physical_attrs 100 100    0    270     1200     700   450>
-               ,<&key_physical_attrs 100 100  100    260     1200     700   450>
-               ,<&key_physical_attrs 100 100  200    220     1200     700   450>
-               ,<&key_physical_attrs 100 100  300    200     1200     700   450>
-               ,<&key_physical_attrs 100 100  400    240     1200     700   450>
-               ,<&key_physical_attrs 100 100  500    250     1200     700   450>
-               ,<&key_physical_attrs 100 100  800    250   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100  900    240   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1000    200   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1100    220   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1200    260   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1300    270   (-1200)    700   450>
+               ,<&key_physical_attrs 100 100    0    270     1000     700   450>
+               ,<&key_physical_attrs 100 100  100    260     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    220     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    200     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    240     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    250     1000     700   450>
+               ,<&key_physical_attrs 100 100  800    250   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    240   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    200   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    220   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1200    260   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    270   (-1000)    700   450>
 
-               ,<&key_physical_attrs 100 100    0    370     1200     700   450>
-               ,<&key_physical_attrs 100 100  100    360     1200     700   450>
-               ,<&key_physical_attrs 100 100  200    320     1200     700   450>
-               ,<&key_physical_attrs 100 100  300    300     1200     700   450>
-               ,<&key_physical_attrs 100 100  400    340     1200     700   450>
-               ,<&key_physical_attrs 100 100  500    350     1200     700   450>
-               ,<&key_physical_attrs 100 100  800    350   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100  900    340   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1000    300   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1100    320   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1200    360   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1300    370   (-1200)    700   450>
+               ,<&key_physical_attrs 100 100    0    370     1000     700   450>
+               ,<&key_physical_attrs 100 100  100    360     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    320     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    300     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    340     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    350     1000     700   450>
+               ,<&key_physical_attrs 100 100  800    350   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    340   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    300   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    320   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1200    360   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    370   (-1000)    700   450>
 
-               ,<&key_physical_attrs 100 100  200    420     1200     700   450>
-               ,<&key_physical_attrs 100 100  300    400     1200     700   450>
-               ,<&key_physical_attrs 100 100  400    480     1200     700   450>
-               ,<&key_physical_attrs 100 100  500    480     1200     700   450>
-               ,<&key_physical_attrs 100 100  600    480     1200     700   450>
-               ,<&key_physical_attrs 100 100  700    480   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100  800    480   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100  900    480   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1000    400   (-1200)    700   450>
-               ,<&key_physical_attrs 100 100 1100    420   (-1200)    700   450>
+               ,<&key_physical_attrs 100 100  200    420     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    400     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    480     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    480     1000     700   450>
+               ,<&key_physical_attrs 100 100  600    480     1000     700   450>
+               ,<&key_physical_attrs 100 100  700    480   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  800    480   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    480   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    400   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    420   (-1000)    700   450>
             ;
         };
 
-    position_map {
-        compatible = "zmk,physical-layout-position-map";
-        complete;
-        layout1: layout1 {
-            physical-layout = <&physical_layout0>;
-            positions = <             0              1            >
-                       ,< 2  3  4  5  6  7        8  9 10 11 12 13>
-                       ,<14 15 16 17 18 19       20 21 22 23 24 25>
-                       ,<26 27 28 29 30 31       32 33 34 35 36 37>
-                       ,<      38 39                   40 41      >
-                       ,<            42 43 44 45 46 47            >
-            ;
-        };
-    };
 
 };
