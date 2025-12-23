@@ -29,29 +29,29 @@
 
 #define RN2 1
 
-#define RT6 8
-#define RT5 9
-#define RT4 10
-#define RT3 11
-#define RT2 12
-#define RT1 13
+#define RT1 8
+#define RT2 9
+#define RT3 10
+#define RT4 11
+#define RT5 12
+#define RT6 13
 
-#define RM6 20
-#define RM5 21
-#define RM4 22
-#define RM3 23
-#define RM2 24
-#define RM1 25
+#define RM1 20
+#define RM2 21
+#define RM3 22
+#define RM4 23
+#define RM5 24
+#define RM6 25
 
-#define RB6 32
-#define RB5 33
-#define RB4 34
-#define RB3 35
-#define RB2 36
-#define RB1 37
+#define RB1 32
+#define RB2 33
+#define RB3 34
+#define RB4 35
+#define RB5 36
+#define RB6 37
 
-#define RH4 43
-#define RH3 44
+#define RH0 43
+#define RH1 44
 #define RH2 45
-#define RH1 46
-#define RH0 47
+#define RH3 46
+#define RH4 47
