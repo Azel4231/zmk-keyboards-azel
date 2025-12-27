@@ -23,6 +23,7 @@
 #define COMBO_TIMEOUT 30  // default=50
 #define COMBO_TIMEOUT_VERTICAL 50
 
+/* use balanced flavor for both mod-tap as well as layer-tap */
 &mt {
     flavor = "balanced";
 };
@@ -31,6 +32,9 @@
 };
 
 
+/* Home Row Mod behaviors for right and left hand side.
+   Based on urob's timerless home row mods: https://github.com/urob/zmk-config?tab=readme-ov-file#timeless-homerow-mods
+ */
 /{
     behaviors {
          hmr: hmr {
@@ -53,7 +57,7 @@
              flavor = "balanced";
              tapping-term-ms = <280>;
              require-prior-idle-ms = <150>;
-             hold-trigger-key-positions = <KEYS_R THUMBS>;  // hold when using in conjunction with shift on thumb
+             hold-trigger-key-positions = <KEYS_R THUMBS>;
              hold-trigger-on-release;
              #binding-cells = <2>;
              bindings = <&kp>, <&kp>;
@@ -80,52 +84,49 @@
         };
 
         /*
-        Changes to vanilla Anymak:END
+        Changes to vanilla Anymak:END:
         - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
         - place äü in their original KOY positions
-        - move öß to base layer
+        - move F to bottom row (also personal preference)
+        - move J to top row (pinky)
 
         Trial:
+        - test HomeRow Mods
+        - move ö+ß to combos
         - move . and ,
-        - F on bottom row
+
         */
 
         base2 {
+
             bindings = <
-                                                        ____                                                                   ____  
-____      &kp Q              &kp K     &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D        &kp C        &kp L     &kp DE_O_UMLAUT   &kp J
-____      &lt CONTROL H      &kp A     &kp E            &kp I            &kp DOT                                     &kp G     &kp T        &kp N        &kp R     &kp S             &kp BSPC
-____      &kp COMMA          &kp DE_Z  &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P        &kp M        &kp W     &kp F             &kp DE_SZ
-                             ____      ____             ____             ____       ____                 ____        ____      ____         ____         ____  
+                                                            ____                                                                   ____
+XXXX      &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp J    XXXX
+XXXX      &lt CONTROL H      &hml LCTRL A  &hml LALT E      &hml LGUI I      &kp DOT                                     &kp G     &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    ____
+XXXX      &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F    XXXX
+                             ____          ____             &kp TAB          ____       ____                 ____        ____      ____          ____           ____
             >;
             display-name = "Anymak:END";
         };
 
         base3 {
-
-            /*
-            - Test HomeRow Mods
-            - move ö+ß to combos
-
-            */
-
             bindings = <
-                                                            ____                                                                   ____  
-XXXX      &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp J    XXXX 
-XXXX      &lt CONTROL H      &hml LCTRL A  &hml LALT E      &hml LGUI I      &kp DOT                                     &kp G     &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    XXXX 
-XXXX      &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F    XXXX 
-                             ____          ____             ____             ____       ____                 ____        ____      ____          ____           ____  
-              >;
+                              XXXX                                     XXXX
+ XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
+ XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
+ XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
+                XXXX   XXXX   XXXX   XXXX   XXXX         XXXX   XXXX   XXXX   XXXX   XXXX
+            >;
             display-name = "Playground";
         };
 
         sym {
             bindings = <
-                                                            &kp DE_PIPE_M                                                                ____  
-&kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7   &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
-&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4   &kp N5          &kp N6   &kp DOT       ____
-&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1   &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 XXXX      &kp SPACE       ____     &kp DE_BSLH_M   XXXX
+                                                             &kp DE_PIPE_M                                                                ____
+&kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
+&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp DOT       ____
+&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 XXXX      &kp N0          &kp SPACE   &kp DE_BSLH_M   XXXX
             >;
             display-name = "Sym (Mac)";
         };
@@ -134,11 +135,11 @@ XXXX      &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp
             bindings = <
                                      ____                                                                &kp LC(F2)
                                                                                                          // App Menu
-____     XXXX    &kp F7    &kp F8    &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
+XXXX     XXXX    &kp F7    &kp F8    &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
                                                                                                          //StartOfLine                     //EndOfLine     //IJ: Run               //IJ: Project
-____     XXXX    &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp BSPC                &kp LG(LS(LC(RIGHT)))
+XXXX     XXXX    &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp BSPC                &kp LG(LS(LC(RIGHT)))
                                                                                                                                                                                    //IJ: Next Error
-____     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LG(N3)              &kp LG(N2)
+XXXX     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LG(N3)              &kp LG(N2)
                                                                                       //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  //IJ: Terminal          //IJ: Commit
                  XXXX      ____      ____      ____      ____                ____     ____               ____             ____             XXXX 
             >;
@@ -152,7 +153,7 @@ ____     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                          
  XXXX    XXXX   &kp LC(LS(TAB))  &kp LC(TAB)   &kp LG(T)     &kp LG(W)                                              XXXX        &kp K_VOL_UP  &kp C_BRI_UP  XXXX    XXXX    XXXX 
  XXXX    XXXX   &kp LG(R)        &kp LG(S)     &kp LG(DE_Z)  &kp LG(LS(DE_Z))                                       XXXX        &kp K_VOL_DN  &kp C_BRI_DN  XXXX    XXXX    XXXX 
  XXXX    XXXX   &kp LG(X)        &kp LG(C)     &kp LG(V)     &kp LG(D)                                              XXXX        &kp K_MUTE    XXXX          XXXX    XXXX    XXXX
-                XXXX             XXXX          XXXX          XXXX              XXXX                 &studio_unlock  XXXX        XXXX          XXXX          XXXX 
+                XXXX             XXXX          XXXX          XXXX              XXXX                         XXXX    XXXX        XXXX          XXXX          XXXX
             >;
             display-name = "Control";
         };
