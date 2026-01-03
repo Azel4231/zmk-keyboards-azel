@@ -4,8 +4,8 @@
 #include "keys_de.h"
 #include "key-labels.h"
 
-#define COLEMAK 0
-#define ANYMAK  1
+#define ANYMAK  0
+#define COLEMAK 1
 #define TESTS   2
 #define SYM     3
 #define NAV     4
@@ -71,18 +71,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        base1 {
-            bindings = <
-                                                       &mt C_VOICE_COMMAND ESC                                         &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q           &kp W               &kp F     &kp P           &kp B                                 &kp J          &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI           &lt CONTROL A   &kp R               &kp S     &kp T           &kp G                                 &kp M          &kp N      &kp E        &kp I        &kp O            &kp BSPC
-&kp LCTRL          &kp DE_Y        &kp X               &kp C     &kp D           &kp V                                 &kp K          &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &sk LSHFT   &mo SYM         &kp RET   &lt NAV SPACE  XXXX       &mo ROOT     &kp LG(LS(M))
-                                  /* Toggle desk light */                                                                                                     //Mute Mic
-            >;
-            display-name = "Colemak-DH";
-        };
-
         /*
         Changes to vanilla Anymak:END:
         - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
@@ -97,16 +85,29 @@
 
         */
 
-        base2 {
+        base1 {
 
             bindings = <
-                                                            ____                                                                   ____
-XXXX      &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp J    XXXX
-XXXX      &lt CONTROL H      &hml LCTRL A  &hml LALT E      &hml LGUI I      &kp DOT                                     &kp G     &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    ____
-XXXX      &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F    XXXX
-                             ____          ____             &kp TAB          ____       ____                 ____        ____      ____          ____           ____
+                                                                 &mt C_VOICE_COMMAND ESC                                                       &kp KP_SLASH
+XXXX      &kp Q              &kp K              &kp O            &kp U              &kp DE_Y                                    &kp V          &kp D         &kp C          &kp L         &kp J    XXXX
+XXXX      &lt CONTROL H      &hml LCTRL A       &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G          &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BSPC
+XXXX      &kp COMMA          &kp DE_Z           &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B          &kp P         &kp M          &kp W         &kp F    XXXX
+                             &kp LG(LC(LA(E)))  &kp DEL          &mt DE_GRAVE TAB   &sk LSHFT     &mo SYM            &kp RET    &lt NAV SPACE  XXXX          &mo ROOT     &kp LG(LS(M))
+                             /* Toggle desk light */                                                                                                       //Mute Mic
             >;
             display-name = "Anymak:END";
+        };
+
+        base2 {
+            bindings = <
+                                                       &mt C_VOICE_COMMAND ESC                                         &kp KP_SLASH
+&mt DE_GRAVE TAB   &kp Q           &kp W               &kp F     &kp P           &kp B                                 &kp J          &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
+&kp LGUI           &lt CONTROL A   &kp R               &kp S     &kp T           &kp G                                 &kp M          &kp N      &kp E        &kp I        &kp O            &kp BSPC
+&kp LCTRL          &kp DE_Y        &kp X               &kp C     &kp D           &kp V                                 &kp K          &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
+                                   &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &sk LSHFT   &mo SYM         &kp RET   &lt NAV SPACE  XXXX       &mo ROOT     &kp LG(LS(M))
+                                  /* Toggle desk light */                                                                                                     //Mute Mic
+            >;
+            display-name = "Colemak-DH";
         };
 
         base3 {
@@ -161,8 +162,8 @@ XXXX     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                          
         root {
             bindings = <
                                                  &bootloader                                                &studio_unlock
- &to COLEMAK  XXXX    XXXX         &bt BT_SEL 0  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
- &to ANYMAK   XXXX    XXXX         &bt BT_SEL 1  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
+ &to ANYMAK   XXXX    XXXX         &bt BT_SEL 0  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
+ &to COLEMAK  XXXX    XXXX         &bt BT_SEL 1  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
  &to TESTS    XXXX    XXXX         &bt BT_SEL 2  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
                       XXXX         &bt BT_CLR    XXXX         XXXX    XXXX          &studio_unlock   XXXX   XXXX   XXXX   XXXX 
             >;
@@ -228,45 +229,39 @@ XXXX     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                          
         TEST_HYPHEN {
             bindings = <&kp DE_MINUS>;
             key-positions = <RM3 RM4>;
-            layers = <TESTS>;
+            layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
         // vertikal
         TEST_AMPERSAND {
             bindings = <&kp DE_AMPS>;
             key-positions = <LT5 LM5>;
-            layers = <TESTS>;
+            layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT_VERTICAL>;
         };
         TEST_HASH {
             bindings = <&kp DE_POUND>;
             key-positions = <LM5 LB5>;
-            layers = <TESTS>;
+            layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT_VERTICAL>;
         };
         TEST_EURO {
             bindings = <&kp DE_EURO>;
             key-positions = <LM3 LB3>;
-            layers = <TESTS>;
-            timeout-ms = <COMBO_TIMEOUT_VERTICAL>;
-        };
-        TEST_TAB {
-            bindings = <&kp TAB>;
-            key-positions = <LT2 LM2>;
-            layers = <TESTS>;
+            layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT_VERTICAL>;
         };
 
         TEST_OE_RIGHT {
             bindings = <&kp DE_O_UMLAUT>;
             key-positions = <RT5 RM5>;
-            layers = <TESTS>;
+            layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT_VERTICAL>;
         };
         TEST_SZ {
             bindings = <&kp DE_SZ>;
             key-positions = <RT4 RM4>;
-            layers = <TESTS>;
+            layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT_VERTICAL>;
         };
 
