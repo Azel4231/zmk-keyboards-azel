@@ -127,7 +127,7 @@ XXXX      &kp COMMA          &kp DE_Z           &kp DE_A_UMLAUT  &kp DE_U_UMLAUT
 &kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
 &kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp DOT       ____
 &kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 XXXX      &kp N0          &kp SPACE   &kp DE_BSLH_M   XXXX
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 XXXX      &lt NAV N0      &kp SPACE   &kp DE_BSLH_M   XXXX
             >;
             display-name = "Sym (Mac)";
         };
@@ -228,11 +228,11 @@ XXXX     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                          
         // horizontal
         TEST_HYPHEN {
             bindings = <&kp DE_MINUS>;
-            key-positions = <RM3 RM4>;
+            key-positions = <RM3 RM4>;  // maybe better on top row?
             layers = <ANYMAK>;
             timeout-ms = <COMBO_TIMEOUT>;
         };
-        // vertikal
+        // vertical
         TEST_AMPERSAND {
             bindings = <&kp DE_AMPS>;
             key-positions = <LT5 LM5>;
