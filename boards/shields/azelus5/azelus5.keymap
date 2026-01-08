@@ -76,12 +76,13 @@
         - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
         - place äü in their original KOY positions
         - move F to bottom row (also personal preference)
-        - move J to top row (pinky)
+        - move J inwards, to top row (pinky)
 
         Trial:
         - test HomeRow Mods
         - move ö+ß to combos
         - move . and ,
+        - backspace on NAV layer
 
         */
 
@@ -93,7 +94,7 @@ XXXX      &kp Q              &kp K              &kp O            &kp U          
 XXXX      &lt CONTROL H      &hml LCTRL A       &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G          &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BSPC
 XXXX      &kp COMMA          &kp DE_Z           &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B          &kp P         &kp M          &kp W         &kp F    XXXX
                              &kp LG(LC(LA(E)))  &kp DEL          &mt DE_GRAVE TAB   &sk LSHFT     &mo SYM            &kp RET    &lt NAV SPACE  XXXX          &mo ROOT     &kp LG(LS(M))
-                             /* Toggle desk light */                                                                                                       //Mute Mic
+                             /* Toggle desk light */                                                                                                                      //Mute Mic
             >;
             display-name = "Anymak:END";
         };
@@ -128,21 +129,22 @@ XXXX      &kp COMMA          &kp DE_Z           &kp DE_A_UMLAUT  &kp DE_U_UMLAUT
 &kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp DOT       ____
 &kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
                              &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 XXXX      &lt NAV N0      &kp SPACE   &kp DE_BSLH_M   XXXX
+                                                                                                  // avoid RET mistypes   // make BSPC accessible in SYM
             >;
             display-name = "Sym (Mac)";
         };
 
         nav {
             bindings = <
-                                     ____                                                                &kp LC(F2)
-                                                                                                         // App Menu
-XXXX     XXXX    &kp F7    &kp F8    &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
-                                                                                                         //StartOfLine                     //EndOfLine     //IJ: Run               //IJ: Project
-XXXX     XXXX    &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp BSPC                &kp LG(LS(LC(RIGHT)))
-                                                                                                                                                                                   //IJ: Next Error
-XXXX     XXXX    &kp F1    &kp F2    &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LG(N3)              &kp LG(N2)
-                                                                                      //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  //IJ: Terminal          //IJ: Commit
-                 XXXX      ____      ____      ____      ____                ____     ____               ____             ____             XXXX 
+                                     ____                                                                      &kp LC(F2)
+                                                                                                               // App Menu
+XXXX     XXXX    &kp F7    &kp F8          &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
+                                                                                                               //StartOfLine                     //EndOfLine     //IJ: Run               //IJ: Project
+XXXX     XXXX    &kp F4    &hml LALT F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp BSPC                &kp LG(LS(LC(RIGHT)))
+                           // allow ALT when already in nav layer                                                                                                                        //IJ: Next Error
+XXXX     XXXX    &kp F1    &kp F2          &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LG(N3)              &kp LG(N2)
+                                                                                            //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  //IJ: Terminal          //IJ: Commit
+                 XXXX      ____            ____      ____      ____                ____     ____               ____             ____             XXXX
             >;
             display-name = "Nav (Mac)";
 
