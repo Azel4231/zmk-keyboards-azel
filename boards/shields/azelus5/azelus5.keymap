@@ -20,7 +20,7 @@
 #define KEYS_R RN2 RT1 RT2 RT3 RT4 RT5 RT6 RM1 RM2 RM3 RM4 RM5 RM6 RB1 RB2 RB3 RB4 RB5 RB6  // right hand
 #define THUMBS LH0 LH1 LH2 LH3 LH4 RH0 RH1 RH2 RH3 RH4                                      // left+right thumb
 
-/* use balanced flavor for both mod-tap as well as layer-tap */
+/* use balanced flavor for both mod-tap and layer-tap */
 &mt {
     flavor = "balanced";
 };
@@ -63,39 +63,39 @@
 };
 
 // base
-#define MUTE_MIC &kp LG(LS(M))
-#define TOG_DESK_LIGHT &kp LG(LC(LA(E)))
+#define MUTE_MIC        &kp LG(LS(M))
+#define TOG_DESK_LIGHT  &kp LG(LC(LA(E)))
 
 // nav
-#define APP_MENU &kp LC(F2)
-#define START_OF_LINE &kp LG(LEFT)
-#define END_OF_LINE &kp LG(RIGHT)
+#define APP_MENU        &kp LC(F2)
+#define START_OF_LINE   &kp LG(LEFT)
+#define END_OF_LINE     &kp LG(RIGHT)
 
-#define IJ_NEXT_ERROR &kp LG(LS(LC(RIGHT)))
-#define IJ_RUN &kp LC(LA(R))
-#define IJ_NAV_BACK &kp LG(LA(LEFT))
-#define IJ_EXPAND_SEL &kp LA(UP)
-#define IJ_SHRINK_SEL &kp LA(DOWN)
-#define IJ_TERMINAL  &kp LG(N3)
-#define IJ_PROJECT &kp LG(N0)
-#define IJ_EDITOR &kp LG(N9)
-#define IJ_COMMIT &kp LG(N2)
+#define IJ_NEXT_ERROR   &kp LG(LS(LC(RIGHT)))
+#define IJ_RUN          &kp LC(LA(R))
+#define IJ_NAV_BACK     &kp LG(LA(LEFT))
+#define IJ_EXPAND_SEL   &kp LA(UP)
+#define IJ_SHRINK_SEL   &kp LA(DOWN)
+#define IJ_TERMINAL     &kp LG(N3)
+#define IJ_PROJECT      &kp LG(N0)
+#define IJ_EDITOR       &kp LG(N9)
+#define IJ_COMMIT       &kp LG(N2)
 
 // control
-#define NEXT_TAB &kp LC(LS(TAB))
-#define PREV_TAB &kp LC(TAB)
-#define NEW_TAB &kp LG(T)
-#define CLOSE_TAB &kp LG(W)
+#define NEXT_TAB        &kp LC(LS(TAB))
+#define PREV_TAB        &kp LC(TAB)
+#define NEW_TAB         &kp LG(T)
+#define CLOSE_TAB       &kp LG(W)
 
-#define RELOAD &kp LG(R)
-#define SAVE &kp LG(S)
-#define UNDO &kp LG(DE_Z)
-#define REDO &kp LG(LS(DE_Z))
+#define RELOAD          &kp LG(R)
+#define SAVE            &kp LG(S)
+#define UNDO            &kp LG(DE_Z)
+#define REDO            &kp LG(LS(DE_Z))
 
-#define CUT &kp LG(X)
-#define COPY &kp LG(C)
-#define PASTE &kp LG(V)
-#define IJ_DEL_LINE &kp LG(D)
+#define CUT             &kp LG(X)
+#define COPY            &kp LG(C)
+#define PASTE           &kp LG(V)
+#define IJ_DEL_LINE     &kp LG(D)
 
 / {
     keymap {
@@ -114,8 +114,10 @@
             - test HomeRow Mods (and try to avoid outer pinky keys)
             - move ö+ß to combos
             - move . and ,
-            - BACKSPACE on NAV layer
             - keep BACKSPACE on BASE layer as a fallback
+
+            Removed:
+            - sticky shift
         */
 
             bindings = <
@@ -123,7 +125,7 @@
 xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V           &kp D         &kp C          &kp L         &kp J    xxxx
 xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G           &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
 xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B           &kp P         &kp M          &kp W         &kp F    xxxx
-                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &sk LSHFT     &mo SYM            &kp RET    &lt NAV SPACE   xxxx          &mo ROOT       MUTE_MIC
+                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &kp LSHFT     &mo SYM            &kp RET    &lt NAV SPACE   xxxx          &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -135,7 +137,7 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 &mt DE_GRAVE TAB   &kp Q           &kp W            &kp F     &kp P                    &kp B                                      &kp J            &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
 &kp LGUI           &lt CONTROL A   &kp R            &kp S     &kp T                    &kp G                                      &kp M            &kp N      &kp E        &kp I        &kp O            &kp BACKSPACE
 &kp LCTRL          &kp DE_Y        &kp X            &kp C     &kp D                    &kp V                                      &kp K            &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &sk LSHFT   &mo SYM             &kp RET    &lt NAV SPACE    xxxx       &mo ROOT     MUTE_MIC
+                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &kp LSHFT   &mo SYM             &kp RET    &lt NAV SPACE    xxxx       &mo ROOT     MUTE_MIC
             >;
             display-name = "Colemak-DH";
         };
@@ -172,6 +174,8 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 
             /*
                 - add ALT (home row mod) to NAV layer (F5) to avoid timing mistakes, as it allows ALT and NAV (for arrows) to be pressed in any order.
+                Trial:
+                - BACKSPACE on NAV layer
             */
 
             bindings = <
