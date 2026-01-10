@@ -13,7 +13,7 @@
 #define ROOT    6
 #define MISC    7
 
-#define XXXX &none 
+#define xxxx &none 
 #define ____ &trans
 
 #define KEYS_L LN2 LT1 LT2 LT3 LT4 LT5 LT6 LM1 LM2 LM3 LM4 LM5 LM6 LB1 LB2 LB3 LB4 LB5 LB6  // left hand
@@ -65,98 +65,136 @@
      };
 };
 
+// base
+#define MUTE_MIC &kp LG(LS(M))
+#define TOG_DESK_LIGHT &kp LG(LC(LA(E)))
 
+// nav
+#define APP_MENU &kp LC(F2)
+#define START_OF_LINE &kp LG(LEFT)
+#define END_OF_LINE &kp LG(RIGHT)
+
+#define IJ_NEXT_ERROR &kp LG(LS(LC(RIGHT)))
+#define IJ_RUN &kp LC(LA(R))
+#define IJ_NAV_BACK &kp LG(LA(LEFT))
+#define IJ_EXPAND_SEL &kp LA(UP)
+#define IJ_SHRINK_SEL &kp LA(DOWN)
+#define IJ_TERMINAL  &kp LG(N3)
+#define IJ_PROJECT &kp LG(N0)
+#define IJ_EDITOR &kp LG(N9)
+#define IJ_COMMIT &kp LG(N2)
+
+// control
+#define NEXT_TAB &kp LC(LS(TAB))
+#define PREV_TAB &kp LC(TAB)
+#define NEW_TAB &kp LG(T)
+#define CLOSE_TAB &kp LG(W)
+
+#define RELOAD &kp LG(R)
+#define SAVE &kp LG(S)
+#define UNDO &kp LG(DE_Z)
+#define REDO &kp LG(LS(DE_Z))
+
+#define CUT &kp LG(X)
+#define COPY &kp LG(C)
+#define PASTE &kp LG(V)
+#define IJ_DEL_LINE &kp LG(D)
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        /*
-        Changes to vanilla Anymak:END:
-        - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
-        - place äü in their original KOY positions
-        - move F to bottom row (also personal preference)
-        - move J inwards, to top row (pinky)
-
-        Trial:
-        - test HomeRow Mods
-        - move ö+ß to combos
-        - move . and ,
-        - backspace on NAV layer
-
-        */
-
         base1 {
 
+        /*
+            Changes to vanilla Anymak:END
+            - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
+            - place äü in their original KOY positions
+            - move F to bottom row (also personal preference)
+            - move J inwards, to top row (pinky)
+
+            Trial:
+            - test HomeRow Mods (and try to avoid outer pinky keys)
+            - move ö+ß to combos
+            - move . and ,
+            - BACKSPACE on NAV layer
+            - keep BACKSPACE on BASE layer as a fallback
+        */
+
             bindings = <
-                                                                 &mt C_VOICE_COMMAND ESC                                                       &kp KP_SLASH
-XXXX      &kp Q              &kp K              &kp O            &kp U              &kp DE_Y                                    &kp V          &kp D         &kp C          &kp L         &kp J    XXXX
-XXXX      &lt CONTROL H      &hml LCTRL A       &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G          &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BSPC
-XXXX      &kp COMMA          &kp DE_Z           &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B          &kp P         &kp M          &kp W         &kp F    XXXX
-                             &kp LG(LC(LA(E)))  &kp DEL          &mt DE_GRAVE TAB   &sk LSHFT     &mo SYM            &kp RET    &lt NAV SPACE  XXXX          &mo ROOT     &kp LG(LS(M))
-                             /* Toggle desk light */                                                                                                                      //Mute Mic
+                                                                &mt C_VOICE_COMMAND ESC                                                        &kp KP_SLASH
+xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V           &kp D         &kp C          &kp L         &kp J    xxxx
+xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G           &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
+xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B           &kp P         &kp M          &kp W         &kp F    xxxx
+                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &sk LSHFT     &mo SYM            &kp RET    &lt NAV SPACE   xxxx          &mo ROOT       MUTE_MIC
+
             >;
             display-name = "Anymak:END";
         };
 
         base2 {
             bindings = <
-                                                       &mt C_VOICE_COMMAND ESC                                         &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q           &kp W               &kp F     &kp P           &kp B                                 &kp J          &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI           &lt CONTROL A   &kp R               &kp S     &kp T           &kp G                                 &kp M          &kp N      &kp E        &kp I        &kp O            &kp BSPC
-&kp LCTRL          &kp DE_Y        &kp X               &kp C     &kp D           &kp V                                 &kp K          &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   &kp LG(LC(LA(E)))   &kp DEL   &kp LALT        &sk LSHFT   &mo SYM         &kp RET   &lt NAV SPACE  XXXX       &mo ROOT     &kp LG(LS(M))
-                                  /* Toggle desk light */                                                                                                     //Mute Mic
+                                                              &mt C_VOICE_COMMAND ESC                                                              &kp KP_SLASH
+&mt DE_GRAVE TAB   &kp Q           &kp W            &kp F     &kp P                    &kp B                                      &kp J            &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
+&kp LGUI           &lt CONTROL A   &kp R            &kp S     &kp T                    &kp G                                      &kp M            &kp N      &kp E        &kp I        &kp O            &kp BACKSPACE
+&kp LCTRL          &kp DE_Y        &kp X            &kp C     &kp D                    &kp V                                      &kp K            &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
+                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &sk LSHFT   &mo SYM             &kp RET    &lt NAV SPACE    xxxx       &mo ROOT     MUTE_MIC
             >;
             display-name = "Colemak-DH";
         };
 
         base3 {
             bindings = <
-                              XXXX                                     XXXX
- XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
- XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
- XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
-                XXXX   XXXX   XXXX   XXXX   XXXX         XXXX   XXXX   XXXX   XXXX   XXXX
+                              xxxx                                     xxxx
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+                xxxx   xxxx   xxxx   xxxx   xxxx         xxxx   xxxx   xxxx   xxxx   xxxx
             >;
             display-name = "Playground";
         };
 
         sym {
+
+            /*
+                - block RET from layer below to avoid mistypes
+                - make N0 a layer-tap to NAV and thus make BACKSPACE accessible on SYM layer
+            */
+
             bindings = <
                                                              &kp DE_PIPE_M                                                                ____
 &kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
 &kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp DOT       ____
 &kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 XXXX      &lt NAV N0      &kp SPACE   &kp DE_BSLH_M   XXXX
-                                                                                                  // avoid RET mistypes   // make BSPC accessible in SYM
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      &lt NAV N0      &kp SPACE   &kp DE_BSLH_M   xxxx
             >;
             display-name = "Sym (Mac)";
         };
 
         nav {
+
+            /*
+                - add ALT (home row mod) to NAV layer (F5) to avoid timing mistakes, as it allows ALT and NAV (for arrows) to be pressed in any order.
+            */
+
             bindings = <
-                                     ____                                                                      &kp LC(F2)
-                                                                                                               // App Menu
-XXXX     XXXX    &kp F7    &kp F8          &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
-                                                                                                               //StartOfLine                     //EndOfLine     //IJ: Run               //IJ: Project
-XXXX     XXXX    &kp F4    &hml LALT F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp BSPC                &kp LG(LS(LC(RIGHT)))
-                           // allow ALT when already in nav layer                                                                                                                        //IJ: Next Error
-XXXX     XXXX    &kp F1    &kp F2          &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LG(N3)              &kp LG(N2)
-                                                                                            //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  //IJ: Terminal          //IJ: Commit
-                 XXXX      ____            ____      ____      ____                ____     ____               ____             ____             XXXX
+                                           ____                                                             APP_MENU
+xxxx     xxxx    &kp F7    &kp F8          &kp F9    &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
+xxxx     xxxx    &kp F4    &hml LALT F5    &kp F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       &kp BACKSPACE    IJ_NEXT_ERROR
+xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         IJ_TERMINAL      IJ_COMMIT
+                 xxxx      ____            ____      ____      ____                ____     ____            ____              ____             xxxx
             >;
             display-name = "Nav (Mac)";
 
         };
 
         control {
-            bindings = <                                                                                                        //Mute Mic
-                                               XXXX                                                                             &kp LG(LS(M))
- XXXX    XXXX   &kp LC(LS(TAB))  &kp LC(TAB)   &kp LG(T)     &kp LG(W)                                              XXXX        &kp K_VOL_UP  &kp C_BRI_UP  XXXX    XXXX    XXXX 
- XXXX    XXXX   &kp LG(R)        &kp LG(S)     &kp LG(DE_Z)  &kp LG(LS(DE_Z))                                       XXXX        &kp K_VOL_DN  &kp C_BRI_DN  XXXX    XXXX    XXXX 
- XXXX    XXXX   &kp LG(X)        &kp LG(C)     &kp LG(V)     &kp LG(D)                                              XXXX        &kp K_MUTE    XXXX          XXXX    XXXX    XXXX
-                XXXX             XXXX          XXXX          XXXX              XXXX                         XXXX    XXXX        XXXX          XXXX          XXXX
+            bindings = <
+                                      xxxx                                                             MUTE_MIC
+ xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   xxxx      &kp K_VOL_UP    &kp C_BRI_UP    xxxx    xxxx    xxxx
+ xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        xxxx      &kp K_VOL_DN    &kp C_BRI_DN    xxxx    xxxx    xxxx
+ xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
+                xxxx       xxxx       xxxx       xxxx           xxxx                 xxxx    xxxx      xxxx            xxxx            xxxx
             >;
             display-name = "Control";
         };
@@ -164,21 +202,21 @@ XXXX     XXXX    &kp F1    &kp F2          &kp F3    &kp F12                    
         root {
             bindings = <
                                                  &bootloader                                                &studio_unlock
- &to ANYMAK   XXXX    XXXX         &bt BT_SEL 0  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
- &to COLEMAK  XXXX    XXXX         &bt BT_SEL 1  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX
- &to TESTS    XXXX    XXXX         &bt BT_SEL 2  XXXX         XXXX                                   XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
-                      XXXX         &bt BT_CLR    XXXX         XXXX    XXXX          &studio_unlock   XXXX   XXXX   XXXX   XXXX 
+ &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ &to COLEMAK  xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ &to TESTS    xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
+                      xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx   xxxx   xxxx   xxxx 
             >;
             display-name = "Root";
         };
 
         misc {
             bindings = <
-                              XXXX                                     XXXX 
- XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
- XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
- XXXX    XXXX   XXXX   XXXX   XXXX   XXXX                       XXXX   XXXX   XXXX   XXXX   XXXX   XXXX 
-                XXXX   XXXX   XXXX   XXXX   XXXX         XXXX   XXXX   XXXX   XXXX   XXXX 
+                              xxxx                                     xxxx 
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
+                xxxx   xxxx   xxxx   xxxx   xxxx         xxxx   xxxx   xxxx   xxxx   xxxx 
             >;
             display-name = "Misc";
         };
