@@ -286,8 +286,7 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
         COMBO(cb_colemak_oe,        RM4 RM5,    &kp DE_O_UMLAUT,    COLEMAK)
         COMBO(cb_sym_percent,       LT4 LT3,    &kp DE_PRCNT,       SYM)
 
-        COMBO(cb_anymak_backspace,  RM3 RM4,    &kp BACKSPACE,      ANYMAK)
-        COMBO(cb_anymak_hyphen,     RT3 RT4,    &kp DE_MINUS,       ANYMAK)
+        COMBO(cb_anymak_hyphen,     RM3 RM4,    &kp DE_MINUS,       ANYMAK)
 
         VOMBO(cb_anymak_oe,         RT5 RM5,    &kp DE_O_UMLAUT,    ANYMAK)
         VOMBO(cb_anymak_sz,         RT4 RM4,    &kp DE_SZ,          ANYMAK)
