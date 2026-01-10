@@ -35,7 +35,6 @@
 /{
     behaviors {
          hmr: hmr {
-             label = "hmr";
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
              tapping-term-ms = <280>;
@@ -49,7 +48,6 @@
 
     behaviors {
          hml: hml {
-             label = "hml";
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
              tapping-term-ms = <280>;
@@ -60,7 +58,21 @@
              bindings = <&kp>, <&kp>;
          };
      };
+
+    behaviors {
+         ltn: ltn {
+             compatible = "zmk,behavior-hold-tap";
+             flavor = "balanced";
+             tapping-term-ms = <280>;
+             require-prior-idle-ms = <150>;
+             hold-trigger-key-positions = <RB4 RM5>;   // trigger hold for backspace and delete
+             hold-trigger-on-release;
+             #binding-cells = <2>;
+             bindings = <&mo>, <&kp>;
+        };
+    };
 };
+
 
 // base
 #define MUTE_MIC        &kp LG(LS(M))
@@ -115,17 +127,18 @@
             - move ö+ß to combos
             - move . and ,
             - keep BACKSPACE on BASE layer as a fallback
+            - APOS (') on right thumb
 
             Removed:
             - sticky shift
         */
 
             bindings = <
-                                                                &mt C_VOICE_COMMAND ESC                                                        &kp KP_SLASH
-xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V           &kp D         &kp C          &kp L         &kp J    xxxx
-xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G           &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
-xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B           &kp P         &kp M          &kp W         &kp F    xxxx
-                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &kp LSHFT     &mo SYM            &kp RET    &lt NAV SPACE   xxxx          &mo ROOT       MUTE_MIC
+                                                                &mt C_VOICE_COMMAND ESC                                                          &kp KP_SLASH
+xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V             &kp D         &kp C          &kp L         &kp J    xxxx
+xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G             &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
+xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B             &kp P         &kp M          &kp W         &kp F    xxxx
+                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &kp LSHFT     &mo SYM            &kp RET    &ltn NAV SPACE    &kp DE_APOS   &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -133,11 +146,11 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 
         base2 {
             bindings = <
-                                                              &mt C_VOICE_COMMAND ESC                                                              &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q           &kp W            &kp F     &kp P                    &kp B                                      &kp J            &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI           &lt CONTROL A   &kp R            &kp S     &kp T                    &kp G                                      &kp M            &kp N      &kp E        &kp I        &kp O            &kp BACKSPACE
-&kp LCTRL          &kp DE_Y        &kp X            &kp C     &kp D                    &kp V                                      &kp K            &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &kp LSHFT   &mo SYM             &kp RET    &lt NAV SPACE    xxxx       &mo ROOT     MUTE_MIC
+                                                              &mt C_VOICE_COMMAND ESC                                                               &kp KP_SLASH
+&mt DE_GRAVE TAB   &kp Q           &kp W            &kp F     &kp P                    &kp B                                      &kp J             &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
+&kp LGUI           &lt CONTROL A   &kp R            &kp S     &kp T                    &kp G                                      &kp M             &kp N      &kp E        &kp I        &kp O            &kp BACKSPACE
+&kp LCTRL          &kp DE_Y        &kp X            &kp C     &kp D                    &kp V                                      &kp K             &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
+                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &kp LSHFT   &mo SYM             &kp RET    &ltn NAV SPACE    xxxx       &mo ROOT     MUTE_MIC
             >;
             display-name = "Colemak-DH";
         };
@@ -157,7 +170,7 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 
             /*
                 - block RET from layer below to avoid mistypes
-                - make N0 a layer-tap to NAV and thus make BACKSPACE accessible on SYM layer
+                - make N0 layer-tap to NAV and thus make BACKSPACE accessible on SYM layer
             */
 
             bindings = <
@@ -165,7 +178,7 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 &kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
 &kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp DOT       ____
 &kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      &lt NAV N0      &kp SPACE   &kp DE_BSLH_M   xxxx
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      &ltn NAV N0         &kp SPACE   &kp DE_BSLH_M   xxxx
             >;
             display-name = "Sym (Mac)";
         };
