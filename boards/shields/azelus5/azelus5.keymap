@@ -137,6 +137,7 @@
 
             Removed:
             - sticky shift
+            - hyphen as combo
         */
 
             bindings = <
