@@ -1,6 +1,6 @@
 # ZMK Config for my Keyboards
 
-Unibody split keyboards with simple layer-based keymaps.
+Unibody split keyboards only, currently.
 
 ## Core aspects
 
@@ -16,23 +16,28 @@ Unibody split keyboards with simple layer-based keymaps.
 
 ## Notes on building
 
+Instructions on how to setup and use devcontainer with IntelliJ.
+
 Why a dev-container?
 * A container-based build allows building firmware on a local machine without installing the whole ZMK/Zephyr toolchain (incl. python etc). The toolchain is instead installed inside the container. It's very similar to what the Github actions do.
 * A Dev-Container allows accessing folders of the host system from inside the container (outside folders are mounted into folders inside the container). This makes it easy to edit the keymap in the host system, have it compile inside the container, and copy the resulting firmware file back out.  
 * Local execution brings faster build times and a faster feedback loop when adjusting keymaps (no Github upload and wait for every change)
 
-### Create Dev-Container
+Drawbacks:
+* The dev-container uses a local clone of the toolchain and zmk itself. This means everything needs to be kept updated manually.
 
-#### Create Volumes (instructions from documentation):
+## Creating a Dev-Container
+
+### Create Volumes (instructions from documentation):
  ``` 
  docker volume create --driver local -o o=bind -o type=none -o device="/<path-to-home-dir>/github/zmk-keyboards-azel" zmk-modules
  ```
 
 Notes:
-* Adjust the path to match your github repo
+* Adjust the path to match your the path to the cloned github repo (on your local machine)
 * _zmk-modules_ is the name of the folder INSIDE the container that the (outside-) path gets mounted into.
 
-#### Init/Update dev-container:
+### Init/Update dev-container:
 
 This is required:
 * after initial setup
@@ -59,7 +64,7 @@ west update
 ```
 * the config/west.yml defines which zmk version is being pulled. manifest.project.revision: master pulls master.  
 
-### Build in container
+## Build in the container
 
 Commands for building the firmware with ZMK-Studio support. Keep in mind that studio only supports eight layers total. Don't put &bootloader and &studio_unlock on layer nine like me ;-)
 
@@ -69,9 +74,9 @@ In IntelliJ:
 * (dev-container-name) -> Run
 * (dev-container-name) -> Terminal
 
-#### Inside container
+### Inside container
 
-Variant 1:
+#### Variant 1
 ```
 cd /IdeaProjects/zmk
 west build -s app -p -b nice_nano -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=azelus3 -DZMK_EXTRA_MODULES=/workspaces/zmk-modules -DCONFIG_ZMK_STUDIO=y
@@ -81,7 +86,7 @@ cp build/zephyr/zmk.uf2 /workspaces/zmk-modules/output
 
 /workspaces/zmk-modules is (one of) the mounted docker volumes that lets us copy outside the container.
 
-Variant 2:
+#### Variant 2
 
 Run build.sh (with a shield name):
 ```
@@ -94,7 +99,7 @@ cp /workspaces/zmk-modules/build.sh .
 ```
  
 
-#### Outside container
+### Outside container
 
 * Put your controller into bootloader mode, either via double-click on reset or by pressing the &bootloader key (configured previously)
 * It should connect as a thumb-drive automatically
@@ -104,3 +109,17 @@ cp output/zmk.uf2 /Volumes/NICENANO
 ```
 * MacOS: /Volumes/NICENANO
 * Linux: /media/"User"/NICENANO
+
+## Updating ZMK and the toolchain
+
+Inside the container:
+* Navigate to folder where the zmk sources have been cloned to during dev-container setup (see above) and pull zmk:
+```
+cd IdeaProjects/zmk
+git pull
+```
+* Go back to the root directory and let _west_ update the toolchain:
+```
+cd /
+west update
+```

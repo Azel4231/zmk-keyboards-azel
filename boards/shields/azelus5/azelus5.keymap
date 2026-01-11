@@ -136,8 +136,8 @@
             - APOS (') on right thumb
 
             Removed:
-            - sticky shift
-            - hyphen as combo
+            - sticky shift (revisit with higher accuracy)
+            - backspace as combo
         */
 
             bindings = <
