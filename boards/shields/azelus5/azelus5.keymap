@@ -8,7 +8,7 @@
 #define COLEMAK 1
 #define TESTS   2
 #define SYM     3
-#define NAVF    4
+#define NAV     4
 #define CONTROL 5
 #define ROOT    6
 #define MISC    7
@@ -85,7 +85,7 @@
 
 };
 
-#define NAV(key)    &tllt NAVF key
+#define SPACE_NAV    &tllt NAV SPACE
 
 
 // base
@@ -154,7 +154,7 @@
 xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V             &kp D         &kp C          &kp L         &kp J    xxxx
 xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G             &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
 xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B             &kp P         &kp M          &kp W         &kp F    xxxx
-                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &shifty       &mo SYM            &kp RET    NAV(SPACE)        &kp DE_APOS   &mo ROOT       MUTE_MIC
+                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &shifty       &mo SYM            &kp RET    SPACE_NAV         &kp DE_APOS   &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -166,7 +166,7 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 &mt DE_GRAVE TAB   &kp Q           &kp W            &kp F     &kp P                    &kp B                                      &kp J             &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
 &kp LGUI           &lt CONTROL A   &kp R            &kp S     &kp T                    &kp G                                      &kp M             &kp N      &kp E        &kp I        &kp O            &kp BACKSPACE
 &kp LCTRL          &kp DE_Y        &kp X            &kp C     &kp D                    &kp V                                      &kp K             &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &kp LSHFT   &mo SYM             &kp RET    NAV(SPACE)        xxxx       &mo ROOT     MUTE_MIC
+                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &kp LSHFT   &mo SYM             &kp RET    SPACE_NAV         xxxx       &mo ROOT     MUTE_MIC
             >;
             display-name = "Colemak-DH";
         };
@@ -192,19 +192,19 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
             bindings = <
                                                              &kp DE_PIPE_M                                                                ____
 &kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
-&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp DOT       ____
+&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp N0       ____
 &kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      NAV(N0)         &kp SPACE   &kp DE_BSLH_M   xxxx
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      SPACE_NAV       &kp DOT     &kp DE_BSLH_M   xxxx
             >;
             display-name = "Symbols/Numbers";
         };
 
-        navf {
+        nav {
 
             /*
-                - add ALT (home row mod) to NAVF layer (F5) to avoid timing mistakes, as it allows ALT and NAVF (for arrows) to be pressed in any order.
+                - add ALT (home row mod) to NAV layer (F5) to avoid timing mistakes, as it allows ALT and NAV (for arrows) to be pressed in any order.
                 Trial:
-                - BACKSPACE on NAVF layer
+                - BACKSPACE on NAV layer
             */
 
             bindings = <
@@ -281,6 +281,8 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
             key-positions = <KEYS>; \
             bindings = <BINDINGS>; \
         };
+
+    // vertical combo
     #define VOMBO(NAME, KEYS, BINDINGS, LAYERS) \
         NAME { \
             timeout-ms = <COMBO_TIMEOUT_VERTICAL>; \
@@ -292,11 +294,12 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
     combos {
         compatible = "zmk,combos";
 
-        COMBO(cb_underscore,        RB3 RB4,    &kp LS(DE_MINUS),   COLEMAK ANYMAK TESTS)
-        COMBO(cb_colemak_oe,        RM4 RM5,    &kp DE_O_UMLAUT,    COLEMAK)
-        COMBO(cb_sym_percent,       LT4 LT3,    &kp DE_PRCNT,       SYM)
+        COMBO(cb_underscore,        RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  COLEMAK     TESTS      )
+        COMBO(cb_colemak_oe,        RM4 RM5,    &kp DE_O_UMLAUT,            COLEMAK                )
+        COMBO(cb_sym_percent,       LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
-        COMBO(cb_anymak_hyphen,     RM3 RM4,    &kp DE_MINUS,       ANYMAK)
+        COMBO(cb_anymak_asterisk,   RT3 RT4,    &kp DE_ASTRK,       ANYMAK                      SYM)
+        COMBO(cb_anymak_hyphen,     RM3 RM4,    &kp DE_MINUS,       ANYMAK                      SYM)
 
         VOMBO(cb_anymak_oe,         RT5 RM5,    &kp DE_O_UMLAUT,    ANYMAK)
         VOMBO(cb_anymak_sz,         RT4 RM4,    &kp DE_SZ,          ANYMAK)
