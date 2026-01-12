@@ -33,7 +33,7 @@
    Based on urob's timerless home row mods: https://github.com/urob/zmk-config?tab=readme-ov-file#timeless-homerow-mods
  */
 /{
-    behaviors {
+    home_row_mods {
          hmr: hmr {
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
@@ -44,10 +44,8 @@
              #binding-cells = <2>;
              bindings = <&kp>, <&kp>;
         };
-    };
 
-    behaviors {
-         hml: hml {
+        hml: hml {
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
              tapping-term-ms = <280>;
@@ -60,7 +58,7 @@
      };
 
     // Special (timerless) layer-tap. Triggers hold when right-hand keys are pressed to reduce misfires with backspace and arrows (on NAV layer).
-    behaviors {
+    timerless_layer_tap {
          tllt: tllt {
              label = "Layer-Tap(tl)";
              compatible = "zmk,behavior-hold-tap";
@@ -72,6 +70,16 @@
              hold-trigger-on-release;
              #binding-cells = <2>;
              bindings = <&mo>, <&kp>;
+        };
+    };
+
+    tap_dances {
+        shifty: shift_caps_word {
+            compatible = "zmk,behavior-tap-dance";
+            label = "Shift_Capsword";
+            #binding-cells = <0>;
+            tapping-term-ms = <175>;
+            bindings = <&kp LSHFT>, <&caps_word>;
         };
     };
 
@@ -110,6 +118,7 @@
 #define UNDO            &kp LG(DE_Z)
 #define REDO            &kp LG(LS(DE_Z))
 
+#define FIND            &kp LG(F)
 #define CUT             &kp LG(X)
 #define COPY            &kp LG(C)
 #define PASTE           &kp LG(V)
@@ -145,7 +154,7 @@
 xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V             &kp D         &kp C          &kp L         &kp J    xxxx
 xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G             &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
 xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B             &kp P         &kp M          &kp W         &kp F    xxxx
-                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &kp LSHFT     &mo SYM            &kp RET    NAV(SPACE)        &kp DE_APOS   &mo ROOT       MUTE_MIC
+                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &shifty       &mo SYM            &kp RET    NAV(SPACE)        &kp DE_APOS   &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -164,11 +173,11 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 
         base3 {
             bindings = <
-                              xxxx                                     xxxx
- xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
-                xxxx   xxxx   xxxx   xxxx   xxxx         xxxx   xxxx   xxxx   xxxx   xxxx
+                              ____                                        ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+                ____   ____   ____   &shifty   ____         ____   ____   ____   ____   ____
             >;
             display-name = "Playground";
         };
@@ -187,7 +196,7 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 &kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
                              &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      NAV(N0)         &kp SPACE   &kp DE_BSLH_M   xxxx
             >;
-            display-name = "Sym (Mac)";
+            display-name = "Symbols/Numbers";
         };
 
         navf {
@@ -205,7 +214,7 @@ xxxx     xxxx    &kp F4    &hml LALT F5    &kp F6    &kp F11                    
 xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         IJ_TERMINAL      IJ_COMMIT
                  xxxx      ____            ____      ____      ____                ____     ____            ____              ____             xxxx
             >;
-            display-name = "Nav/Function (Mac)";
+            display-name = "Navigation/F-Keys";
 
         };
 
@@ -214,7 +223,7 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
                                       xxxx                                                             MUTE_MIC
  xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   xxxx      &kp K_VOL_UP    &kp C_BRI_UP    xxxx    xxxx    xxxx
  xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        xxxx      &kp K_VOL_DN    &kp C_BRI_DN    xxxx    xxxx    xxxx
- xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
+ xxxx    FIND   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
                 xxxx       xxxx       xxxx       xxxx           xxxx                 xxxx    xxxx      xxxx            xxxx            xxxx
             >;
             display-name = "Control";
