@@ -119,6 +119,7 @@
 #define REDO            &kp LG(LS(DE_Z))
 
 #define FIND            &kp LG(F)
+#define IJ_FIND         &kp LG(LS(F))
 #define CUT             &kp LG(X)
 #define COPY            &kp LG(C)
 #define PASTE           &kp LG(V)
@@ -224,7 +225,7 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
  xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   xxxx      &kp K_VOL_UP    &kp C_BRI_UP    xxxx    xxxx    xxxx
  xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        xxxx      &kp K_VOL_DN    &kp C_BRI_DN    xxxx    xxxx    xxxx
  xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
-                xxxx       xxxx       xxxx       FIND           xxxx                 xxxx    xxxx      xxxx            xxxx            xxxx
+                xxxx       xxxx       xxxx       FIND         IJ_FIND                xxxx    xxxx      xxxx            xxxx            xxxx
             >;
             display-name = "Control";
         };
@@ -308,9 +309,8 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
         COMBO(cb_colemak_oe,            RM4 RM5,    &kp DE_O_UMLAUT,            COLEMAK                )
         COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
-        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK                      SYM)
+        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK                      SYM)  // types "* " to create bullet points in most applications
         COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK                      SYM)
-        COMBO(cb_anymak_backspace,      RH1 RM5,    &kp BACKSPACE,      ANYMAK                      SYM)
 
         VOMBO(cb_anymak_oe,             RT5 RM5,    &kp DE_O_UMLAUT,    ANYMAK)
         VOMBO(cb_anymak_sz,             RT4 RM4,    &kp DE_SZ,          ANYMAK)
