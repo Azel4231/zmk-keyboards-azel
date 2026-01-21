@@ -4,22 +4,25 @@
 #include "keys_de.h"
 #include "key-labels.h"
 
-#define BASE    0
-#define QWERTZ  1
+#define QWERTZ  0
+#define ANYMAK  1
 #define TESTS   2
 #define SYM     3
 #define NAV     4
 #define CONTROL 5
-#define MISC    6
-#define MISC2   7
+#define ROOT    6
+#define MISC    7
 
-#define KEYS_L LN2 LT1 LT2 LT3 LT4 LT5 LT6 LM1 LM2 LM3 LM4 LM5 LM6 LB1 LB2 LB3 LB4 LB5 LB6  // left hand
-#define KEYS_R RN2 RT1 RT2 RT3 RT4 RT5 RT6 RM1 RM2 RM3 RM4 RM5 RM6 RB1 RB2 RB3 RB4 RB5 RB6  // right hand
-#define THUMBS LH0 LH1 LH2 LH3 LH4 RH0 RH1 RH2 RH3 RH4                                      // thumbs
+#define xxxx &none
+#define ____ &trans
+
+#define KEYS_L LN2 LN6 LT1 LT2 LT3 LT4 LT5 LT6 LM1 LM2 LM3 LM4 LM5 LM6 LB1 LB2 LB3 LB4 LB5 LB6  // left hand
+#define KEYS_R RN2 RN6 RT1 RT2 RT3 RT4 RT5 RT6 RM1 RM2 RM3 RM4 RM5 RM6 RB1 RB2 RB3 RB4 RB5 RB6  // right hand
+#define THUMBS LH0 LH1 LH2 LH3 RH0 RH1 RH2 RH3                                                  // thumbs
 
 #define COMBO_TIMEOUT 30  // default=50
 
-
+/* use balanced flavor for both mod-tap and layer-tap */
 &mt {
     flavor = "balanced";
 };
@@ -27,11 +30,10 @@
     flavor = "balanced";
 };
 
-
 /{
     behaviors {
          hmr: name {
-             label = "hmr";
+             label = "HomeRowModR";
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
              tapping-term-ms = <280>;
@@ -44,7 +46,7 @@
     };
     behaviors {
          hml: name {
-             label = "hml";
+             label = "HomeRowModL";
              compatible = "zmk,behavior-hold-tap";
              flavor = "balanced";
              tapping-term-ms = <280>;
@@ -55,7 +57,73 @@
              bindings = <&kp>, <&kp>;
          };
      };
+
+    // Special (timerless) layer-tap. Triggers hold when right-hand keys are pressed to reduce misfires with backspace and arrows (on NAV layer).
+    timerless_layer_tap {
+         tllt: tllt {
+             label = "Layer-Tap(tl)";
+             compatible = "zmk,behavior-hold-tap";
+             flavor = "hold-preferred"; // balanced, tap-preferred
+             tapping-term-ms = <280>;
+             quick-tap-ms = <150>;
+             require-prior-idle-ms = <50>;
+             hold-trigger-key-positions = <KEYS_R>;
+             hold-trigger-on-release;
+             #binding-cells = <2>;
+             bindings = <&mo>, <&kp>;
+        };
+    };
+
+    tap_dances {
+        shifty: shift_caps_word {
+            compatible = "zmk,behavior-tap-dance";
+            label = "Shift_Capsword";
+            #binding-cells = <0>;
+            tapping-term-ms = <175>;
+            bindings = <&kp LSHFT>, <&caps_word>;
+        };
+    };
+
 };
+
+#define SPACE_NAV    &tllt NAV SPACE
+
+// base
+#define MUTE_MIC        &kp LG(LS(M))
+#define TOG_DESK_LIGHT  &kp LG(LC(LA(E)))
+
+// nav
+#define APP_MENU        &kp LC(F2)
+#define START_OF_LINE   &kp LG(LEFT)
+#define END_OF_LINE     &kp LG(RIGHT)
+
+#define IJ_NEXT_ERROR   &kp LG(LS(LC(RIGHT)))
+#define IJ_RUN          &kp LC(LA(R))
+#define IJ_NAV_BACK     &kp LG(LA(LEFT))
+#define IJ_EXPAND_SEL   &kp LA(UP)
+#define IJ_SHRINK_SEL   &kp LA(DOWN)
+#define IJ_TERMINAL     &kp LG(N3)
+#define IJ_PROJECT      &kp LG(N0)
+#define IJ_EDITOR       &kp LG(N9)
+#define IJ_COMMIT       &kp LG(N2)
+
+// control
+#define NEXT_TAB        &kp LC(LS(TAB))
+#define PREV_TAB        &kp LC(TAB)
+#define NEW_TAB         &kp LG(T)
+#define CLOSE_TAB       &kp LG(W)
+
+#define RELOAD          &kp LG(R)
+#define SAVE            &kp LG(S)
+#define UNDO            &kp LG(DE_Z)
+#define REDO            &kp LG(LS(DE_Z))
+
+#define FIND            &kp LG(F)
+#define IJ_FIND         &kp LG(LS(F))
+#define CUT             &kp LG(X)
+#define COPY            &kp LG(C)
+#define PASTE           &kp LG(V)
+#define IJ_DEL_LINE     &kp LG(D)
 
 / {
     keymap {
@@ -63,131 +131,167 @@
 
 
         base {
-            bindings = <              /* Mod-tap: ESC wenn tapped, Siri when held */
-&kp DE_GRAVE                                        &mt C_VOICE_COMMAND ESC                                        &kp KP_SLASH                                          &none
-&kp TAB    &kp Q      &kp W               &kp F     &kp P           &kp B                                 &kp J    &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI   &kp A      &kp R               &kp S     &kp T           &kp G                                 &kp M    &kp N      &kp E        &kp I        &kp O            &kp BSPC
-&kp LCTRL  &kp DE_Y   &kp X               &kp C     &lt CONTROL D   &kp V                                 &kp K    &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                          &kp DEL   &kp LALT        &kp LSHFT  &mo SYM           &kp RET  &mo NAV  &kp SPACE  &mo CONTROL
-            >;
-            display-name = "Base (Mac)";
-        };
-
-        qwertz {
             bindings = <
-&none                                 &trans                                                           &kp KP_SLASH                                            &none
+xxxx                                  &kp ESC                                                          &kp KP_SLASH                                            &kp DE_A_UMLAUT
 &kp TAB    &kp Q    &kp W   &kp E     &kp R      &kp T                                       &kp DE_Z  &kp U        &kp I        &kp O        &kp P            &kp DE_U_UMLAUT
 &kp LCTRL  &kp A    &kp S   &kp D     &kp F      &kp G                                       &kp H     &kp J        &kp K        &kp L        &kp DE_O_UMLAUT  &kp BSPC
-&kp LGUI   &kp DE_Y &kp X   &kp C     &kp V      &kp B                                       &kp N     &kp M        &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_A_UMLAUT
-                            &kp DEL   &kp LALT   &kp LSHFT  &mo SYM                &kp RET   &mo NAV   &kp SPACE    &mo CONTROL
+&kp LSHFT  &kp DE_Y &kp X   &kp C     &kp V      &kp B                                       &kp N     &kp M        &kp COMMA    &kp DOT      &kp DE_MINUS     &kp LSHFT
+                            &kp LGUI  &kp LALT   &kp LSHFT  &mo SYM                &kp RET   SPACE_NAV xxxx         &mo ROOT
             >;
             display-name = "Qwertz";
         };
 
+        base2 {
+            bindings = <
+____                                                      &kp ESC                                                                ____                                                         ____
+____    &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp DE_O_UMLAUT   &kp J
+____    &lt CONTROL H      &hml LALT A   &hml LCTRL E     &hml LGUI I      &kp DOT                                     &kp G     &hmr LGUI T   &hmr LCTRL N   &hmr LALT R   &kp S             &kp BSPC
+____    &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F             &kp DE_SZ
+                                         ____             ____             ____     ____               ____    ____    ____      ____
+            >;
+            display-name = "Anymak:END";
+        };
+
+
         base3 {
             bindings = <
-&trans                                                      &trans                                                                 &trans                                                       &trans
-&trans    &kp Q              &kp K         &kp O            &kp U            &kp DE_Y                                    &kp V     &kp D         &kp C          &kp L         &kp DE_O_UMLAUT   &kp J
-&trans    &lt CONTROL H      &hml LALT A   &hml LCTRL E     &hml LGUI I      &kp DOT                                     &kp G     &hmr LGUI T   &hmr LCTRL N   &hmr LALT R   &kp S             &kp BSPC
-&trans    &kp COMMA          &kp DE_Z      &kp DE_A_UMLAUT  &kp DE_U_UMLAUT  &kp X                                       &kp B     &kp P         &kp M          &kp W         &kp F             &kp DE_SZ
-                                           &trans           &trans           &trans     &trans               &trans      &trans    &trans        &trans
+ xxxx                     xxxx                                  xxxx                    xxxx
+ xxxx   xxxx  xxxx  xxxx  xxxx  xxxx                      xxxx  xxxx  xxxx  xxxx  xxxx  xxxx
+ xxxx   xxxx  xxxx  xxxx  xxxx  xxxx                      xxxx  xxxx  xxxx  xxxx  xxxx  xxxx
+ xxxx   xxxx  xxxx  xxxx  xxxx  xxxx                      xxxx  xxxx  xxxx  xxxx  xxxx  xxxx
+                    xxxx  xxxx  xxxx  xxxx          xxxx  xxxx  xxxx  xxxx
               >;
-            display-name = "HRM Playground";
+            display-name = "Playground";
         };
 
         sym {
             bindings = <
-&none                                                       &kp DE_PIPE_M                                                                &trans                                   &none
-&kp DE_AMPS  &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7   &kp N8   &kp N9   &kp DE_PLUS   &kp DE_APOS
-&kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4   &kp N5   &kp N6   &kp DOT       &trans
-&kp DE_EURO  &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp DE_BSLH_M   &kp N1   &kp N2   &kp N3   &kp DE_MINUS  &kp DE_GRAVE
-                                            &kp DE_CARET_M  &trans         &trans         &trans               &trans    &kp N0          &trans   &trans
+xxxx                                                        &kp DE_PIPE                                                                  ____                                     xxxx
+&kp DE_AMPS  &kp DE_AT      &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC    &kp DE_RBRC                                   &kp DE_TILDE    &kp N7   &kp N8   &kp N9   &kp DE_PLUS   &kp DE_APOS
+&kp DE_POUND &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4   &kp N5   &kp N6   &kp N0        ____
+&kp DE_EURO  &kp DE_QMARK   &kp DE_LT       &kp DE_GT       &kp DE_LBKT    &kp DE_RBKT                                   &kp DE_BSLH     &kp N1   &kp N2   &kp N3   &kp DE_MINUS  &kp DE_GRAVE
+                                            &kp DE_CARET    ____           ____         ____             ____   &kp DOT  ____            ____
             >;
             display-name = "Sym (Mac)";
         };
 
         nav {
             bindings = <
-&none                                &trans                                                              &kp LG(N9)                                                                &none
+xxxx                              ____                                                                &kp LG(N9)                                                                xxxx
                                                                                                          //IJ: Editor
-&trans   &none   &kp F7    &kp F8    &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
+____   xxxx   &kp F7    &kp F8    &kp F9    &kp F10                                &kp PG_UP          &kp LG(LEFT)     &kp UP           &kp LG(RIGHT)   &kp LC(LA(R))           &kp LG(N0)
                                                                                                          //StartOfLine                     //EndOfLine     //IJ: Run               //IJ: Project
-&trans   &none   &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp LG(LS(LC(RIGHT)))   &kp LG(N3)
+____   xxxx   &kp F4    &kp F5    &kp F6    &kp F11                                &kp PG_DN          &kp LEFT         &kp DOWN         &kp RIGHT       &kp LG(LS(LC(RIGHT)))   &kp LG(N3)
                                                                                                                                                            //IJ: Next Error        //IJ: Terminal
-&trans   &none   &kp F1    &kp F2    &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LC(F2)              &kp LG(N2)
+____   xxxx   &kp F1    &kp F2    &kp F3    &kp F12                                &kp LG(LA(LEFT))   &kp LA(UP)       &kp LA(DOWN)     &kp DEL         &kp LC(F2)              &kp LG(N2)
                                                                                       //IJ: Nav back     //IJ: ExpandSel  //IJ: ShrinkSel                  // Menu                 //IJ: Commit
-                           &trans    &trans    &trans    &trans              &trans   &trans             &trans           &trans
+                        ____      ____      ____    ____              ____         ____               ____             ____
             >;
             display-name = "Nav (Mac)";
 
         };
 
         control {
-            bindings = <                                                                                         //Mute Mic
- &none                                           &bootloader                                                     &kp LG(LS(M))                               &none
- &to BASE     &none   &none        &bt BT_SEL 0  &none        &none                                  &none       &kp K_VOL_UP  &kp C_BRI_UP  &none   &none   &none
- &to QWERTZ   &none   &none        &bt BT_SEL 1  &none        &none                                  &none       &kp K_VOL_DN  &kp C_BRI_DN  &none   &none   &none
- &to TESTS    &none   &none        &bt BT_SEL 2  &none        &none                                  &none       &kp K_MUTE    &none         &none   &none   &none
-                                   &bt BT_CLR    &none        &none   &none         &studio_unlock   &none       &none         &none
+            bindings = <
+ xxxx                                 xxxx                                                             MUTE_MIC                                        xxxx
+ xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   xxxx      &kp K_VOL_UP    &kp C_BRI_UP    xxxx    xxxx    xxxx
+ xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        xxxx      &kp K_VOL_DN    &kp C_BRI_DN    xxxx    xxxx    xxxx
+ xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
+                           xxxx       xxxx       FIND         IJ_FIND                xxxx    xxxx      xxxx            xxxx
             >;
             display-name = "Control";
         };
 
+        root {
+            bindings = <
+ &to QWERTZ                                      &bootloader                                                &studio_unlock              xxxx
+ &to QWERTZ   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ &to ANYMAK   xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ &to TESTS    xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+                                   &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx   xxxx   xxxx
+            >;
+            display-name = "Root";
+        };
+
         misc {
             bindings = <
- &none                        &none                                    &none                       &none
- &none   &none  &none  &none  &none  &none                      &none  &none  &none  &none  &none  &none
- &none   &none  &none  &none  &none  &none                      &none  &none  &none  &none  &none  &none
- &none   &none  &none  &none  &none  &none                      &none  &none  &none  &none  &none  &none
-                       &none  &none  &none  &none        &none  &none  &none  &none
+ xxxx                     xxxx                                  xxxx                    xxxx
+ xxxx   xxxx  xxxx  xxxx  xxxx  xxxx                      xxxx  xxxx  xxxx  xxxx  xxxx  xxxx
+ xxxx   xxxx  xxxx  xxxx  xxxx  xxxx                      xxxx  xxxx  xxxx  xxxx  xxxx  xxxx
+ xxxx   xxxx  xxxx  xxxx  xxxx  xxxx                      xxxx  xxxx  xxxx  xxxx  xxxx  xxxx
+                    xxxx  xxxx  xxxx  xxxx          xxxx  xxxx  xxxx  xxxx
             >;
             display-name = "Misc";
         };
 
-        misc2 {
-            status = "reserved";
-            display-name = "Misc2";
+    };
+
+
+
+    position_map {
+        compatible = "zmk,physical-layout-position-map";
+        complete;
+        layout1: layout1 {
+            physical-layout = <&physical_layout0>;
+            positions = <LN6             LN2                   RN2             RN6>
+                       ,<LT6 LT5 LT4 LT3 LT2 LT1           RT1 RT2 RT3 RT4 RT5 RT6>
+                       ,<LM6 LM5 LM4 LM3 LM2 LM1           RM1 RM2 RM3 RM4 RM5 RM6>
+                       ,<LB6 LB5 LB4 LB3 LB2 LB1           RB1 RB2 RB3 RB4 RB5 RB6>
+                       ,<            LH3 LH2 LH1 LH0   RH0 RH1 RH2 RH3            >
+            ;
+            // <side> <row> <column>
+            // <Left|Right>
+            // <Number|Top|Middle|Bottom|tHumb>
         };
     };
 
-    /* Helper for combos
-            0               1                        2               3
-            4   5   6   7   8   9               10  11  12  13  14  15
-            16  17  18  19  20  21              22  23  24  25  26  27
-            28  29  30  31  32  33              34  35  36  37  38  39
-                        40  41  42  43      44  45  46  47
-    */
+    macros {
+        bullet_point: bullet_point {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp DE_ASTERISK &kp SPACE>
+                ;
+        };
+    };
+
+    #define COMBO_TIMEOUT 30  // default=50
+    #define COMBO_TIMEOUT_VERTICAL 50
+
+    #define COMBO(NAME, KEYS, BINDINGS, LAYERS) \
+        NAME { \
+            timeout-ms = <COMBO_TIMEOUT>; \
+            layers = <LAYERS>; \
+            key-positions = <KEYS>; \
+            bindings = <BINDINGS>; \
+        };
+
+    // vertical combo
+    #define VOMBO(NAME, KEYS, BINDINGS, LAYERS) \
+        NAME { \
+            timeout-ms = <COMBO_TIMEOUT_VERTICAL>; \
+            layers = <LAYERS>; \
+            key-positions = <KEYS>; \
+            bindings = <BINDINGS>; \
+        };
+
     combos {
         compatible = "zmk,combos";
 
+        COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  QWERTZ      TESTS      )
 
-        BASE_OE {
-            bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <25 26>;
-            layers = <BASE>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
-        BASE_UNDERSCORE {
-            bindings = <&kp LS(DE_MINUS)>;
-            key-positions = <36 37>;
-            layers = <BASE>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
+        COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
-        QWERTZ_OE {
-            bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <25 26>;
-            layers = <QWERTZ>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
+        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK                      SYM)  // types "* " to create bullet points in most applications
+        COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK                      SYM)
 
+        VOMBO(cb_anymak_oe,             RT5 RM5,    &kp DE_O_UMLAUT,    ANYMAK)
+        VOMBO(cb_anymak_sz,             RT4 RM4,    &kp DE_SZ,          ANYMAK)
 
-        SYM_PROZENT {
-            bindings = <&kp DE_PRCNT>;
-            key-positions = <6 7>;
-            layers = <SYM>;
-            timeout-ms = <COMBO_TIMEOUT>;
-        };
+        VOMBO(cb_anymak_ampersand,      LT5 LM5,    &kp DE_AMPS,        ANYMAK)
+        VOMBO(cb_anymak_hash,           LM5 LB5,    &kp DE_POUND,       ANYMAK)
+        VOMBO(cb_anymak_euro,           LM3 LB3,    &kp DE_EURO,        ANYMAK)
+
     };
 
 /*
@@ -199,5 +303,65 @@
         };
     };
     */
+
+    physical_layout0: default_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Physical Layout";
+        transform = <&matrix_transform0>;
+        kscan = <&kscan0>;
+        keys =  <&key_physical_attrs 100 100    0    70      1000     700   450>
+               ,<&key_physical_attrs 100 100  400    40      1000     700   450>
+               ,<&key_physical_attrs 100 100  900    40    (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    70    (-1000)    700   450>
+
+               ,<&key_physical_attrs 100 100    0    170     1000     700   450>
+               ,<&key_physical_attrs 100 100  100    160     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    120     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    100     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    140     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    150     1000     700   450>
+               ,<&key_physical_attrs 100 100  800    150   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    140   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    100   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    120   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1200    160   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    170   (-1000)    700   450>
+
+               ,<&key_physical_attrs 100 100    0    270     1000     700   450>
+               ,<&key_physical_attrs 100 100  100    260     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    220     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    200     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    240     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    250     1000     700   450>
+               ,<&key_physical_attrs 100 100  800    250   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    240   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    200   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    220   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1200    260   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    270   (-1000)    700   450>
+
+               ,<&key_physical_attrs 100 100    0    370     1000     700   450>
+               ,<&key_physical_attrs 100 100  100    360     1000     700   450>
+               ,<&key_physical_attrs 100 100  200    320     1000     700   450>
+               ,<&key_physical_attrs 100 100  300    300     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    340     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    350     1000     700   450>
+               ,<&key_physical_attrs 100 100  800    350   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    340   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    300   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1100    320   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1200    360   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1300    370   (-1000)    700   450>
+
+               ,<&key_physical_attrs 100 100  300    410     1000     700   450>
+               ,<&key_physical_attrs 100 100  400    480     1000     700   450>
+               ,<&key_physical_attrs 100 100  500    480     1000     700   450>
+               ,<&key_physical_attrs 100 100  600    480     1000     700   450>
+               ,<&key_physical_attrs 100 100  700    480   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  800    480   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100  900    480   (-1000)    700   450>
+               ,<&key_physical_attrs 100 100 1000    410   (-1000)    700   450>
+            ;
+        };
 
 };
