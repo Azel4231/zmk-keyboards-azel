@@ -5,8 +5,8 @@
 #include "key-labels.h"
 
 #define ANYMAK  0
-#define COLEMAK 1
-#define TESTS   2
+#define TESTS   1
+#define NUM     2
 #define SYM     3
 #define NAV     4
 #define CONTROL 5
@@ -62,10 +62,10 @@
          tllt: tllt {
              label = "Layer-Tap(tl)";
              compatible = "zmk,behavior-hold-tap";
-             flavor = "balanced";
+             flavor = "hold-preferred"; // balanced, tap-preferred
              tapping-term-ms = <280>;
-             quick-tap-ms = <175>;
-             require-prior-idle-ms = <75>;
+             quick-tap-ms = <150>;
+             require-prior-idle-ms = <50>;
              hold-trigger-key-positions = <KEYS_R>;
              hold-trigger-on-release;
              #binding-cells = <2>;
@@ -152,10 +152,10 @@
 
             bindings = <
                                                                 &mt C_VOICE_COMMAND ESC                                                          &kp KP_SLASH
-xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V             &kp D         &kp C          &kp L         &kp J    xxxx
-xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G             &hmr LGUI T   &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
-xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B             &kp P         &kp M          &kp W         &kp F    xxxx
-                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &shifty       &mo SYM            &kp RET    SPACE_NAV         &kp DE_APOS   &mo ROOT       MUTE_MIC
+xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V             &kp D               &kp C          &kp L         &kp J    xxxx
+xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
+xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B             &kp P               &kp M          &kp W         &kp F    xxxx
+                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &shifty       &mo SYM            &kp RET    SPACE_NAV         &lttl NUM DE_APOS   &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -163,24 +163,26 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
 
         base2 {
             bindings = <
-                                                              &mt C_VOICE_COMMAND ESC                                                               &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q           &kp W            &kp F     &kp P                    &kp B                                      &kp J             &kp L      &kp U        &kp DE_Z     &kp DE_U_UMLAUT  &kp DE_A_UMLAUT
-&kp LGUI           &lt CONTROL A   &kp R            &kp S     &kp T                    &kp G                                      &kp M             &kp N      &kp E        &kp I        &kp O            &kp BACKSPACE
-&kp LCTRL          &kp DE_Y        &kp X            &kp C     &kp D                    &kp V                                      &kp K             &kp H      &kp COMMA    &kp DOT      &kp DE_MINUS     &kp DE_SZ
-                                   TOG_DESK_LIGHT   &kp DEL   &kp LALT                 &kp LSHFT   &mo SYM             &kp RET    SPACE_NAV         xxxx       &mo ROOT     MUTE_MIC
-            >;
-            display-name = "Colemak-DH";
-        };
-
-        base3 {
-            bindings = <
                               ____                                        ____
- ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
- ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
- ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
-                ____   ____   ____   &shifty   ____         ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
+                ____   ____   ____   ____   &mo MISC        ____   ____   ____   &mo NUM   ____
             >;
             display-name = "Playground";
+        };
+
+        num {
+            // test a different symbol layer layout
+
+            bindings = <
+                              ____                                        ____
+ ____    ____   ____   ____   ____   ____                          ____   &kp N7      &kp N8      &kp N9    &kp DE_PLUS    ____
+ ____    ____   ____   ____   ____   ____                          ____   &kp N1      &kp N2      &kp N5    &kp N0         ____
+ ____    ____   ____   ____   ____   ____                          ____   &kp N1      &kp N2      &kp N3    &kp DE_MINUS   ____
+                ____   ____   ____   ____   ____            ____   ____   xxxx        xxxx        xxxx
+            >;
+            display-name = "Numbers";
         };
 
         sym {
@@ -193,11 +195,11 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
             bindings = <
                                                              &kp DE_PIPE_M                                                                ____
 &kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
-&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp N0       ____
-&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp N0          &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
+&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp N0        &kp DOT
+&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 xxxx            &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
                              &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      SPACE_NAV       &kp DOT     &kp DE_BSLH_M   xxxx
             >;
-            display-name = "Symbols/Numbers";
+            display-name = "Symbols";
         };
 
         nav {
@@ -215,7 +217,7 @@ xxxx     xxxx    &kp F4    &hml LALT F5    &kp F6    &kp F11                    
 xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         IJ_TERMINAL      IJ_COMMIT
                  xxxx      ____            ____      ____      ____                ____     ____            ____              ____             xxxx
             >;
-            display-name = "Navigation/F-Keys";
+            display-name = "Navigation";
 
         };
 
@@ -234,23 +236,40 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
             bindings = <
                                                  &bootloader                                                &studio_unlock
  &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- &to COLEMAK  xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- &to TESTS    xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
+ &to TESTS    xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
                       xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx   xxxx   xxxx   xxxx 
             >;
             display-name = "Root";
         };
 
         misc {
+            // adapted from https://getreuer.info/posts/keyboards/symbol-layer/index.html#my-symbol-layer
+
             bindings = <
-                              xxxx                                     xxxx 
- xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
- xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
- xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx 
-                xxxx   xxxx   xxxx   xxxx   xxxx         xxxx   xxxx   xxxx   xxxx   xxxx 
+                                                          xxxx                                                                               xxxx
+xxxx   &kp DE_GRAVE     &kp DE_LT_M     &kp DE_GT_M       &kp DE_MINUS     &kp DE_PIPE_M                                   &kp DE_CARET_M    &kp DE_LBRC_M      &kp DE_RBRC_M      &kp DE_DLLR   &kp DE_APOS   xxxx
+xxxx   &kp DE_EXCL      &kp DE_ASTRK    &kp KP_SLASH      &kp DE_EQUAL     &kp DE_AMPS                                     &kp DE_POUND      &kp DE_LPAR        &kp DE_RPAR        &kp DE_SEMI   &kp DE_DQT    xxxx
+xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp DE_PRCNT                                    &kp DE_AT_M       &kp DE_COLON       &kp                &kp           &kp           xxxx
+                        xxxx            &kp DE_DEG_M      xxxx             xxxx             xxxx                 xxxx      SPACE_NAV         xxxx               xxxx               xxxx
             >;
             display-name = "Misc";
         };
+        /*
+
+                              ____                                        ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+                ____   ____   ____   ____   ____            ____   ____   ____   ____   ____
+
+
+                              xxxx                                     xxxx
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ xxxx    xxxx   xxxx   xxxx   xxxx   xxxx                       xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+                xxxx   xxxx   xxxx   xxxx   xxxx         xxxx   xxxx   xxxx   xxxx   xxxx
+        */
     };
 
 
