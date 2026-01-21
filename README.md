@@ -16,7 +16,7 @@ Unibody split keyboards only, currently.
 
 ## Notes on building
 
-Instructions on how to setup and use devcontainer with IntelliJ.
+Instructions on how to set up and use a devcontainer with IntelliJ. This guide is adapted from zmk's own documentation on https://zmk.dev/docs/development/local-toolchain/setup/container.
 
 Why a dev-container?
 * A container-based build allows building firmware on a local machine without installing the whole ZMK/Zephyr toolchain (incl. python etc). The toolchain is instead installed inside the container. It's very similar to what the Github actions do.
