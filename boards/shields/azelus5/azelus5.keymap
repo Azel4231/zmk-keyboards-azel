@@ -118,6 +118,7 @@
 #define UNDO            &kp LG(DE_Z)
 #define REDO            &kp LG(LS(DE_Z))
 
+#define SEL_ALL         &kp LG(A)
 #define FIND            &kp LG(F)
 #define IJ_FIND         &kp LG(LS(F))
 #define CUT             &kp LG(X)
@@ -134,28 +135,25 @@
         /*
             Changes to vanilla Anymak:END
             - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
-            - place äü in their original KOY positions
+            - place ü in its original KOY position
             - move F to bottom row (also personal preference)
             - move J inwards, to top row (pinky)
-
-            Trial:
-            - test HomeRow Mods (and try to avoid outer pinky keys)
-            - move ö+ß to combos
-            - move . and ,
-            - keep BACKSPACE on BASE layer as a fallback
-            - APOS (') on right thumb
+            - move .,ZXÄÖ around
+            - HomeRowMods instead of bottom row
 
             Removed:
             - sticky shift (revisit with higher accuracy)
+            - ö+ß as combos
             - backspace as combo
+            - APOS (') on right thumb (too much strain on thumb)
         */
 
             bindings = <
-                                                                &mt C_VOICE_COMMAND ESC                                                          &kp KP_SLASH
-xxxx      &kp Q              &kp K             &kp O            &kp U              &kp DE_Y                                    &kp V             &kp D               &kp C          &kp L         &kp J    xxxx
-xxxx      &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I        &kp DOT                                     &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
-xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT    &kp X                                       &kp B             &kp P               &kp M          &kp W         &kp F    xxxx
-                             TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB   &shifty       &mo SYM            &kp RET    SPACE_NAV         &lttl NUM DE_APOS   &mo ROOT       MUTE_MIC
+                                                                         &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
+&mt DE_GRAVE TAB   &kp Q              &kp K             &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J    &kp X
+&kp DE_Z           &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
+&kp DE_GRAVE       &kp COMMA          &kp DE_A_UMLAUT   &kp DE_SEMI      &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F    &kp DE_SZ
+                                      TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         &mo NUM             &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -167,7 +165,7 @@ xxxx      &kp COMMA          &kp DE_Z          &kp DE_A_UMLAUT  &kp DE_U_UMLAUT 
  ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
  ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
  ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
-                ____   ____   ____   ____   &mo MISC        ____   ____   ____   &mo NUM   ____
+                ____   ____   ____   ____   &mo MISC        ____   ____   ____   ____      ____
             >;
             display-name = "Playground";
         };
@@ -223,11 +221,11 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
 
         control {
             bindings = <
-                                      xxxx                                                             MUTE_MIC
+                                      xxxx                                                             xxxx
  xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   xxxx      &kp K_VOL_UP    &kp C_BRI_UP    xxxx    xxxx    xxxx
  xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        xxxx      &kp K_VOL_DN    &kp C_BRI_DN    xxxx    xxxx    xxxx
  xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
-                xxxx       xxxx       xxxx       FIND         IJ_FIND                xxxx    xxxx      xxxx            xxxx            xxxx
+                xxxx       xxxx       SEL_ALL    FIND         IJ_FIND                xxxx    xxxx      xxxx            xxxx            xxxx
             >;
             display-name = "Control";
         };

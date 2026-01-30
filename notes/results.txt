@@ -1,0 +1,12 @@
+Startlayout:
+f;'.ö,züäxß
+
+
+optimized:
+ßxz.',ä;üöj
+
+marginally worse:
+jxz.',ä;üöß   ===> Trial
+
+keeping ä es before is worse:
+jxz.',;äüöß
