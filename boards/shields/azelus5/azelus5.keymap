@@ -4,18 +4,6 @@
 #include "keys_de.h"
 #include "key-labels.h"
 
-#define ANYMAK  0
-#define TESTS   1
-#define NUM     2
-#define SYM     3
-#define NAV     4
-#define CONTROL 5
-#define ROOT    6
-#define MISC    7
-
-#define xxxx &none 
-#define ____ &trans
-
 #define KEYS_L LN2 LT1 LT2 LT3 LT4 LT5 LT6 LM1 LM2 LM3 LM4 LM5 LM6 LB1 LB2 LB3 LB4 LB5 LB6  // left hand
 #define KEYS_R RN2 RT1 RT2 RT3 RT4 RT5 RT6 RM1 RM2 RM3 RM4 RM5 RM6 RB1 RB2 RB3 RB4 RB5 RB6  // right hand
 #define THUMBS LH0 LH1 LH2 LH3 LH4 RH0 RH1 RH2 RH3 RH4                                      // left+right thumb
@@ -126,6 +114,19 @@
 #define PASTE           &kp LG(V)
 #define IJ_DEL_LINE     &kp LG(D)
 
+
+#define ANYMAK  0
+#define TESTS   1
+#define NUM     2
+#define SYM     3
+#define NAV     4
+#define CONTROL 5
+#define ROOT    6
+#define MISC    7
+
+#define xxxx &none
+#define ____ &trans
+
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -133,51 +134,41 @@
         base1 {
 
         /*
-            Changes to vanilla Anymak:END
-            - NR instead of RN (personal preference: redistributes finger balance more to the right middle)
-            - place ü in its original KOY position
-            - move F to bottom row (also personal preference)
-            - move J inwards, to top row (pinky)
-            - move .,ZXÄÖ around
-            - HomeRowMods instead of bottom row
-
-            Removed:
-            - sticky shift (revisit with higher accuracy)
-            - ö+ß as combos
-            - backspace as combo
-            - APOS (') on right thumb (too much strain on thumb)
+            Changes to vanilla EnDeu (https://github.com/rpnfan/EnDeu):
+            - N <-> R (personal preference: redistributes finger balance more to the right middle)
+            - Z <-> F
+            - . <-> ,
         */
 
             bindings = <
                                                                          &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q              &kp K             &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J    &kp X
-&kp DE_Z           &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S    &kp BACKSPACE
-&kp DE_GRAVE       &kp COMMA          &kp DE_A_UMLAUT   &kp DE_SEMI      &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F    &kp DE_SZ
+&mt DE_GRAVE TAB   &kp Q              &kp COMMA         &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp DE_Z    &kp J
+&kp DE_SEMI        &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
+&kp DE_APOS        &kp K              &kp DE_A_UMLAUT   &kp DE_O_UMLAUT  &kp DE_U_UMLAUT          &kp X                                          &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         &mo NUM             &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
         };
 
+
         base2 {
             bindings = <
-                              ____                                        ____
- ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
- ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
- ____    ____   ____   ____   ____   ____                          ____   ____   ____      ____   ____   ____
-                ____   ____   ____   ____   &mo MISC        ____   ____   ____   ____      ____
+                                 ____                                        ____
+ ____    ____   ____   ____      ____   ____                          ____   ____      ____   ____   ____   ____
+ ____    ____   ____   ____      ____   ____                          ____   ____      ____   ____   ____   ____
+ ____    ____   ____   ____      ____   ____                          ____   ____      ____   ____   ____   ____
+                ____   ____      ____   ____   &mo MISC        ____   ____   ____      ____   ____
             >;
             display-name = "Playground";
         };
 
         num {
-            // test a different symbol layer layout
-
             bindings = <
                               ____                                        ____
  ____    ____   ____   ____   ____   ____                          ____   &kp N7      &kp N8      &kp N9    &kp DE_PLUS    ____
  ____    ____   ____   ____   ____   ____                          ____   &kp N1      &kp N2      &kp N5    &kp N0         ____
- ____    ____   ____   ____   ____   ____                          ____   &kp N1      &kp N2      &kp N3    &kp DE_MINUS   ____
+ ____    ____   ____   ____   ____   ____                          ____   &kp N3      &kp N4      &kp N6    &kp DE_MINUS   ____
                 ____   ____   ____   ____   ____            ____   ____   xxxx        xxxx        xxxx
             >;
             display-name = "Numbers";
@@ -193,9 +184,9 @@
             bindings = <
                                                              &kp DE_PIPE_M                                                                ____
 &kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
-&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp N0        &kp DOT
-&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 xxxx            &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      SPACE_NAV       &kp DOT     &kp DE_BSLH_M   xxxx
+&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp N0        ____
+&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp DE_BSLH_M   &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      SPACE_NAV       &kp DOT     xxxx            xxxx
             >;
             display-name = "Symbols";
         };
@@ -203,17 +194,15 @@
         nav {
 
             /*
-                - add ALT (home row mod) to NAV layer (F5) to avoid timing mistakes, as it allows ALT and NAV (for arrows) to be pressed in any order.
-                Trial:
-                - BACKSPACE on NAV layer
+                - add left home row mods to NAV layer to avoid timing mistakes, as it allows ALT and NAV (for arrows) to be pressed in any order.
             */
 
             bindings = <
-                                           ____                                                             APP_MENU
-xxxx     xxxx    &kp F7    &kp F8          &kp F9    &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
-xxxx     xxxx    &kp F4    &hml LALT F5    &kp F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       &kp BACKSPACE    IJ_NEXT_ERROR
-xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         IJ_TERMINAL      IJ_COMMIT
-                 xxxx      ____            ____      ____      ____                ____     ____            ____              ____             xxxx
+                                                  ____                                                                   APP_MENU
+xxxx     xxxx    &kp F7           &kp F8          &kp F9          &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
+xxxx     xxxx    &hml LCTRL F4    &hml LALT F5    &hml LGUI F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       IJ_TERMINAL      IJ_NEXT_ERROR
+xxxx     xxxx    &kp F1           &kp F2          &kp F3          &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         xxxx             IJ_COMMIT
+                 xxxx             ____            ____            ____      ____                ____     ____            ____              ____             xxxx
             >;
             display-name = "Navigation";
 
@@ -247,12 +236,14 @@ xxxx     xxxx    &kp F1    &kp F2          &kp F3    &kp F12                    
             bindings = <
                                                           xxxx                                                                               xxxx
 xxxx   &kp DE_GRAVE     &kp DE_LT_M     &kp DE_GT_M       &kp DE_MINUS     &kp DE_PIPE_M                                   &kp DE_CARET_M    &kp DE_LBRC_M      &kp DE_RBRC_M      &kp DE_DLLR   &kp DE_APOS   xxxx
-xxxx   &kp DE_EXCL      &kp DE_ASTRK    &kp KP_SLASH      &kp DE_EQUAL     &kp DE_AMPS                                     &kp DE_POUND      &kp DE_LPAR        &kp DE_RPAR        &kp DE_SEMI   &kp DE_DQT    xxxx
+xxxx   &kp DE_EXCL          &kp DE_ASTRK    &kp KP_SLASH      &kp DE_EQUAL     &kp DE_AMPS                                     &kp DE_POUND      &kp DE_LPAR        &kp DE_RPAR        &kp DE_SEMI   &kp DE_DQT    xxxx
 xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp DE_PRCNT                                    &kp DE_AT_M       &kp DE_COLON       &kp                &kp           &kp           xxxx
                         xxxx            &kp DE_DEG_M      xxxx             xxxx             xxxx                 xxxx      SPACE_NAV         xxxx               xxxx               xxxx
             >;
             display-name = "Misc";
         };
+
+
         /*
 
                               ____                                        ____
@@ -322,15 +313,11 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
     combos {
         compatible = "zmk,combos";
 
-        COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  COLEMAK     TESTS      )
-        COMBO(cb_colemak_oe,            RM4 RM5,    &kp DE_O_UMLAUT,            COLEMAK                )
+        COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  TESTS                  )
         COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
-        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK                      SYM)  // types "* " to create bullet points in most applications
-        COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK                      SYM)
-
-        VOMBO(cb_anymak_oe,             RT5 RM5,    &kp DE_O_UMLAUT,    ANYMAK)
-        VOMBO(cb_anymak_sz,             RT4 RM4,    &kp DE_SZ,          ANYMAK)
+        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK  TESTS               SYM)  // types "* " to create bullet points in most applications
+        COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK  TESTS               SYM)
 
         VOMBO(cb_anymak_ampersand,      LT5 LM5,    &kp DE_AMPS,        ANYMAK)
         VOMBO(cb_anymak_hash,           LM5 LB5,    &kp DE_POUND,       ANYMAK)
