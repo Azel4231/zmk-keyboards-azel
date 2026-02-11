@@ -142,9 +142,9 @@
 
             bindings = <
                                                                          &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q              &kp COMMA         &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp DE_Z    &kp J
+&mt DE_GRAVE TAB   &kp Q              &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J       &kp X
 &kp DE_SEMI        &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
-&kp DE_APOS        &kp K              &kp DE_A_UMLAUT   &kp DE_O_UMLAUT  &kp DE_U_UMLAUT          &kp X                                          &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
+&kp DE_APOS        &kp K              &kp DE_Z          &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         &mo NUM             &mo ROOT       MUTE_MIC
 
             >;
