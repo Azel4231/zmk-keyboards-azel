@@ -134,10 +134,9 @@
         base1 {
 
         /*
-            Changes to vanilla EnDeu (https://github.com/rpnfan/EnDeu):
-            - N <-> R (personal preference: redistributes finger balance more to the right middle)
-            - Z <-> F
-            - . <-> ,
+            Mix of Anymak:END and EnDeu (https://github.com/rpnfan/Anymak , https://github.com/rpnfan/EnDeu). The most important adjustments are:
+            - swap N <-> R (personal preference: redistributes finger balance more to the right middle)
+            - move K and F to bottom pinky
         */
 
             bindings = <
@@ -236,7 +235,7 @@ xxxx     xxxx    &kp F1           &kp F2          &kp F3          &kp F12       
             bindings = <
                                                           xxxx                                                                               xxxx
 xxxx   &kp DE_GRAVE     &kp DE_LT_M     &kp DE_GT_M       &kp DE_MINUS     &kp DE_PIPE_M                                   &kp DE_CARET_M    &kp DE_LBRC_M      &kp DE_RBRC_M      &kp DE_DLLR   &kp DE_APOS   xxxx
-xxxx   &kp DE_EXCL          &kp DE_ASTRK    &kp KP_SLASH      &kp DE_EQUAL     &kp DE_AMPS                                     &kp DE_POUND      &kp DE_LPAR        &kp DE_RPAR        &kp DE_SEMI   &kp DE_DQT    xxxx
+xxxx   &kp DE_EXCL      &kp DE_ASTRK    &kp KP_SLASH      &kp DE_EQUAL     &kp DE_AMPS                                     &kp DE_POUND      &kp DE_LPAR        &kp DE_RPAR        &kp DE_SEMI   &kp DE_DQT    xxxx
 xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp DE_PRCNT                                    &kp DE_AT_M       &kp DE_COLON       &kp                &kp           &kp           xxxx
                         xxxx            &kp DE_DEG_M      xxxx             xxxx             xxxx                 xxxx      SPACE_NAV         xxxx               xxxx               xxxx
             >;
@@ -288,6 +287,13 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
                 = <&macro_tap &kp DE_ASTERISK &kp SPACE>
                 ;
         };
+        lambda: lambda {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp DE_MINUS &kp DE_GT_M>
+                ;
+        };
     };
 
     #define COMBO_TIMEOUT 30  // default=50
@@ -314,6 +320,7 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
         compatible = "zmk,combos";
 
         COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  TESTS                  )
+        COMBO(cb_lambda,                RT2 RT3,    &lambda,            ANYMAK  TESTS                  )  // types "->" for lambda syntax in Java
         COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
         COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK  TESTS               SYM)  // types "* " to create bullet points in most applications
