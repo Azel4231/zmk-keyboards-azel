@@ -136,7 +136,7 @@
         /*
             Mix of Anymak:END and EnDeu (https://github.com/rpnfan/Anymak , https://github.com/rpnfan/EnDeu). The most important adjustments are:
             - swap N <-> R (personal preference: redistributes finger balance more to the right middle)
-            - move K and F to bottom pinky
+            - move K and F to bottom pinky. Firstly these positions are easier to reach on my keyboard. Secondly it avoids/fixes the K+A SFB in END.
         */
 
             bindings = <
