@@ -31,7 +31,7 @@
              hold-trigger-on-release;
              #binding-cells = <2>;
              bindings = <&kp>, <&kp>;
-        };
+         };
 
         hml: hml {
              compatible = "zmk,behavior-hold-tap";
@@ -42,22 +42,6 @@
              hold-trigger-on-release;
              #binding-cells = <2>;
              bindings = <&kp>, <&kp>;
-         };
-     };
-
-    // Special (timerless) layer-tap. Triggers hold when right-hand keys are pressed to reduce misfires with backspace and arrows (on NAV layer).
-    timerless_layer_tap {
-         tllt: tllt {
-             label = "Layer-Tap(tl)";
-             compatible = "zmk,behavior-hold-tap";
-             flavor = "hold-preferred"; // balanced, tap-preferred
-             tapping-term-ms = <280>;
-             quick-tap-ms = <150>;
-             require-prior-idle-ms = <50>;
-             hold-trigger-key-positions = <KEYS_R>;
-             hold-trigger-on-release;
-             #binding-cells = <2>;
-             bindings = <&mo>, <&kp>;
         };
     };
 
@@ -70,10 +54,9 @@
             bindings = <&kp LSHFT>, <&caps_word>;
         };
     };
-
 };
 
-#define SPACE_NAV    &tllt NAV SPACE
+#define SPACE_NAV       &lt NAV SPACE
 
 
 // base
@@ -141,10 +124,10 @@
 
             bindings = <
                                                                          &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
-&mt DE_GRAVE TAB   &kp Q              &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J       &kp X
-&kp DE_SEMI        &lt CONTROL H      &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
-&kp DE_APOS        &kp K              &kp DE_Z          &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
-                                      TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         &mo NUM             &mo ROOT       MUTE_MIC
+&mt DE_GRAVE TAB   &kp Q               &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J       &kp X
+&kp DE_SEMI        &lt CONTROL H       &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
+&kp DE_APOS        &kp K               &kp DE_Z          &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
+                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         &mo NUM             &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -199,7 +182,7 @@
             bindings = <
                                                   ____                                                                   APP_MENU
 xxxx     &kp LG(F9)    &kp F7           &kp F8          &kp F9          &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
-xxxx     &kp LG(LS(I)  &hml LCTRL F4    &hml LALT F5    &hml LGUI F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       IJ_TERMINAL      IJ_NEXT_ERROR
+xxxx     &kp LG(LS(I)) &hml LCTRL F4    &hml LALT F5    &hml LGUI F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       IJ_TERMINAL      IJ_NEXT_ERROR
 xxxx     xxxx          &kp F1           &kp F2          &kp F3          &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         xxxx             IJ_COMMIT
                        xxxx             ____            ____            ____      ____                ____     ____            ____              ____             xxxx
             >;
@@ -327,8 +310,11 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
         compatible = "zmk,combos";
 
         COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  TESTS                  )
-        COMBO(cb_lambda,                RT2 RT3,    &lambda,            ANYMAK  TESTS                  )  // types "->" for lambda syntax in Java
+        COMBO(cb_lambda,                RT2 RT3,    &lambda,            ANYMAK  TESTS                  )  // types "->", e.g. for lambda syntax in Java
         COMBO(cb_vim_wq,                LT3 LT2,    &vim_x,             ANYMAK  TESTS                  )  // types "Esc :x" for vim
+        COMBO(cb_cut,                   LB4 LB5,    CUT,                ANYMAK  TESTS                  )
+        COMBO(cb_copy,                  LB3 LB4,    COPY,               ANYMAK  TESTS                  )
+        COMBO(cb_paste,                 LB2 LB3,    PASTE,              ANYMAK  TESTS                  )
         COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
         COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK  TESTS               SYM)  // types "* " to create bullet points in most applications

@@ -86,7 +86,7 @@
 
 };
 
-#define SPACE_NAV    &tllt NAV SPACE
+#define SPACE_NAV       &tl NAV SPACE
 
 // base
 #define MUTE_MIC        &kp LG(LS(M))
