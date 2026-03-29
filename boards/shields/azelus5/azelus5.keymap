@@ -116,7 +116,7 @@
 
 
 #define ANYMAK    0
-#define TESTS     1
+#define PLAYGR    1
 #define NUM       2
 #define SYM       3
 #define NAV       4
@@ -223,7 +223,7 @@ xxxx     xxxx          &kp F1           &kp F2          &kp F3          &kp F12 
             bindings = <
                                                  &bootloader                                                &studio_unlock
  &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- &to TESTS    xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
+ &to PLAYGR    xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
  xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
                       xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx   xxxx   xxxx   xxxx
             >;
@@ -327,20 +327,20 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
     combos {
         compatible = "zmk,combos";
 
-        COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  TESTS                  )
-        COMBO(cb_lambda,                RT2 RT3,    &lambda,            ANYMAK  TESTS                  )  // types "->", e.g. for lambda syntax in Java
-        COMBO(cb_vim_wq,                LT3 LT2,    &vim_x,             ANYMAK  TESTS                  )  // types "Esc :x" for vim
+        COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  PLAYGR                  )
+        COMBO(cb_lambda,                RT2 RT3,    &lambda,            ANYMAK  PLAYGR                  )  // types "->", e.g. for lambda syntax in Java
+        COMBO(cb_vim_wq,                LT3 LT2,    &vim_x,             ANYMAK  PLAYGR                  )  // types "Esc :x" for vim
 
-        COMBO(cb_anymak,                LT6 LT5,    &to ANYMAK,         ANYMAK  TESTS                  )
-        COMBO(cb_tests,                 LM6 LM5,    &to TESTS,          ANYMAK  TESTS                  )
-        COMBO(cb_cut,                   LB4 LB5,    CUT,                ANYMAK  TESTS                  )
-        COMBO(cb_copy,                  LB3 LB4,    COPY,               ANYMAK  TESTS                  )
-        COMBO(cb_paste,                 LB2 LB3,    PASTE,              ANYMAK  TESTS                  )
+        COMBO(cb_anymak,                LT6 LT5,    &to ANYMAK,         ANYMAK  PLAYGR                  )
+        COMBO(cb_playground,            LM6 LM5,    &to PLAYGR,         ANYMAK  PLAYGR                  )
+        COMBO(cb_cut,                   LB4 LB5,    CUT,                ANYMAK  PLAYGR                  )
+        COMBO(cb_copy,                  LB3 LB4,    COPY,               ANYMAK  PLAYGR                  )
+        COMBO(cb_paste,                 LB2 LB3,    PASTE,              ANYMAK  PLAYGR                  )
 
         COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
 
-        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK  TESTS               SYM)  // types "* " to create bullet points in most applications
-        COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK  TESTS               SYM)
+        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK  PLAYGR               SYM)  // types "* " to create bullet points in most applications
+        COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK  PLAYGR               SYM)
 
         VOMBO(cb_anymak_ampersand,      LT5 LM5,    &kp DE_AMPS,        ANYMAK)
         VOMBO(cb_anymak_hash,           LM5 LB5,    &kp DE_POUND,       ANYMAK)
