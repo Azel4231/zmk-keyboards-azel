@@ -140,7 +140,7 @@
         */
 
             bindings = <
-                                                                         &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
+                                                                          &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
 &kp DE_SEMI        &kp Q               &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J       &kp X
 &mt DE_GRAVE TAB   &lt SHORTCUTS H     &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
 &kp DE_APOS        &kp K               &kp DE_Z          &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
@@ -153,11 +153,11 @@
 
         base2 {
             bindings = <
-                                     ____                                                 ____
-____         ____   ____   ____      ____            ____                          ____   ____      ____   ____   ____   ____
-____         ____   ____   ____      ____            ____                          ____   ____      ____   ____   ____   ____
-____         ____   ____   ____      ____            ____                          ____   ____      ____   ____   ____   ____
-                    ____   ____      &sl SHORTCUTS   ____    ____           ____   ____   ____      ____   ____
+                                                 ____                                                 ____
+____         &kp DE_U_UMLAUT   ____    ____      ____            ____                          ____   ____      ____   ____   ____   ____
+____         ____              ____    ____      ____            ____                          ____   ____      ____   ____   ____   ____
+____         &kp DE_Z          &kp Q   ____      &kp K           ____                          ____   ____      ____   ____   ____   ____
+                               ____    ____      ____            ____    ____           ____   ____   ____      ____   ____
             >;
             display-name = "Playground";
         };
