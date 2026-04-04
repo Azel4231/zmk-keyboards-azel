@@ -77,7 +77,7 @@
 
 
 // base
-#define MUTE_MIC        &kp LG(LS(M))
+#define MUTE_MIC        &kp LG(LS(M)) // when in teams-app
 #define TOG_DESK_LIGHT  &kp LG(LC(LA(E)))
 
 // nav
@@ -117,15 +117,16 @@
 
 #define ANYMAK    0
 #define PLAYGR    1
-#define NUM       2
-#define SYM       3
-#define NAV       4
-#define SHORTCUTS 5
-#define ROOT      6
-#define MISC      7
+#define SYM       2
+#define NAV       3
+#define SHORTCUTS 4
+#define ROOT      5
+#define MISC      6
+#define MISC2     7
 
-#define xxxx &none
-#define ____ &trans
+
+#define xxxx      &none
+#define ____      &trans
 
 / {
     keymap {
@@ -144,7 +145,7 @@
 &kp DE_SEMI        &kp Q               &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp J       &kp X
 &mt DE_GRAVE TAB   &lt SHORTCUTS H     &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
 &kp DE_APOS        &kp K               &kp DE_Z          &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp F       &kp DE_SZ
-                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         &mo NUM             &mo ROOT       MUTE_MIC
+                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
 
             >;
             display-name = "Anymak:END";
@@ -153,40 +154,23 @@
 
         base2 {
             bindings = <
-                                                 ____                                                 ____
-____         &kp DE_U_UMLAUT   ____    ____      ____            ____                          ____   ____      ____   ____   ____   ____
-____         ____              ____    ____      ____            ____                          ____   ____      ____   ____   ____   ____
-____         &kp DE_Z          &kp Q   ____      &kp K           ____                          ____   ____      ____   ____   ____   ____
-                               ____    ____      ____            ____    ____           ____   ____   ____      ____   ____
+                              ____                                        ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+                ____   ____   ____   ____   ____            ____   ____   ____   ____   ____
             >;
             display-name = "Playground";
         };
 
-        num {
-        // test a different NUM block layout
-            bindings = <
-                              ____                                        ____
- ____    ____   ____   ____   ____   ____                          ____   &kp N7      &kp N8      &kp N9    &kp DE_PLUS    ____
- ____    ____   ____   ____   ____   ____                          ____   &kp N1      &kp N2      &kp N5    &kp N0         ____
- ____    ____   ____   ____   ____   ____                          ____   &kp N3      &kp N4      &kp N6    &kp DE_MINUS   ____
-                ____   ____   ____   ____   ____            ____   ____   xxxx        xxxx        xxxx
-            >;
-            display-name = "Numbers";
-        };
-
         sym {
-
-            /*
-                - block RET from layer below to avoid mistypes
-                - make N0 layer-tap to NAV and thus make BACKSPACE accessible on SYM layer
-            */
 
             bindings = <
                                                              &kp DE_PIPE_M                                                                ____
-&kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_TILDE_M  &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_APOS
-&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp DE_COLON    &kp DE_LPAR    &kp DE_RPAR                                   &kp DE_ASTRK    &kp N4      &kp N5          &kp N6   &kp N0        ____
-&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp DE_BSLH_M   &kp N1      &kp N2          &kp N3   &kp DE_MINUS  &kp DE_ACUTE
-                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 xxxx      SPACE_NAV       &kp DOT     xxxx            xxxx
+&kp DE_AMPS   &kp DE_AT_M    &kp DE_DQT      &kp DE_DLLR     &kp DE_LBRC_M  &kp DE_RBRC_M                                 &kp DE_ASTRK    &kp N7      &kp N8          &kp N9   &kp DE_PLUS   &kp DE_TILDE_M
+&kp DE_POUND  &kp DE_EXCL    &kp DE_EQUAL    &kp N0          &kp DE_LPAR    &kp DE_RPAR                                   &kp COMMA       &kp N4      &kp N5          &kp N6   &kp DOT       ____
+&kp DE_EURO   &kp DE_QMARK   &kp DE_LT_M     &kp DE_GT_M     &kp DE_LBKT_M  &kp DE_RBKT_M                                 &kp DE_BSLH_M   &kp N1      &kp N2          &kp N3   &kp DE_COLON  &kp DE_ACUTE
+                             &kp DE_DEG_M    &kp DE_CARET_M  ____           ____           ____                 &kp RET   SPACE_NAV       ____        xxxx            ____
             >;
             display-name = "Symbols";
         };
@@ -194,15 +178,15 @@ ____         &kp DE_Z          &kp Q   ____      &kp K           ____           
         nav {
 
             /*
-                - add left home row mods to NAV layer to avoid timing mistakes, as it allows ALT and NAV (for arrows) to be pressed in any order.
+                - add left home row mods to NAV layer to avoid timing mistakes, as it allows ALT and NAV to be pressed in any order (ALT+ARROW for next/previous word on MacOS).
             */
 
             bindings = <
-                                                  ____                                                                   APP_MENU
-xxxx     &kp LG(F9)    &kp F7           &kp F8          &kp F9          &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
-xxxx     &kp LG(LS(I)) &hml LCTRL F4    &hml LALT F5    &hml LGUI F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       IJ_TERMINAL      IJ_NEXT_ERROR
-xxxx     xxxx          &kp F1           &kp F2          &kp F3          &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         xxxx             IJ_COMMIT
-                       xxxx             ____            ____            ____      ____                ____     ____            ____              ____             xxxx
+                                                           ____                                                                   APP_MENU
+xxxx     &kp LG(F9)       &kp F7           &kp F8          &kp F9          &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
+xxxx     &kp LG(LS(I))    &hml LCTRL F4    &hml LALT F5    &hml LGUI F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       IJ_TERMINAL      IJ_NEXT_ERROR
+xxxx     xxxx             &kp F1           &kp F2          &kp F3          &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         xxxx             IJ_COMMIT
+                          xxxx             ____            ____            ____      ____                ____     ____            ____              ____             xxxx
             >;
             display-name = "Navigation";
 
@@ -210,22 +194,22 @@ xxxx     xxxx          &kp F1           &kp F2          &kp F3          &kp F12 
 
         shortcuts {
             bindings = <
-                                      xxxx                                                             xxxx
- xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   xxxx      &kp K_VOL_UP    &kp C_BRI_UP    xxxx    xxxx    xxxx
- xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        xxxx      &kp K_VOL_DN    &kp C_BRI_DN    xxxx    xxxx    xxxx
- xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx      &kp K_MUTE      xxxx            xxxx    xxxx    xxxx
-                xxxx       xxxx       SEL_ALL    FIND         IJ_FIND                xxxx    xxxx      xxxx            xxxx            xxxx
+                                      xxxx                                                                     xxxx
+ xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   &kp C_BRI_UP      &kp K_VOL_UP    xxxx      xxxx    xxxx    xxxx
+ xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        &kp C_BRI_DN      &kp K_VOL_DN    xxxx      xxxx    xxxx    xxxx
+ xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx              &kp K_MUTE      xxxx      xxxx    xxxx    xxxx
+                xxxx       xxxx       SEL_ALL    FIND         IJ_FIND                xxxx    xxxx              xxxx            xxxx      xxxx
             >;
             display-name = "Shortcuts";
         };
 
         root {
             bindings = <
-                                                 &bootloader                                                &studio_unlock
- &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- &to PLAYGR    xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
- xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx   xxxx   xxxx   xxxx   xxxx   xxxx
-                      xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx   xxxx   xxxx   xxxx
+                                                 &bootloader                                                        &studio_unlock
+ &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   &kp C_BRI_UP   &kp K_VOL_UP    xxxx           xxxx   xxxx   xxxx
+ &to PLAYGR   xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   &kp C_BRI_DN   &kp K_VOL_DN    xxxx           xxxx   xxxx   xxxx
+ xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx           &kp K_MUTE      xxxx           xxxx   xxxx   xxxx
+                      xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx           xxxx            xxxx           xxxx
             >;
             display-name = "Root";
         };
@@ -241,6 +225,17 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
                         xxxx            &kp DE_DEG_M      xxxx             xxxx             xxxx                 xxxx      SPACE_NAV         xxxx               xxxx               xxxx
             >;
             display-name = "Misc";
+        };
+
+        misc2 {
+            bindings = <
+                              ____                                        ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+ ____    ____   ____   ____   ____   ____                          ____   ____   ____   ____   ____   ____
+                ____   ____   ____   ____   ____            ____   ____   ____   ____   ____
+            >;
+            display-name = "Misc2";
         };
 
 
