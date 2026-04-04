@@ -114,6 +114,7 @@
 #define PASTE           &kp LG(V)
 #define IJ_DEL_LINE     &kp LG(D)
 
+#define LOCK_SCREEN     &kp LG(LA(LC(LS(L))))
 
 #define ANYMAK    0
 #define PLAYGR    1
@@ -194,7 +195,7 @@ xxxx     xxxx             &kp F1           &kp F2          &kp F3          &kp F
 
         shortcuts {
             bindings = <
-                                      xxxx                                                                     xxxx
+                                      LOCK_SCREEN                                                              xxxx
  xxxx    xxxx   NEXT_TAB   PREV_TAB   NEW_TAB    CLOSE_TAB                                   &kp C_BRI_UP      &kp K_VOL_UP    xxxx      xxxx    xxxx    xxxx
  xxxx    xxxx   RELOAD     SAVE       UNDO       REDO                                        &kp C_BRI_DN      &kp K_VOL_DN    xxxx      xxxx    xxxx    xxxx
  xxxx    xxxx   CUT        COPY       PASTE      IJ_DEL_LINE                                 xxxx              &kp K_MUTE      xxxx      xxxx    xxxx    xxxx
