@@ -77,7 +77,7 @@
 
 
 // base
-#define MUTE_MIC        &kp LG(LS(M)) // when in teams-app
+#define MUTE_MIC        &switch_and_mute // &kp LG(LS(M)) // when in teams-app
 #define TOG_DESK_LIGHT  &kp LG(LC(LA(E)))
 
 // nav
@@ -288,6 +288,19 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
             #binding-cells = <0>;
             bindings
                 = <&macro_tap &kp DE_MINUS &kp DE_GT_M>
+                ;
+        };
+        switch_and_mute: switch_and_mute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LALT &kp LCTL>     // switch to Teams (MacOS shortcut)
+                , <&macro_tap &kp T>
+                , <&macro_release &kp LGUI &kp LALT &kp LCTL>
+                , <&macro_wait_time 100>
+                , <&macro_press &kp LGUI &kp LSFT>              // mute (Teams shortcut)
+                , <&macro_tap &kp M>
+                , <&macro_release &kp LGUI &kp LSFT>
                 ;
         };
         vim_x: vim_x {
