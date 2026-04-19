@@ -6,6 +6,7 @@ cd /IdeaProjects/zmk
 west build -s app -p -b nice_nano -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=$1 -DZMK_EXTRA_MODULES=/workspaces/zmk-modules -DCONFIG_ZMK_STUDIO=y
 # copy compiled firmware to the docker volume to transfer to the host machine
 cp build/zephyr/zmk.uf2 /workspaces/zmk-modules/output
+cd /
 
 # build in cl_studio dir:
 #west build -s app -d build/cl_studio -p -b nice_nano -S studio-rpc-usb-uart -- -DZMK_CONFIG=/tmp/zmk-config/config -DSHIELD=azelus3 -DZMK_EXTRA_MODULES=/workspaces/zmk-modules -DCONFIG_ZMK_STUDIO=y
