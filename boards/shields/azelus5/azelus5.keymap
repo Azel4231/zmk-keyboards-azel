@@ -136,20 +136,20 @@
         base1 {
 
         /*
-            Mix of Anymak:END and EnDeu (https://github.com/rpnfan/Anymak , https://github.com/rpnfan/EnDeu). The most important adjustments are:
+            A variant of EnDeu (https://github.com/rpnfan/EnDeu).
             - swap N <-> R (personal preference: redistributes finger balance more to the right middle)
-            - move K and F to bottom pinky. Firstly these positions are easier to reach on my keyboard. Secondly it avoids/fixes the K+A SFB in END.
+            - move fairly unimportant keys like .,ÄÖXJß
         */
 
             bindings = <
                                                                           &mt C_VOICE_COMMAND ESC                                                                   &kp KP_SLASH
-&kp DE_SEMI        &kp Q               &kp X             &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp F       &kp J
+&kp DE_SEMI        &kp Q               &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp F       &kp J
 &mt DE_GRAVE TAB   &lt SHORTCUTS H     &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
-&kp DE_APOS        &kp K               &kp DE_A_UMLAUT   &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp DE_Z    &kp DE_SZ
-                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &shifty          &mo SYM            &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
+&kp DE_APOS        &kp K               &kp X             &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp DE_Z    &kp DE_SZ
+                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &kp LSHFT        &mo SYM            &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
 
             >;
-            display-name = "Anymak:END";
+            display-name = "ENDeu";
         };
 
 
