@@ -53,12 +53,15 @@ Then (also in IntelliJ with connected Docker daemon):
 * (dev-container-name) -> Run
 * (dev-container-name) -> Terminal
 
-Inside container:
-* init zmk toolchain:
+Alternatively, connect in any terminal using docker itself:
+* docker exec -it <container-name> bash
+
+Inside container (Terminal):
+* init the zmk toolchain:
 ```
 west init -l app/
 ```
-* update toolchain incl. zmk
+* update the toolchain incl. zmk
 ``` 
 west update
 ```

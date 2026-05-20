@@ -209,7 +209,7 @@ xxxx     xxxx             &kp F1           &kp F2          &kp F3          &kp F
             bindings = <
                                                  &bootloader                                                        &studio_unlock
  &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   &kp C_BRI_UP   &kp K_VOL_UP    xxxx           xxxx   xxxx   xxxx
- &to PLAYGR   xxxx    xxxx         &bt BT_SEL 1  xxxx         xxxx                                   &kp C_BRI_DN   &kp K_VOL_DN    xxxx           xxxx   xxxx   xxxx
+ &to PLAYGR   xxxx    xxxx         &bt BT_SEL 1  &kp X        xxxx                                   &kp C_BRI_DN   &kp K_VOL_DN    xxxx           xxxx   xxxx   xxxx
  xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx           &kp K_MUTE      xxxx           xxxx   xxxx   xxxx
                       xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx           xxxx            xxxx           xxxx
             >;
@@ -329,21 +329,21 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
     };
 
     macros {
-            bullet_point: bullet_point {
+            bullet_point: x_bullet_point {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
                     = <&macro_tap &kp DE_ASTERISK &kp SPACE>
                     ;
             };
-            lambda: lambda {
+            lambda: x_lambda {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
                     = <&macro_tap &kp DE_MINUS &kp DE_GT_M>
                     ;
             };
-            switch_and_mute: switch_and_mute {
+            switch_and_mute: x_switch_and_mute {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
@@ -356,7 +356,7 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
                     , <&macro_release &kp LGUI &kp LSFT>
                     ;
             };
-            vim_x: vim_x {
+            vim_x: x_vim_x {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
