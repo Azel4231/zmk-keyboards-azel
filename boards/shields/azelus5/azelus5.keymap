@@ -87,6 +87,7 @@
 
 #define IJ_NEXT_ERROR   &kp LG(LS(LC(RIGHT)))
 #define IJ_RUN          &kp LC(LA(R))
+#define IJ_STOP         &kp LG(F2)
 #define IJ_NAV_BACK     &kp LG(LA(LEFT))
 #define IJ_EXPAND_SEL   &kp LA(UP)
 #define IJ_SHRINK_SEL   &kp LA(DOWN)
@@ -118,7 +119,7 @@
 
 #define ANYMAK    0
 #define PLAYGR    1
-#define SYM       2
+#define SYM_NUM   2
 #define NAV       3
 #define SHORTCUTS 4
 #define ROOT      5
@@ -146,10 +147,10 @@
 &kp DE_SEMI        &kp Q               &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp F       &kp J
 &mt DE_GRAVE TAB   &lt SHORTCUTS H     &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
 &kp DE_APOS        &kp K               &kp X             &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp DE_Z    &kp DE_SZ
-                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &kp LSHFT        &mo SYM            &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
+                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &kp LSHFT        &mo SYM_NUM        &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
 
             >;
-            display-name = "ENDeu";
+            display-name = "EnDeu";
         };
 
 
@@ -186,7 +187,7 @@
                                                            ____                                                                   APP_MENU
 xxxx     &kp LG(F9)       &kp F7           &kp F8          &kp F9          &kp F10                                &kp PG_UP       START_OF_LINE     &kp UP           END_OF_LINE     IJ_RUN           IJ_PROJECT
 xxxx     &kp LG(LS(I))    &hml LCTRL F4    &hml LALT F5    &hml LGUI F6    &kp F11                                &kp PG_DN       &kp LEFT          &kp DOWN         &kp RIGHT       IJ_TERMINAL      IJ_NEXT_ERROR
-xxxx     xxxx             &kp F1           &kp F2          &kp F3          &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         xxxx             IJ_COMMIT
+xxxx     xxxx             &kp F1           &kp F2          &kp F3          &kp F12                                IJ_NAV_BACK     IJ_EXPAND_SEL     IJ_SHRINK_SEL    &kp DEL         IJ_STOP          IJ_COMMIT
                           xxxx             ____            ____            ____      ____                ____     ____            ____              ____             xxxx
             >;
             display-name = "Navigation";
@@ -276,42 +277,6 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
         };
     };
 
-    macros {
-        bullet_point: bullet_point {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp DE_ASTERISK &kp SPACE>
-                ;
-        };
-        lambda: lambda {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp DE_MINUS &kp DE_GT_M>
-                ;
-        };
-        switch_and_mute: switch_and_mute {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI &kp LALT &kp LCTL>     // switch to Teams (MacOS shortcut)
-                , <&macro_tap &kp T>
-                , <&macro_release &kp LGUI &kp LALT &kp LCTL>
-                , <&macro_wait_time 100>
-                , <&macro_press &kp LGUI &kp LSFT>              // mute (Teams shortcut)
-                , <&macro_tap &kp M>
-                , <&macro_release &kp LGUI &kp LSFT>
-                ;
-        };
-        vim_x: vim_x {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp ESC &kp DE_COLON &kp X>
-                ;
-        };
-    };
 
     #define COMBO_TIMEOUT 30  // default=50
     #define COMBO_TIMEOUT_VERTICAL 50
@@ -336,8 +301,10 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
     combos {
         compatible = "zmk,combos";
 
+        COMBO(cb_anymak_bullet_point,   RT2 RT3,    &bullet_point,      ANYMAK  PLAYGR                  )  // types "* " to create bullet points in most applications
+        COMBO(cb_anymak_hyphen,         RT3 RT4,    &kp DE_MINUS,       ANYMAK  PLAYGR           SYM_NUM)
+
         COMBO(cb_underscore,            RB3 RB4,    &kp LS(DE_MINUS),   ANYMAK  PLAYGR                  )
-        COMBO(cb_lambda,                RT2 RT3,    &lambda,            ANYMAK  PLAYGR                  )  // types "->", e.g. for lambda syntax in Java
         COMBO(cb_vim_wq,                LT3 LT2,    &vim_x,             ANYMAK  PLAYGR                  )  // types "Esc :x" for vim
 
 /* Combos for switching base layers:
@@ -349,23 +316,62 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
         COMBO(cb_copy,                  LB3 LB4,    COPY,               ANYMAK  PLAYGR                  )
         COMBO(cb_paste,                 LB2 LB3,    PASTE,              ANYMAK  PLAYGR                  )
 
-        COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                   SYM)
+        COMBO(cb_lambda,                LT3 LT2,    &lambda,                                     SYM_NUM)  // types "->", e.g. for lambda syntax in Java
+        COMBO(cb_sym_percent,           LT4 LT3,    &kp DE_PRCNT,                                SYM_NUM)
 
-        COMBO(cb_anymak_bullet_point,   RT3 RT4,    &bullet_point,      ANYMAK  PLAYGR               SYM)  // types "* " to create bullet points in most applications
-        COMBO(cb_anymak_hyphen,         RM3 RM4,    &kp DE_MINUS,       ANYMAK  PLAYGR               SYM)
 
+/* Deactivate vertical combos
         VOMBO(cb_anymak_ampersand,      LT5 LM5,    &kp DE_AMPS,        ANYMAK  PLAYGR                  )
         VOMBO(cb_anymak_hash,           LM5 LB5,    &kp DE_POUND,       ANYMAK  PLAYGR                  )
         VOMBO(cb_anymak_euro,           LM3 LB3,    &kp DE_EURO,        ANYMAK  PLAYGR                  )
+*/
 
     };
+
+    macros {
+            bullet_point: bullet_point {
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                bindings
+                    = <&macro_tap &kp DE_ASTERISK &kp SPACE>
+                    ;
+            };
+            lambda: lambda {
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                bindings
+                    = <&macro_tap &kp DE_MINUS &kp DE_GT_M>
+                    ;
+            };
+            switch_and_mute: switch_and_mute {
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                bindings
+                    = <&macro_press &kp LGUI &kp LALT &kp LCTL>     // switch to Teams (MacOS shortcut)
+                    , <&macro_tap &kp T>
+                    , <&macro_release &kp LGUI &kp LALT &kp LCTL>
+                    , <&macro_wait_time 50>
+                    , <&macro_press &kp LGUI &kp LSFT>              // mute (Teams shortcut)
+                    , <&macro_tap &kp M>
+                    , <&macro_release &kp LGUI &kp LSFT>
+                    ;
+            };
+            vim_x: vim_x {
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                bindings
+                    = <&macro_tap &kp ESC &kp DE_COLON &kp X>
+                    ;
+            };
+    };
+
 
 /*
     conditional_layers {
         compatible = "zmk,conditional-layers";
         sym_tri_layer {
-            if-layers = <LINUX SYM>;
-            then-layer = <SYM_LIN>;
+            if-layers = <LINUX SYM_NUM>;
+            then-layer = <SYM_NUM_LIN>;
         };
     };
     */
