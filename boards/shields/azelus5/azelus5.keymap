@@ -22,50 +22,32 @@
  */
 /{
     home_row_mods {
-         hmr: hmr {
-             compatible = "zmk,behavior-hold-tap";
-             flavor = "balanced";
-             tapping-term-ms = <280>;
-             require-prior-idle-ms = <150>;
-             hold-trigger-key-positions = <KEYS_L THUMBS>;
-             hold-trigger-on-release;
-             #binding-cells = <2>;
-             bindings = <&kp>, <&kp>;
-         };
+        hmr: x_HomeRowMod_right {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
 
-        hml: hml {
-             compatible = "zmk,behavior-hold-tap";
-             flavor = "balanced";
-             tapping-term-ms = <280>;
-             require-prior-idle-ms = <150>;
-             hold-trigger-key-positions = <KEYS_R THUMBS LM6>;  // Enable one-handed Command+Tab (LM6 = Tab)
-             hold-trigger-on-release;
-             #binding-cells = <2>;
-             bindings = <&kp>, <&kp>;
+        hml: x_HomeRowMod_left {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <KEYS_R THUMBS LM6>;  // trigger modifier immediately when LM6 is pressed, even though it's on the same hand. Enables one-handed Command+Tab (LM6 = Tab)
+            hold-trigger-on-release;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
         };
     };
 
-    // Special (timerless) layer-tap used for thumb keys like Space/NAV.
-        layer_tap_thumb {
-             ltt: ltt {
-                 label = "Layer-Tap(thumb)";
-                 compatible = "zmk,behavior-hold-tap";
-                 flavor = "balanced"; // balanced, hold-preferred, tap-preferred
-                 tapping-term-ms = <200>;
-                 quick-tap-ms = <150>;
-                 require-prior-idle-ms = <50>; // Less than HRMs to allow seamless mixing with regular typing
-                 hold-trigger-key-positions = <KEYS_L KEYS_R>;
-                 hold-trigger-on-release;
-                 #binding-cells = <2>;
-                 bindings = <&mo>, <&kp>;
-            };
-        };
-
-
     tap_dances {
-        shifty: shift_caps_word {
+        shifty: x_Shift_CapsWord {
             compatible = "zmk,behavior-tap-dance";
-            label = "Shift_Capsword";
             #binding-cells = <0>;
             tapping-term-ms = <175>;
             bindings = <&kp LSHFT>, <&caps_word>;
@@ -329,25 +311,25 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
     };
 
     macros {
-            bullet_point: x_bullet_point {
+            bullet_point: x_BulletPoint {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
                     = <&macro_tap &kp DE_ASTERISK &kp SPACE>
                     ;
             };
-            lambda: x_lambda {
+            lambda: x_Lambda {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
                     = <&macro_tap &kp DE_MINUS &kp DE_GT_M>
                     ;
             };
-            switch_and_mute: x_switch_and_mute {
+            switch_and_mute: x_SwitchAndMute {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
-                    = <&macro_press &kp LGUI &kp LALT &kp LCTL>     // switch to Teams (MacOS shortcut)
+                    = <&macro_press &kp LGUI &kp LALT &kp LCTL>     // switch to Teams (custom MacOS shortcut)
                     , <&macro_tap &kp T>
                     , <&macro_release &kp LGUI &kp LALT &kp LCTL>
                     , <&macro_wait_time 50>
@@ -356,7 +338,7 @@ xxxx   &kp DE_TILDE_M   &kp DE_PLUS     &kp DE_LBKT_M     &kp DE_RBKT_M    &kp D
                     , <&macro_release &kp LGUI &kp LSFT>
                     ;
             };
-            vim_x: x_vim_x {
+            vim_x: x_Vim_WQ {
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 bindings
