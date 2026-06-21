@@ -1,0 +1,13 @@
+file_format: "1"
+id: azelusMK6
+name: AzelusMK6
+type: shield
+url: https://github.com/Azel4231/zmk-keyboards-azel
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - bluetooth
+  - studio
+siblings:
+  - azelus6_left
+  - azelus6_right

@@ -1,0 +1,4 @@
+config SHIELD_AZELUS6_LEFT
+    def_bool $(shields_list_contains,azelus6_left)
+config SHIELD_AZELUS6_RIGHT
+    def_bool $(shields_list_contains,azelus6_right)

@@ -38,7 +38,7 @@
             flavor = "balanced";
             tapping-term-ms = <280>;
             require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <KEYS_R THUMBS LM6>;  // trigger modifier immediately when LM6 is pressed, even though it's on the same hand. Enables one-handed Command+Tab (LM6 = Tab)
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
             hold-trigger-on-release;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;

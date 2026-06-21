@@ -53,19 +53,13 @@ Then (also in IntelliJ with connected Docker daemon):
 * (dev-container-name) -> Run
 * (dev-container-name) -> Terminal
 
-Alternatively, connect in any terminal using docker itself:
-* docker exec -it <container-name> bash
+Alternatively, connect in any terminal using docker itself: `docker exec -it <container-name> bash`
 
 Inside container (Terminal):
-* init the zmk toolchain:
-```
-west init -l app/
-```
-* update the toolchain incl. zmk
-``` 
-west update
-```
-* the config/west.yml defines which zmk version is being pulled. manifest.project.revision: master pulls master.  
+* init the zmk toolchain: `west init -l app/`
+* update the toolchain incl. zmk: `west update`
+* the config/west.yml defines which zmk version is being pulled. 
+`manifest.project.revision: master` pulls master.  
 
 ## Build in the container
 
