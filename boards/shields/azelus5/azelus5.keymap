@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 #include "keys_de.h"
 #include "key-labels.h"
 
@@ -129,7 +130,7 @@
 &kp DE_SEMI        &kp Q               &kp DE_A_UMLAUT   &kp O            &kp U                    &kp DE_Y                                       &kp V             &kp D               &kp C          &kp L         &kp F       &kp J
 &mt DE_GRAVE TAB   &lt SHORTCUTS H     &hml LCTRL A      &hml LALT E      &hml LGUI I              &kp DOT                                        &kp G             &hmr LGUI T         &hmr LALT N    &hmr LCTRL R  &kp S       &kp BACKSPACE
 &kp DE_APOS        &kp K               &kp X             &kp COMMA        &kp DE_U_UMLAUT          &kp DE_O_UMLAUT                                &kp B             &kp P               &kp M          &kp W         &kp DE_Z    &kp DE_SZ
-                                       TOG_DESK_LIGHT    &kp DEL          &mt DE_GRAVE TAB         &kp LSHFT        &mo SYM_NUM        &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
+                                       TOG_DESK_LIGHT    &kp DEL          &mt LGUI                 &kp LSHFT        &mo SYM_NUM        &kp RET    SPACE_NAV         xxxx                &mo ROOT       MUTE_MIC
 
             >;
             display-name = "EnDeu";
@@ -190,10 +191,10 @@ xxxx     xxxx             &kp F1           &kp F2          &kp F3          &kp F
         root {
             bindings = <
                                                  &bootloader                                                        &studio_unlock
- &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  xxxx         xxxx                                   &kp C_BRI_UP   &kp K_VOL_UP    xxxx           xxxx   xxxx   xxxx
- &to PLAYGR   xxxx    xxxx         &bt BT_SEL 1  &kp X        xxxx                                   &kp C_BRI_DN   &kp K_VOL_DN    xxxx           xxxx   xxxx   xxxx
- xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx         xxxx                                   xxxx           &kp K_MUTE      xxxx           xxxx   xxxx   xxxx
-                      xxxx         &bt BT_CLR    xxxx         xxxx    xxxx          &studio_unlock   xxxx           xxxx            xxxx           xxxx
+ &to ANYMAK   xxxx    xxxx         &bt BT_SEL 0  &out OUT_TOG  xxxx                                   &kp C_BRI_UP   &kp K_VOL_UP    xxxx           xxxx   xxxx   xxxx
+ &to PLAYGR   xxxx    xxxx         &bt BT_SEL 1  &kp X         xxxx                                   &kp C_BRI_DN   &kp K_VOL_DN    xxxx           xxxx   xxxx   xxxx
+ xxxx         xxxx    xxxx         &bt BT_SEL 2  xxxx          xxxx                                   xxxx           &kp K_MUTE      xxxx           xxxx   xxxx   xxxx
+                      xxxx         &bt BT_CLR    xxxx          xxxx    xxxx          &studio_unlock   xxxx           xxxx            xxxx           xxxx
             >;
             display-name = "Root";
         };

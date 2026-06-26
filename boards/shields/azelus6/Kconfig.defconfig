@@ -1,25 +1,11 @@
-
-if SHIELD_AZELUS6
-
-config ZMK_KEYBOARD_NAME
-	default "Azelus MK6"
-	
-endif
-
-
 if SHIELD_AZELUS6_LEFT
-
 config ZMK_KEYBOARD_NAME
     default "Azelus MK6"
-
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
-
 endif
 
 if SHIELD_AZELUS6_LEFT || SHIELD_AZELUS6_RIGHT
-
 config ZMK_SPLIT
     default y
-
 endif

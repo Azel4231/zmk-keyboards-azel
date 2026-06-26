@@ -4,6 +4,11 @@
 #include "azelus6.dtsi"
 
 / {
+    // let firmware know that row pins below are mapped to rows 5-8 in the keymap
+    matrix_transform0: keymap_transform_0  {
+        row-offset = <4>;
+    };
+
     // "&gpio1 6" means pin P1.06 on the pinout diagram for the nice!nano_v2: https://nicekeyboards.com/docs/nice-nano/pinout-schematic/.
     // See also  https://zmk.dev/docs/development/new-shield#shield-overlays
     kscan0: kscan {
@@ -11,18 +16,18 @@
         diode-direction = "col2row";
         wakeup-source;
         row-gpios
-            = <&gpio1 15  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&gpio1 14  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&gpio1 12  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&gpio1 13  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&gpio1 12  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 14  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 15  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
         col-gpios
-            = <&gpio0  3 GPIO_ACTIVE_HIGH>
+            = <&gpio0  2 GPIO_ACTIVE_HIGH>
+            , <&gpio0  3 GPIO_ACTIVE_HIGH>
             , <&gpio0 28 GPIO_ACTIVE_HIGH>
             , <&gpio0 29 GPIO_ACTIVE_HIGH>
             , <&gpio0  4 GPIO_ACTIVE_HIGH>
             , <&gpio0  5 GPIO_ACTIVE_HIGH>
-            , <&gpio1 11 GPIO_ACTIVE_HIGH>
             ;
     };
 };
