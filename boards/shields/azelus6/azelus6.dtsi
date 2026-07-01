@@ -4,7 +4,6 @@
 
 / {
     chosen {
-        zmk,battery = &vbatt;
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
     };
@@ -29,9 +28,7 @@
         init-delay-ms = <50>;
     };
 
-    vbatt: vbatt {
-        compatible = "zmk,battery-nrf-vddh";
-        label = "BATTERY";
-    };
+    # XIAO BLE Board defines the battery driver itself no need to define anything
+
 };
 

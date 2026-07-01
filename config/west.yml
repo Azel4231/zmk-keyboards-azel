@@ -7,7 +7,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: abb64ba3
+      revision: v0.3        #working main: abb64ba3
       import: app/west.yml
   self:
     path: config
