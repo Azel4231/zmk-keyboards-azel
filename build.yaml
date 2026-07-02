@@ -1,7 +1,15 @@
-#board: [ "nice_nano" ]
-#shield: [ "azelus3" ]
 include:
+  # Without dongle (left half is central, connects directly to host via BLE):
+  # - board: seeeduino_xiao_ble
+  #   shield: azelus6_left
+  # - board: seeeduino_xiao_ble
+  #   shield: azelus6_right
+
+  # With dongle (dongle is central via USB, both halves are peripherals):
+  - board: seeeduino_xiao_ble
+    shield: azelus6_dongle
   - board: seeeduino_xiao_ble
     shield: azelus6_left
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
   - board: seeeduino_xiao_ble
     shield: azelus6_right

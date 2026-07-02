@@ -1,11 +1,20 @@
-if SHIELD_AZELUS6_LEFT
+if SHIELD_AZELUS6_DONGLE  # SHIELD_AZELUS6_LEFT if LEFT should be central
 config ZMK_KEYBOARD_NAME
     default "Azelus MK6"
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 endif
 
-if SHIELD_AZELUS6_LEFT || SHIELD_AZELUS6_RIGHT
+if SHIELD_AZELUS6_DONGLE
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 2
+config BT_MAX_CONN
+    default 5
+config BT_MAX_PAIRED
+    default 5
+endif
+
+if SHIELD_AZELUS6_LEFT || SHIELD_AZELUS6_RIGHT || SHIELD_AZELUS6_DONGLE
 config ZMK_SPLIT
     default y
 endif
